@@ -27,23 +27,47 @@ public class BulletFactory : MonoBehaviour
         GoInstantiate = Instantiate(bulletPrefab, position, rotation);
         bulletInstantiate = GoInstantiate.GetComponent<Bullet>();
 
-        // Ajout des differents type de balles
-        if (_inventory.bulletGlace > 0)
-        {
-            bulletInstantiate.types.Add(new BulletType("glace", _inventory.bulletGlace));
-            GoInstantiate.transform.Find("SpriteChild").GetComponent<SpriteRenderer>().sprite = spriteGlace;
-        }
+        // Determine le type de balle aléatoirement selon les quantités disponibles
+        System.Collections.Generic.List<string> availableBulletTypes = new System.Collections.Generic.List<string>();
+        
+        // Ajouter chaque type autant de fois que sa quantité (pondération)
+        for (int i = 0; i < 5; i++)
+            availableBulletTypes.Add("normal"); // Balle normal
 
-        if (_inventory.bulletFeu > 0)
-        {
-            bulletInstantiate.types.Add(new BulletType("feu", _inventory.bulletFeu));
-            GoInstantiate.transform.Find("SpriteChild").GetComponent<SpriteRenderer>().sprite = spriteFeu;
-        }
+        for (int i = 0; i < _inventory.bulletGlace; i++)
+            availableBulletTypes.Add("glace");
+        
+        for (int i = 0; i < _inventory.bulletFeu; i++)
+            availableBulletTypes.Add("feu");
+        
+        for (int i = 0; i < _inventory.bulletElec; i++)
+            availableBulletTypes.Add("elec");
+        
 
-        if (_inventory.bulletElec > 0)
+
+        // Si au moins un type est disponible, sélectionner aléatoirement
+        if (availableBulletTypes.Count > 0)
         {
-            bulletInstantiate.types.Add(new BulletType("elec", _inventory.bulletElec));
-            GoInstantiate.transform.Find("SpriteChild").GetComponent<SpriteRenderer>().sprite = spriteElec;
+            string selectedType = availableBulletTypes[Random.Range(0, availableBulletTypes.Count)];
+            
+            switch (selectedType)
+            {
+                case "glace":
+                    bulletInstantiate.types.Add(new BulletType("glace", 1));
+                    GoInstantiate.transform.Find("SpriteChild").GetComponent<SpriteRenderer>().sprite = spriteGlace;
+                    break;
+                case "feu":
+                    bulletInstantiate.types.Add(new BulletType("feu", 1));
+                    GoInstantiate.transform.Find("SpriteChild").GetComponent<SpriteRenderer>().sprite = spriteFeu;
+                    break;
+                case "elec":
+                    bulletInstantiate.types.Add(new BulletType("elec", 1));
+                    GoInstantiate.transform.Find("SpriteChild").GetComponent<SpriteRenderer>().sprite = spriteElec;
+                    break;
+                case "normal":
+                    // On ne fait rien
+                    break;
+            }
         }
 
         if (isRocket)

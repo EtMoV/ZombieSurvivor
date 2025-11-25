@@ -39,9 +39,9 @@ public class PowerUpManager : MonoBehaviour
             new PowerUp("life", 1, "More Life", "+1 life", true),
             new PowerUp("damage", 1, "More damage", "+1 bullet damage", true),
             new PowerUp("attackSpeed", 1, "Attack speed", "+1 attack speed", true),
-            new PowerUp("bulletGlace", 1, "Glass Bullet", "Slows down the enemy", false),
-            new PowerUp("bulletFeu", 1, "Fire Bullet", "Deals damage over time", false),
-            new PowerUp("bulletElec", 1, "Electric Bullet", "The damage bounces off the nearest enemy", false),
+            new PowerUp("bulletGlace", 1, "+1 Glass Bullet", "Slows down the enemy", false),
+            new PowerUp("bulletFeu", 1, "+1 Fire Bullet", "Deals damage over time", false),
+            new PowerUp("bulletElec", 1, "+1 Electric Bullet", "The damage bounces off the nearest enemy", false),
         };
         isActive = false;
     }
@@ -53,11 +53,24 @@ public class PowerUpManager : MonoBehaviour
         {
             tmpPowerUpOne = possiblePowerUp.Where(p => p.isStat).OrderBy(_ => Random.value).FirstOrDefault();
             tmpPowerUpTwo = possiblePowerUp.Where(p => p.isStat).OrderBy(_ => Random.value).FirstOrDefault();
+            
+            // S'assurer que tmpPowerUpTwo est différent de tmpPowerUpOne
+            while (tmpPowerUpTwo.type == tmpPowerUpOne.type)
+            {
+                tmpPowerUpTwo = possiblePowerUp.Where(p => p.isStat).OrderBy(_ => Random.value).FirstOrDefault();
+            }
         }
         else
         {
+            
             tmpPowerUpOne = possiblePowerUp.Where(p => !p.isStat).OrderBy(_ => Random.value).FirstOrDefault();
             tmpPowerUpTwo = possiblePowerUp.Where(p => !p.isStat).OrderBy(_ => Random.value).FirstOrDefault();
+            
+            // S'assurer que tmpPowerUpTwo est différent de tmpPowerUpOne
+            while (tmpPowerUpTwo.type == tmpPowerUpOne.type)
+            {
+                tmpPowerUpTwo = possiblePowerUp.Where(p => !p.isStat).OrderBy(_ => Random.value).FirstOrDefault();
+            }
         }
     }
 
