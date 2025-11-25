@@ -34,6 +34,7 @@ public class Door : MonoBehaviour
             _spawnPoint.isActive = true;
             GetComponent<SpriteRenderer>().sprite = doorOpenSprite;
             GetComponent<BoxCollider2D>().enabled = false;
+            Destroy(gameObject);
             return;
         }
 

@@ -331,4 +331,9 @@ public class MenuManager : MonoBehaviour
         menuGo.SetActive(true);
         storyMenuGo.SetActive(false);
     }
+
+    public void onJoinDiscord()
+    {
+        Application.OpenURL("https://discord.gg/37s6ujvcPY");
+    }
 }
