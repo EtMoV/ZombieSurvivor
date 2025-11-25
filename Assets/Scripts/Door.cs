@@ -30,12 +30,15 @@ public class Door : MonoBehaviour
     {
         if (isScenario)
         {
-            isOpen = true;
-            _spawnPoint.isActive = true;
-            GetComponent<SpriteRenderer>().sprite = doorOpenSprite;
-            GetComponent<BoxCollider2D>().enabled = false;
-            Destroy(gameObject);
-            return;
+            if (cost == 0)
+            {
+                isOpen = true;
+                _spawnPoint.isActive = true;
+                GetComponent<SpriteRenderer>().sprite = doorOpenSprite;
+                GetComponent<BoxCollider2D>().enabled = false;
+                Destroy(gameObject);
+                return;
+            }
         }
 
         if (cost > 0)

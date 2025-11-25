@@ -54,11 +54,11 @@ public class Episode1Manager : MonoBehaviour
         {
 
             _narrationManager.HidePanel();
-            if (isEndTextThree)
+            /*if (isEndTextThree)
             {
                 // Dernier texte
                 ShowEndPanel();
-            }
+            }*/
         }
         else
         {
