@@ -1,0 +1,106 @@
+using System.Collections;
+using TMPro;
+using UnityEngine;
+
+public class RoundManager : MonoBehaviour
+{
+
+    public Round currentRound;
+
+    public GameObject roundTextGoWatch;
+    public GameObject roundTextGoPhone;
+    public GameObject gameManagerGo;
+    private GameManager _gameManager;
+    public GameObject shopManagerGo;
+    private ShopManager _shopManager;
+
+    public GameObject pauseManagerGo;
+    private PauseManager _pauseManager;
+
+    public GameObject powerUpManagerGo;
+    private PowerUpManager _powerUpManager;
+    public GameObject exitManagerGo;
+    private ExitManager _exitManager;
+
+    public GameObject arenaManagerGo;
+    private ArenaManager _arenaManager;
+
+    public bool isScenario = false;
+
+    void Awake()
+    {
+        _gameManager = gameManagerGo.GetComponent<GameManager>();
+        _shopManager = shopManagerGo.GetComponent<ShopManager>();
+        _pauseManager = pauseManagerGo.GetComponent<PauseManager>();
+        _powerUpManager = powerUpManagerGo.GetComponent<PowerUpManager>();
+        _exitManager = exitManagerGo.GetComponent<ExitManager>();
+        _arenaManager = arenaManagerGo.GetComponent<ArenaManager>();
+        currentRound = new Round(0, 6, 6, 1, false, false);
+    }
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        if (isScenario)
+            return;
+        launchNextRound();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    void FixedUpdate()
+    {
+        if (isScenario)
+            return;
+            
+        GameObject[] zombies = GameObject.FindGameObjectsWithTag("Zombie");
+        if (zombies.Length == 0 && currentRound.currentNbZombieSpawn >= currentRound.maxZombies && !_shopManager.isActive && !_pauseManager.isActive && !_powerUpManager.isActive && !_exitManager.isActive && !_arenaManager.isActive)
+        {
+            // On passe au round suivant si plus de zombie et qu'ils ont tous spawn
+            launchNextRound();
+        }
+    }
+
+    public void launchNextRound()
+    {
+        int nextNumberRound = currentRound.numberRound + 1;
+        int nextNbZombiesSpawn = currentRound.nbZombieSpawn + 3;
+        int nextMaxZombies = currentRound.maxZombies * 2;
+        int nextPvZombies = currentRound.pvZombie + 2;
+        bool nextIsBoss = nextNumberRound >= 5 ? true : false;
+        currentRound = new Round(nextNumberRound, nextNbZombiesSpawn, nextMaxZombies, nextPvZombies, nextIsBoss, false);
+        StartCoroutine(activateRound());
+    }
+
+    private IEnumerator activateRound()
+    {
+        if (CanvaManager.isWatch.HasValue && CanvaManager.isWatch.Value)
+        {
+            yield return new WaitForSeconds(1f);
+            if (!_gameManager.isDead)
+            {
+                roundTextGoWatch.SetActive(true);
+            }
+            roundTextGoWatch.GetComponent<TextMeshProUGUI>().text = "Wave " + currentRound.numberRound.ToString();
+            yield return new WaitForSeconds(3f);
+            roundTextGoWatch.SetActive(false);
+            currentRound.isActive = true;
+        }
+        else
+        {
+            yield return new WaitForSeconds(1f);
+            if (!_gameManager.isDead)
+            {
+                roundTextGoPhone.SetActive(true);
+            }
+            roundTextGoPhone.GetComponent<TextMeshProUGUI>().text = "Wave " + currentRound.numberRound.ToString();
+            yield return new WaitForSeconds(3f);
+            roundTextGoPhone.SetActive(false);
+            currentRound.isActive = true;
+        }
+    }
+}
