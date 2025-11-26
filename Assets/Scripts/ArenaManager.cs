@@ -26,7 +26,7 @@ public class ArenaManager : MonoBehaviour
     public int getZombieCount()
     {
         nbZombie += 1;
-        //nbZombie = nbZombie * 2;
+        nbZombie = nbZombie * 2;
         return nbZombie;
     }
 

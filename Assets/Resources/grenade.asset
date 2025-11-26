@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16652548eacba4b648aebd3afcc41ac8, type: 3}
   m_Name: grenade
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
-  sprite: {fileID: 21300000, guid: ba70b636fb79f4e0b904f9d619b34e8f, type: 2}
-  typeFire: subMachineGun
+  sprite: {fileID: 21300000, guid: 1152dca258e0a4c14831550b2f825d42, type: 2}
+  typeFire: grenade
   attackSpeed: 0.4
   damage: 3

@@ -16,6 +16,8 @@ public class Episode1Manager : MonoBehaviour
 
     public GameObject spawnPointFive;
 
+    public GameObject spawnPointFinal;
+
     public GameObject touchArea;
 
     public GameObject pauseIcon;
@@ -27,6 +29,8 @@ public class Episode1Manager : MonoBehaviour
     bool isEndTextOne = false;
     bool isEndTextTwo = false;
     bool isEndTextThree = false;
+
+    bool isEndFinal = false;
 
     public void Awake()
     {
@@ -54,11 +58,11 @@ public class Episode1Manager : MonoBehaviour
         {
 
             _narrationManager.HidePanel();
-            /*if (isEndTextThree)
+            if (isEndFinal)
             {
                 // Dernier texte
                 ShowEndPanel();
-            }*/
+            }
         }
         else
         {
@@ -102,6 +106,21 @@ public class Episode1Manager : MonoBehaviour
             {
                 isEndTextThree = true;
                 narrationTexts.Add("Now i can get out...");
+                _narrationManager.ShowPanel();
+
+                _narrationManager.UpdateText(narrationTexts[0]);
+                narrationTexts.RemoveAt(0);
+            }
+        }
+
+        if (spawnPointFinal.GetComponent<SpawnPoint>().zombieSpawnHasDie)
+        {
+            if (!isEndFinal)
+            {
+                isEndFinal = true;
+                narrationTexts.Add("OMG, it's the apocalypse !");
+                narrationTexts.Add("I absolutely have to leave this city");
+                narrationTexts.Add("And prepare myself to survive...");
                 _narrationManager.ShowPanel();
 
                 _narrationManager.UpdateText(narrationTexts[0]);
