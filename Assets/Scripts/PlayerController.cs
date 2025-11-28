@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     public GameObject inventoryGO;
     private Inventory _inventory;
+    public GameObject hitPanel; // Panel d'affichage du hit
 
     private bool isTouching = false;
     private bool isRunning = false;
@@ -85,7 +87,7 @@ public class PlayerController : MonoBehaviour
         else
             HandleTapMovement();
 
-       // AttractXPObjects();
+        // AttractXPObjects();
     }
 
     private void HandleJoystickMovement()
@@ -180,7 +182,7 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-    
+
     // 🧩 Visualisation dans la scène
     private void OnDrawGizmosSelected()
     {
@@ -195,7 +197,11 @@ public class PlayerController : MonoBehaviour
             _inventory.lifeCount -= 1;
             isHit = true;
             animator.Play("PlayerHit");
-            StartCoroutine(ResetHitStateAfterDelay(1f));
+
+            // Shake de l'écran
+            StartCoroutine(CameraShake(0.1f, 0.3f));
+            StartCoroutine(HitPanelAlphaCoroutine());
+            StartCoroutine(ResetHitStateAfterDelay(0.8f));
 
             GameObject[] zombies = GameObject.FindGameObjectsWithTag("Zombie");
             foreach (GameObject zombie in zombies)
@@ -212,6 +218,7 @@ public class PlayerController : MonoBehaviour
         {
             isDead = true;
             animator.Play("PlayerDie");
+            StartCoroutine(CameraShake(0.1f, 0.3f));
             StartCoroutine(LoseScreenCoroutine(1.5f));
             Destroy(gameObject, 2f);
         }
@@ -223,11 +230,47 @@ public class PlayerController : MonoBehaviour
         isHit = false;
     }
 
+    private IEnumerator CameraShake(float duration, float magnitude)
+    {
+        Camera camera = Camera.main;
+        Vector3 originalPosition = camera.transform.position;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            float randomX = Random.Range(-1f, 1f) * magnitude;
+            float randomY = Random.Range(-1f, 1f) * magnitude;
+            camera.transform.position = originalPosition + new Vector3(randomX, randomY, 0f);
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        camera.transform.position = originalPosition;
+    }
+
     private IEnumerator LoseScreenCoroutine(float delay)
     {
         yield return new WaitForSeconds(delay);
         GameManager gameManager = FindFirstObjectByType<GameManager>();
         if (gameManager != null)
             gameManager.displayLoseScreen();
+    }
+
+    private IEnumerator HitPanelAlphaCoroutine()
+    {
+        Image image = hitPanel.GetComponent<Image>();
+
+        if (image != null)
+        {
+            Color color = image.color;
+            color.a = 0.25f; // 25% d'opacité
+            image.color = color;
+            
+            yield return new WaitForSeconds(0.8f);
+            
+            color.a = 0f; // Retour à transparent
+            image.color = color;
+        }
     }
 }
