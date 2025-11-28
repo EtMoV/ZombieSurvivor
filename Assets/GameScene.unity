@@ -83673,6 +83673,8 @@ MonoBehaviour:
   xpPrefab: {fileID: 524867009648265515, guid: d097aac67f219467b9f2e4e44832ae83, type: 3}
   lootPrefab: {fileID: 524867009648265515, guid: e3ea976c818fc4619a1106f4a497601f, type: 3}
   isScenario: 0
+  fireAnimatorController: {fileID: 9100000, guid: c8250a0f23bc2427a9ff6367d4950f7b, type: 2}
+  iceSprite: {fileID: 21300000, guid: 8f901750c6b454c6c944aa49e4ba77b9, type: 3}
 --- !u!114 &1372334665
 MonoBehaviour:
   m_ObjectHideFlags: 0

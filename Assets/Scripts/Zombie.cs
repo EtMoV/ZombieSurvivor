@@ -52,6 +52,9 @@ public class Zombie : MonoBehaviour
 
     public bool hasSpawnFromSpawnPoint = false;
 
+    public RuntimeAnimatorController fireAnimatorController;
+    public Sprite iceSprite;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -236,6 +239,8 @@ public class Zombie : MonoBehaviour
                     case "glace":
                         moveSpeed = moveSpeed - (0.3f * bulletType.lvl);
                         _spriteRenderer.color = Color.blue; // On met le zombie en bleu
+                        GameObject effectOnZombie = transform.Find("Effect").gameObject;
+                        effectOnZombie.GetComponent<SpriteRenderer>().sprite = iceSprite;
                         break;
                     case "feu":
                         StartCoroutine(OnFire(bulletType.lvl));
@@ -288,6 +293,8 @@ public class Zombie : MonoBehaviour
                     case "glace":
                         moveSpeed = moveSpeed - (0.3f * bulletType.lvl);
                         _spriteRenderer.color = Color.blue; // On met le zombie en bleu
+                        GameObject effectOnZombie = transform.Find("Effect").gameObject;
+                        effectOnZombie.GetComponent<SpriteRenderer>().sprite = iceSprite;
                         break;
                     case "feu":
                         StartCoroutine(OnFire(bulletType.lvl));
@@ -443,7 +450,12 @@ public class Zombie : MonoBehaviour
     private IEnumerator OnFire(float damage)
     {
         // Pendant 5 secondes le dot
+        GameObject effectOnZombie = transform.Find("Effect").gameObject;
+        Animator anim = effectOnZombie.GetComponent<Animator>();
+        anim.runtimeAnimatorController = fireAnimatorController; // ton controller
+
         _spriteRenderer.color = Color.red;
+
         yield return new WaitForSeconds(2f);
         life -= damage;
         if (life <= 0)
@@ -461,6 +473,8 @@ public class Zombie : MonoBehaviour
         if (life <= 0)
             Die();
         yield return new WaitForSeconds(2f);
+        effectOnZombie.GetComponent<Animator>().runtimeAnimatorController = null;
+        effectOnZombie.GetComponent<SpriteRenderer>().sprite = null;
         _spriteRenderer.color = _originalColor;
     }
 

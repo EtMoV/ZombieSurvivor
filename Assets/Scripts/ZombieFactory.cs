@@ -17,7 +17,10 @@ public class ZombieFactory : MonoBehaviour
     public GameObject lootPrefab;
 
     public bool isScenario = false;
-    
+
+    public RuntimeAnimatorController fireAnimatorController;
+    public Sprite iceSprite;
+
     public void Awake()
     {
         _inventory = inventoryGo.GetComponent<Inventory>();
@@ -35,6 +38,8 @@ public class ZombieFactory : MonoBehaviour
         zombieInstantiate.lootPrefab = lootPrefab;
         zombieInstantiate.isScenario = isScenario;
         zombieInstantiate.hasSpawnFromSpawnPoint = fromSpawnPoint;
+        zombieInstantiate.fireAnimatorController = fireAnimatorController;
+        zombieInstantiate.iceSprite = iceSprite;
         if (isBoss)
         {
             zombieInstantiate.zombieBossSprite = zombieBossSprite;
