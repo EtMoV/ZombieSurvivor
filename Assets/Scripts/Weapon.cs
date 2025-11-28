@@ -7,6 +7,8 @@ public class Weapon
     private string _name;
     private float _nextFireTime = 0f;
 
+    public int pos = -1;
+
     public Weapon(string dataName)
     {
         WeaponData data = Resources.Load<WeaponData>(dataName);

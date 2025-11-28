@@ -9,6 +9,11 @@ public class PlayerWeapon : MonoBehaviour
 
     public MeleeAttackFactory meleeAttackFactory;
 
+    public GameObject weaponPlayerPos1;
+    public GameObject weaponPlayerPos2;
+    public GameObject weaponPlayerPos3;
+    public GameObject weaponPlayerPos4;
+
     void Awake()
     {
         _inventory = inventoryGO.GetComponent<Inventory>();
@@ -51,12 +56,12 @@ public class PlayerWeapon : MonoBehaviour
     // -------------------------------
     // 🔍 Trouver le zombie le plus proche
     // -------------------------------
-    private Transform GetClosestZombie()
+    private Transform GetClosestZombie(GameObject weaponPlayerPos)
     {
         GameObject[] zombies = GameObject.FindGameObjectsWithTag("Zombie");
         Transform closest = null;
         float minDistance = Mathf.Infinity;
-        Vector3 playerPos = transform.position;
+        Vector3 posWeapon = weaponPlayerPos.transform.position;
 
         int wallLayer = LayerMask.GetMask("Wall", "Door");
 
@@ -69,14 +74,14 @@ public class PlayerWeapon : MonoBehaviour
                 continue;
 
             Vector3 zombiePos = zombie.transform.position;
-            float distance = Vector3.Distance(playerPos, zombiePos);
+            float distance = Vector3.Distance(posWeapon, zombiePos);
 
             // 🔹 Vérifie si le zombie est dans la zone de détection
             if (distance > detectionRadius + _inventory.range)
                 continue;
 
             // 🔹 Vérifie si un mur/porte/barricade bloque la vue
-            RaycastHit2D hit = Physics2D.Linecast(playerPos, zombiePos, wallLayer);
+            RaycastHit2D hit = Physics2D.Linecast(posWeapon, zombiePos, wallLayer);
             if (hit.collider != null)
                 continue;
 
@@ -97,13 +102,33 @@ public class PlayerWeapon : MonoBehaviour
     private void Fire(Weapon weapon)
     {
         // Tire standard
-        Transform target = GetClosestZombie();
+        GameObject weaponPlayerPos = null;
+        switch (weapon.pos)
+        {
+            case 0:
+                weaponPlayerPos = weaponPlayerPos1;
+                break;
+            case 1:
+                weaponPlayerPos = weaponPlayerPos2;
+                break;
+            case 2:
+                weaponPlayerPos = weaponPlayerPos3;
+                break;
+            case 3:
+                weaponPlayerPos = weaponPlayerPos4;
+                break;
+        }
+        Transform target = GetClosestZombie(weaponPlayerPos);
         if (target != null)
         {
-            Vector2 direction = (target.position - transform.position).normalized;
+            Vector2 direction = (target.position - weaponPlayerPos.transform.position).normalized;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
-            Vector2 positionBullet = transform.position + (Vector3)(direction * 0.5f);
+            Vector2 positionBullet = weaponPlayerPos.transform.position + (Vector3)(direction * 0.5f);
             Quaternion rotation = Quaternion.Euler(0, 0, angle);
+            Quaternion rotatioWeapon = Quaternion.Euler(0, 0, angle + 90f);
+
+            // Changer la rotation du weaponPlayerPos
+            weaponPlayerPos.transform.rotation = rotatioWeapon;
 
             Bullet bullet = bulletFactory.InstantiateBullet(positionBullet, rotation, false, false);
             Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponent<Collider2D>());
@@ -114,12 +139,28 @@ public class PlayerWeapon : MonoBehaviour
 
     private void angleFire(Weapon weapon, int bulletCount)
     {
-        Transform target = GetClosestZombie();
+        GameObject weaponPlayerPos = null;
+        switch (weapon.pos)
+        {
+            case 1:
+                weaponPlayerPos = weaponPlayerPos1;
+                break;
+            case 2:
+                weaponPlayerPos = weaponPlayerPos2;
+                break;
+            case 3:
+                weaponPlayerPos = weaponPlayerPos3;
+                break;
+            case 4:
+                weaponPlayerPos = weaponPlayerPos4;
+                break;
+        }
+        Transform target = GetClosestZombie(weaponPlayerPos);
         if (target == null) return;
 
-        Vector2 direction = (target.position - transform.position).normalized;
+        Vector2 direction = (target.position - weaponPlayerPos.transform.position).normalized;
         float baseAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
-        Vector2 basePosition = transform.position + (Vector3)(direction * 0.5f);
+        Vector2 basePosition = weaponPlayerPos.transform.position + (Vector3)(direction * 0.5f);
 
         float spread = 20f;
         float radius = 0.2f;
@@ -133,6 +174,11 @@ public class PlayerWeapon : MonoBehaviour
             Vector2 offset = rotation * Vector2.up * radius;
             Vector2 spawnPos = basePosition + offset;
 
+            Quaternion rotatioWeapon = Quaternion.Euler(0, 0, finalAngle + 90f);
+
+            // Changer la rotation du weaponPlayerPos
+            weaponPlayerPos.transform.rotation = rotatioWeapon;
+
             Bullet bullet = bulletFactory.InstantiateBullet(spawnPos, rotation, false, false);
             Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponent<Collider2D>());
             bullet.damage = weapon.weaponData.damage + _inventory.damage;
@@ -142,17 +188,38 @@ public class PlayerWeapon : MonoBehaviour
 
     private void cacFire(Weapon weapon)
     {
-        Transform target = GetClosestZombie();
+        GameObject weaponPlayerPos = null;
+        switch (weapon.pos)
+        {
+            case 1:
+                weaponPlayerPos = weaponPlayerPos1;
+                break;
+            case 2:
+                weaponPlayerPos = weaponPlayerPos2;
+                break;
+            case 3:
+                weaponPlayerPos = weaponPlayerPos3;
+                break;
+            case 4:
+                weaponPlayerPos = weaponPlayerPos4;
+                break;
+        }
+        Transform target = GetClosestZombie(weaponPlayerPos);
         if (target == null) return;
 
         Vector2 direction = target != null ?
-       (target.position - transform.position).normalized :
-       transform.up;
+       (target.position - weaponPlayerPos.transform.position).normalized :
+       weaponPlayerPos.transform.up;
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
         Quaternion rotation = Quaternion.Euler(0, 0, angle);
 
-        Vector2 spawnPos = (Vector2)transform.position + direction * 1.5f;
+        Quaternion rotatioWeapon = Quaternion.Euler(0, 0, angle + 90f);
+
+        // Changer la rotation du weaponPlayerPos
+        weaponPlayerPos.transform.rotation = rotatioWeapon;
+
+        Vector2 spawnPos = (Vector2)weaponPlayerPos.transform.position + direction * 1.5f;
         MeleeAttack melee = meleeAttackFactory.InstantiateMeleeAttack(spawnPos, rotation);
         melee.damage = weapon.weaponData.damage + _inventory.damage;
     }
@@ -160,13 +227,34 @@ public class PlayerWeapon : MonoBehaviour
     private void rocketFire(Weapon weapon)
     {
         // Tire standard
-        Transform target = GetClosestZombie();
+        GameObject weaponPlayerPos = null;
+        switch (weapon.pos)
+        {
+            case 1:
+                weaponPlayerPos = weaponPlayerPos1;
+                break;
+            case 2:
+                weaponPlayerPos = weaponPlayerPos2;
+                break;
+            case 3:
+                weaponPlayerPos = weaponPlayerPos3;
+                break;
+            case 4:
+                weaponPlayerPos = weaponPlayerPos4;
+                break;
+        }
+        Transform target = GetClosestZombie(weaponPlayerPos);
         if (target != null)
         {
-            Vector2 direction = (target.position - transform.position).normalized;
+            Vector2 direction = (target.position - weaponPlayerPos.transform.position).normalized;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
-            Vector2 positionBullet = transform.position + (Vector3)(direction * 0.5f);
+            Vector2 positionBullet = weaponPlayerPos.transform.position + (Vector3)(direction * 0.5f);
             Quaternion rotation = Quaternion.Euler(0, 0, angle);
+
+            Quaternion rotatioWeapon = Quaternion.Euler(0, 0, angle + 90f);
+
+            // Changer la rotation du weaponPlayerPos
+            weaponPlayerPos.transform.rotation = rotatioWeapon;
 
             Bullet bullet = bulletFactory.InstantiateBullet(positionBullet, rotation, true, false);
             Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponent<Collider2D>());
@@ -178,13 +266,35 @@ public class PlayerWeapon : MonoBehaviour
     private void grenadeFire(Weapon weapon)
     {
         // Tire standard
-        Transform target = GetClosestZombie();
+        GameObject weaponPlayerPos = null;
+        switch (weapon.pos)
+        {
+            case 1:
+                weaponPlayerPos = weaponPlayerPos1;
+                break;
+            case 2:
+                weaponPlayerPos = weaponPlayerPos2;
+                break;
+            case 3:
+                weaponPlayerPos = weaponPlayerPos3;
+                break;
+            case 4:
+                weaponPlayerPos = weaponPlayerPos4;
+                break;
+        }
+
+        Transform target = GetClosestZombie(weaponPlayerPos);
         if (target != null)
         {
-            Vector2 direction = (target.position - transform.position).normalized;
+            Vector2 direction = (target.position - weaponPlayerPos.transform.position).normalized;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
-            Vector2 positionBullet = transform.position + (Vector3)(direction * 0.5f);
+            Vector2 positionBullet = weaponPlayerPos.transform.position + (Vector3)(direction * 0.5f);
             Quaternion rotation = Quaternion.Euler(0, 0, angle);
+
+            Quaternion rotatioWeapon = Quaternion.Euler(0, 0, angle + 90f);
+
+            // Changer la rotation du weaponPlayerPos
+            weaponPlayerPos.transform.rotation = rotatioWeapon;
 
             Bullet bullet = bulletFactory.InstantiateBullet(positionBullet, rotation, true, true);
             Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponent<Collider2D>());

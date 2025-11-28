@@ -32,7 +32,7 @@ public class BulletFactory : MonoBehaviour
 
         // Ajouter chaque type autant de fois que sa quantité (pondération)
         for (int i = 0; i < 5; i++)
-            availableBulletTypes.Add("elec"); // Balle normal
+            availableBulletTypes.Add("normal"); // Balle normal
 
         for (int i = 0; i < _inventory.bulletGlace; i++)
             availableBulletTypes.Add("glace");

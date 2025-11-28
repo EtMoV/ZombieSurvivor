@@ -12422,6 +12422,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 582957515}
   m_CullTransparentMesh: 1
+--- !u!1 &583216007 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3918324235177427387, guid: fbba0996de0d344d98b89e9f51c84f00, type: 3}
+  m_PrefabInstance: {fileID: 7143437654115341130}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &601490350
 GameObject:
   m_ObjectHideFlags: 0
@@ -77588,6 +77593,10 @@ MonoBehaviour:
   fillBarXp: {fileID: 564814419}
   fillBarLife: {fileID: 1753349568}
   isScenario: 0
+  weaponPlayerPos1: {fileID: 1135302792}
+  weaponPlayerPos2: {fileID: 1624502264}
+  weaponPlayerPos3: {fileID: 583216007}
+  weaponPlayerPos4: {fileID: 1483893850}
 --- !u!4 &758181843
 Transform:
   m_ObjectHideFlags: 0
@@ -81068,6 +81077,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1120871089}
   m_CullTransparentMesh: 1
+--- !u!1 &1135302792 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7997647101480394004, guid: fbba0996de0d344d98b89e9f51c84f00, type: 3}
+  m_PrefabInstance: {fileID: 7143437654115341130}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1135990528
 GameObject:
   m_ObjectHideFlags: 0
@@ -95385,6 +95399,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1470740898}
   m_CullTransparentMesh: 1
+--- !u!1 &1483893850 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 57831657605915407, guid: fbba0996de0d344d98b89e9f51c84f00, type: 3}
+  m_PrefabInstance: {fileID: 7143437654115341130}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1490042389
 GameObject:
   m_ObjectHideFlags: 0
@@ -96662,6 +96681,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1616113795}
   m_CullTransparentMesh: 1
+--- !u!1 &1624502264 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 432464903922093262, guid: fbba0996de0d344d98b89e9f51c84f00, type: 3}
+  m_PrefabInstance: {fileID: 7143437654115341130}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1630639861
 GameObject:
   m_ObjectHideFlags: 0
@@ -102040,6 +102064,22 @@ PrefabInstance:
       propertyPath: detectionRadius
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 7875877942886951878, guid: fbba0996de0d344d98b89e9f51c84f00, type: 3}
+      propertyPath: weaponPlayerPos1
+      value: 
+      objectReference: {fileID: 1135302792}
+    - target: {fileID: 7875877942886951878, guid: fbba0996de0d344d98b89e9f51c84f00, type: 3}
+      propertyPath: weaponPlayerPos2
+      value: 
+      objectReference: {fileID: 1624502264}
+    - target: {fileID: 7875877942886951878, guid: fbba0996de0d344d98b89e9f51c84f00, type: 3}
+      propertyPath: weaponPlayerPos3
+      value: 
+      objectReference: {fileID: 583216007}
+    - target: {fileID: 7875877942886951878, guid: fbba0996de0d344d98b89e9f51c84f00, type: 3}
+      propertyPath: weaponPlayerPos4
+      value: 
+      objectReference: {fileID: 1483893850}
     - target: {fileID: 7875877942886951878, guid: fbba0996de0d344d98b89e9f51c84f00, type: 3}
       propertyPath: meleeAttackFactory
       value: 

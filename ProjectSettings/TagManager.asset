@@ -99,6 +99,9 @@ TagManager:
   - name: Player
     uniqueID: 3325804433
     locked: 0
+  - name: WeaponPlayer
+    uniqueID: 4175473697
+    locked: 0
   - name: ObjectDecor
     uniqueID: 1670862261
     locked: 0

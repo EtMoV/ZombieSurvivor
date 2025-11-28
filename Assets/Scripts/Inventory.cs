@@ -59,6 +59,11 @@ public class Inventory : MonoBehaviour
 
     public bool isScenario = false;
 
+    public GameObject weaponPlayerPos1;
+    public GameObject weaponPlayerPos2;
+    public GameObject weaponPlayerPos3;
+    public GameObject weaponPlayerPos4;
+
     void Awake()
     {
         weapons = new List<Weapon>();
@@ -193,8 +198,43 @@ public class Inventory : MonoBehaviour
     {
         Weapon newWeaponClone = newWeapon.Clone();
         newWeaponClone.inventory = this;
-        weapons.Add(newWeaponClone);
-        hasWeapon = true;
+        if (weapons.Count == 0)
+        {
+            // Ajout 1er arme
+            newWeaponClone.pos = 0;
+            weapons.Add(newWeaponClone);
+            hasWeapon = true;
+            weaponPlayerPos1.GetComponent<SpriteRenderer>().sprite = newWeaponClone.weaponData.sprite;
+        }
+        else if (weapons.Count == 1)
+        {
+            // Ajout 2e arme
+            newWeaponClone.pos = 1;
+            weapons.Add(newWeaponClone);
+            hasWeapon = true;
+            weaponPlayerPos2.GetComponent<SpriteRenderer>().sprite = newWeaponClone.weaponData.sprite;
+        }
+        else if (weapons.Count == 2)
+        {
+            // Ajout 3e arme
+            newWeaponClone.pos = 2;
+            weapons.Add(newWeaponClone);
+            hasWeapon = true;
+            weaponPlayerPos3.GetComponent<SpriteRenderer>().sprite = newWeaponClone.weaponData.sprite;
+        }
+        else if (weapons.Count == 3)
+        {
+            // Ajout 4e arme
+            newWeaponClone.pos = 3;
+            weapons.Add(newWeaponClone);
+            hasWeapon = true;
+            weaponPlayerPos4.GetComponent<SpriteRenderer>().sprite = newWeaponClone.weaponData.sprite;
+        }
+        else
+        {
+            // Upgrade weapon
+        }
+
     }
 
     public void managePowerUp()
