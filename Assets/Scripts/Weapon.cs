@@ -4,8 +4,9 @@ public class Weapon
 {
     public WeaponData weaponData;
     public Inventory inventory;
-    private string _name;
+    public string _name;
     private float _nextFireTime = 0f;
+    public int lvl = 1;
 
     public int pos = -1;
 

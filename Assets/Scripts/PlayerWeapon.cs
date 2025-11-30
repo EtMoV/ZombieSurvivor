@@ -132,7 +132,7 @@ public class PlayerWeapon : MonoBehaviour
 
             Bullet bullet = bulletFactory.InstantiateBullet(positionBullet, rotation, false, false);
             Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-            bullet.damage = weapon.weaponData.damage + _inventory.damage;
+            bullet.damage = (weapon.weaponData.damage * weapon.lvl) + _inventory.damage;
             bullet.transform.localScale = new Vector3(bullet.transform.localScale.x + _inventory.size, bullet.transform.localScale.y + _inventory.size, 1f);
         }
     }
@@ -142,16 +142,16 @@ public class PlayerWeapon : MonoBehaviour
         GameObject weaponPlayerPos = null;
         switch (weapon.pos)
         {
-            case 1:
+            case 0:
                 weaponPlayerPos = weaponPlayerPos1;
                 break;
-            case 2:
+            case 1:
                 weaponPlayerPos = weaponPlayerPos2;
                 break;
-            case 3:
+            case 2:
                 weaponPlayerPos = weaponPlayerPos3;
                 break;
-            case 4:
+            case 3:
                 weaponPlayerPos = weaponPlayerPos4;
                 break;
         }
@@ -181,7 +181,7 @@ public class PlayerWeapon : MonoBehaviour
 
             Bullet bullet = bulletFactory.InstantiateBullet(spawnPos, rotation, false, false);
             Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-            bullet.damage = weapon.weaponData.damage + _inventory.damage;
+            bullet.damage = (weapon.weaponData.damage * weapon.lvl) + _inventory.damage;
             bullet.transform.localScale = new Vector3(bullet.transform.localScale.x + _inventory.size, bullet.transform.localScale.y + _inventory.size, 1f);
         }
     }
@@ -191,16 +191,16 @@ public class PlayerWeapon : MonoBehaviour
         GameObject weaponPlayerPos = null;
         switch (weapon.pos)
         {
-            case 1:
+            case 0:
                 weaponPlayerPos = weaponPlayerPos1;
                 break;
-            case 2:
+            case 1:
                 weaponPlayerPos = weaponPlayerPos2;
                 break;
-            case 3:
+            case 2:
                 weaponPlayerPos = weaponPlayerPos3;
                 break;
-            case 4:
+            case 3:
                 weaponPlayerPos = weaponPlayerPos4;
                 break;
         }
@@ -230,16 +230,16 @@ public class PlayerWeapon : MonoBehaviour
         GameObject weaponPlayerPos = null;
         switch (weapon.pos)
         {
-            case 1:
+            case 0:
                 weaponPlayerPos = weaponPlayerPos1;
                 break;
-            case 2:
+            case 1:
                 weaponPlayerPos = weaponPlayerPos2;
                 break;
-            case 3:
+            case 2:
                 weaponPlayerPos = weaponPlayerPos3;
                 break;
-            case 4:
+            case 3:
                 weaponPlayerPos = weaponPlayerPos4;
                 break;
         }
@@ -258,7 +258,7 @@ public class PlayerWeapon : MonoBehaviour
 
             Bullet bullet = bulletFactory.InstantiateBullet(positionBullet, rotation, true, false);
             Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-            bullet.damage = weapon.weaponData.damage + _inventory.damage;
+            bullet.damage = (weapon.weaponData.damage * weapon.lvl) + _inventory.damage;
             bullet.transform.localScale = new Vector3(bullet.transform.localScale.x + _inventory.size, bullet.transform.localScale.y + _inventory.size, 1f);
         }
     }
@@ -269,16 +269,16 @@ public class PlayerWeapon : MonoBehaviour
         GameObject weaponPlayerPos = null;
         switch (weapon.pos)
         {
-            case 1:
+            case 0:
                 weaponPlayerPos = weaponPlayerPos1;
                 break;
-            case 2:
+            case 1:
                 weaponPlayerPos = weaponPlayerPos2;
                 break;
-            case 3:
+            case 2:
                 weaponPlayerPos = weaponPlayerPos3;
                 break;
-            case 4:
+            case 3:
                 weaponPlayerPos = weaponPlayerPos4;
                 break;
         }
@@ -298,7 +298,7 @@ public class PlayerWeapon : MonoBehaviour
 
             Bullet bullet = bulletFactory.InstantiateBullet(positionBullet, rotation, true, true);
             Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-            bullet.damage = weapon.weaponData.damage + _inventory.damage;
+            bullet.damage = (weapon.weaponData.damage * weapon.lvl) + _inventory.damage;
             bullet.transform.localScale = new Vector3(bullet.transform.localScale.x + _inventory.size, bullet.transform.localScale.y + _inventory.size, 1f);
         }
     }

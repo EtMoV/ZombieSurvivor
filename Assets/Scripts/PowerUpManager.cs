@@ -32,28 +32,28 @@ public class PowerUpManager : MonoBehaviour
         _playerController = playerControllerGo.GetComponent<PlayerController>();
         possiblePowerUp = new List<PowerUp>
         {
-            new PowerUp("angle", 1, "Dispersion", "+1 bullet", true),
-            new PowerUp("speed", 1, "Speed", "+1 speed", true),
-            new PowerUp("range", 1, "Range", "+1 range", true),
-            new PowerUp("size", 1, "Bullet Size", "+1 bullet size", true),
-            new PowerUp("life", 1, "More Life", "+1 life", true),
-            new PowerUp("damage", 1, "More damage", "+1 bullet damage", true),
-            new PowerUp("attackSpeed", 1, "Attack speed", "+1 attack speed", true),
-            new PowerUp("bulletGlace", 1, "+1 Frozen Bullet", "More chance to fire a slow down bullet", false),
-            new PowerUp("bulletFeu", 1, "+1 Fire Bullet", "More chance to fire a bullet who deals damage over time", false),
-            new PowerUp("bulletElec", 1, "+1 Electric Bullet", "More chance to fire a bullet who bounces off the nearest enemy", false),
+            new PowerUp("angle", 1, "Dispersion", "+1 bullet","+1 bullet", true, false, "angleEvolution", "angleEvolutionDescription", "angleEvol"),
+            new PowerUp("speed", 1, "Speed", "+1 speed","+1 speed", true, false, "speedEvolution", "speedEvolutionDescription", "speedEvol"),
+            new PowerUp("range", 1, "Range", "+1 range","+1 range", true, false, "rangeEvolution", "rangeEvolutionDescription", "rangeEvol"),
+            new PowerUp("size", 1, "Bullet Size", "+1 bullet size","+1 bullet size", true, false, "sizeEvolution", "sizeEvolutionDescription", "sizeEvol"),
+            new PowerUp("life", 1, "More Life", "+1 life","+1 life", true, false, "lifeEvolution", "lifeEvolutionDescription", "lifeEvol"),
+            new PowerUp("damage", 1, "More damage", "+1 bullet damage", "+1 bullet damage", true, false, "damageEvolution", "damageEvolutionDescription", "damageEvol"),
+            new PowerUp("attackSpeed", 1, "Attack speed", "+1 attack speed","+1 attack speed", true, false, "attackSpeedEvolution", "attackSpeedEvolutionDescription", "attackSpeedEvol"),
+            new PowerUp("bulletGlace", 1, "+1 Frozen Bullet", "More chance to fire a slow down bullet", "Increase slow", false, false, "bulletGlaceEvolution", "bulletGlaceEvolutionDescription", "bulletGlaceEvol"),
+            new PowerUp("bulletFeu", 1, "+1 Fire Bullet", "More chance to fire a bullet who deals damage over time", "Increase damage over time", false, false, "bulletFeuEvolution", "bulletFeuEvolutionDescription", "bulletFeuEvol"),
+            new PowerUp("bulletElec", 1, "+1 Electric Bullet", "More chance to fire a bullet who bounces off the nearest enemy", "Bounces on more ennemy", false, false,"bulletElecEvolution", "bulletElecEvolutionDescription", "bulletElecEvol"),
+            new PowerUp("pistol", 1, "Pistol", "A simple pistol", "Increase damage", false, true, "Deagle", "A bigger pistol", "spas"),
         };
         isActive = false;
     }
 
-    public void generateTmpPowerUp(bool isStat)
+    public void generateTmpPowerUp(bool isStat, bool hasFullWeapon)
     {
-
         if (isStat)
         {
             tmpPowerUpOne = possiblePowerUp.Where(p => p.isStat).OrderBy(_ => Random.value).FirstOrDefault();
             tmpPowerUpTwo = possiblePowerUp.Where(p => p.isStat).OrderBy(_ => Random.value).FirstOrDefault();
-            
+
             // S'assurer que tmpPowerUpTwo est différent de tmpPowerUpOne
             while (tmpPowerUpTwo.type == tmpPowerUpOne.type)
             {
@@ -62,14 +62,113 @@ public class PowerUpManager : MonoBehaviour
         }
         else
         {
-            
-            tmpPowerUpOne = possiblePowerUp.Where(p => !p.isStat).OrderBy(_ => Random.value).FirstOrDefault();
-            tmpPowerUpTwo = possiblePowerUp.Where(p => !p.isStat).OrderBy(_ => Random.value).FirstOrDefault();
-            
-            // S'assurer que tmpPowerUpTwo est différent de tmpPowerUpOne
-            while (tmpPowerUpTwo.type == tmpPowerUpOne.type)
+            if (!hasFullWeapon)
             {
+                tmpPowerUpOne = possiblePowerUp.Where(p => !p.isStat).OrderBy(_ => Random.value).FirstOrDefault();
                 tmpPowerUpTwo = possiblePowerUp.Where(p => !p.isStat).OrderBy(_ => Random.value).FirstOrDefault();
+
+                // S'assurer que tmpPowerUpTwo est différent de tmpPowerUpOne
+                while (tmpPowerUpTwo.type == tmpPowerUpOne.type)
+                {
+                    tmpPowerUpTwo = possiblePowerUp.Where(p => !p.isStat).OrderBy(_ => Random.value).FirstOrDefault();
+                }
+            }
+            else
+            {
+                // Ne propose que les power up et les armes qu'on a dans l'inventaire qui n'ont pas atteint le lvl max (les armes seulement)
+
+                tmpPowerUpOne = possiblePowerUp.Where(p =>
+                   {
+                       if (!p.isStat && !p.isWeapon)
+                       {
+                           // C'est un power up standard
+                           return true;
+                       }
+                       else if (!p.isStat && p.isWeapon)
+                       {
+                           // On check si l'arme est dans l'inventaire
+                           foreach (Weapon w in _inventory.weapons)
+                           {
+                               if (w._name == p.type)
+                               {
+                                   // L'arme est dans l'inventaire
+                                   if (w.lvl == 5)
+                                   {
+                                       return false; // Lvl max de l'arme atteint
+                                   }
+                                   return true;
+                               }
+                           }
+                           return false; // L'arme n'est pas dans l'inventaire
+                       }
+                       else
+                       {
+                           return false;
+                       }
+                   }).OrderBy(_ => Random.value).FirstOrDefault();
+
+                tmpPowerUpTwo = possiblePowerUp.Where(p =>
+              {
+                  if (!p.isStat && !p.isWeapon)
+                  {
+                      // C'est un power up standard
+                      return true;
+                  }
+                  else if (!p.isStat && p.isWeapon)
+                  {
+                      // On check si l'arme est dans l'inventaire
+                      foreach (Weapon w in _inventory.weapons)
+                      {
+                          if (w._name == p.type)
+                          {
+                              // L'arme est dans l'inventaire
+                              if (w.lvl == 5)
+                              {
+                                  return false; // Lvl max de l'arme atteint
+                              }
+                              return true;
+                          }
+                      }
+                      return false; // L'arme n'est pas dans l'inventaire
+                  }
+                  else
+                  {
+                      return false;
+                  }
+              }).OrderBy(_ => Random.value).FirstOrDefault();
+                // S'assurer que tmpPowerUpTwo est différent de tmpPowerUpOne
+                while (tmpPowerUpTwo.type == tmpPowerUpOne.type)
+                {
+                    tmpPowerUpTwo = possiblePowerUp.Where(p =>
+                                 {
+                                     if (!p.isStat && !p.isWeapon)
+                                     {
+                                         // C'est un power up standard
+                                         return true;
+                                     }
+                                     else if (!p.isStat && p.isWeapon)
+                                     {
+                                         // On check si l'arme est dans l'inventaire
+                                         foreach (Weapon w in _inventory.weapons)
+                                         {
+                                             if (w._name == p.type)
+                                             {
+                                                 // L'arme est dans l'inventaire
+                                                 if (w.lvl == 5)
+                                                 {
+                                                     return false; // Lvl max de l'arme atteint
+                                                 }
+                                                 return true;
+                                             }
+                                         }
+                                         return false; // L'arme n'est pas dans l'inventaire
+                                     }
+                                     else
+                                     {
+                                         return false;
+                                     }
+                                 }).OrderBy(_ => Random.value).FirstOrDefault();
+                }
             }
         }
     }
@@ -88,7 +187,7 @@ public class PowerUpManager : MonoBehaviour
     {
         PowerUp newInstancePowerUp = powerUp.Clone();
 
-        PowerUp powerUpFind = _inventory.powerUpList.Find(p => p.type == powerUp.type);
+        PowerUp powerUpFind = _inventory.powerUpList.Find(p => p.type == newInstancePowerUp.type);
 
         if (powerUpFind != null)
         {
@@ -97,7 +196,7 @@ public class PowerUpManager : MonoBehaviour
         }
         else
         {
-            _inventory.powerUpList.Add(powerUp);
+            _inventory.powerUpList.Add(newInstancePowerUp);
         }
 
         // On manage les powers ups

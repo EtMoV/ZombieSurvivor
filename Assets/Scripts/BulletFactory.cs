@@ -53,19 +53,19 @@ public class BulletFactory : MonoBehaviour
             switch (selectedType)
             {
                 case "glace":
-                    bulletInstantiate.types.Add(new BulletType("glace", 1));
+                    bulletInstantiate.types.Add(new BulletType("glace", _inventory.bulletGlace));
                     SpriteRenderer glaceSprite = GoInstantiate.transform.Find("SpriteChild").GetComponent<SpriteRenderer>();
                     glaceSprite.sprite = spriteGlace;
                     glaceSprite.color = new Color(0f, 0.8f, 1f); // Bleu cyan éclat
                     break;
                 case "feu":
-                    bulletInstantiate.types.Add(new BulletType("feu", 1));
+                    bulletInstantiate.types.Add(new BulletType("feu", _inventory.bulletFeu));
                     SpriteRenderer feuSprite = GoInstantiate.transform.Find("SpriteChild").GetComponent<SpriteRenderer>();
                     feuSprite.sprite = spriteFeu;
                     feuSprite.color = new Color(1f, 0.3f, 0f); // Rouge éclatant
                     break;
                 case "elec":
-                    bulletInstantiate.types.Add(new BulletType("elec", 1));
+                    bulletInstantiate.types.Add(new BulletType("elec", _inventory.bulletElec));
                     SpriteRenderer elecSprite = GoInstantiate.transform.Find("SpriteChild").GetComponent<SpriteRenderer>();
                     elecSprite.sprite = spriteElec;
                     elecSprite.color = new Color(0.8f, 1f, 0.2f); // Jaune-vert éclatant

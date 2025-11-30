@@ -64,6 +64,8 @@ public class Inventory : MonoBehaviour
     public GameObject weaponPlayerPos3;
     public GameObject weaponPlayerPos4;
 
+    public bool fullWeapon = false;
+
     void Awake()
     {
         weapons = new List<Weapon>();
@@ -92,6 +94,9 @@ public class Inventory : MonoBehaviour
     void Start()
     {
         updateKillCountUI();
+        addWeapon(new Weapon("pistol")); // Premiere arme
+        addWeapon(new Weapon("pistol")); // Premiere arme
+        addWeapon(new Weapon("pistol")); // Premiere arme
         addWeapon(new Weapon("pistol")); // Premiere arme
         List<PowerUpState> powerUpStates = PowerUpStateManager.getPowerUps();
         foreach (PowerUpState p in powerUpStates)
@@ -146,7 +151,102 @@ public class Inventory : MonoBehaviour
             _powerUpManager.iconPauseGoPhone.SetActive(false); // On cache le btn pause sur tel
 
             // generation des powerUp
-            _powerUpManager.generateTmpPowerUp(false);
+            if (weapons.Count == 4)
+            {
+                _powerUpManager.generateTmpPowerUp(false, true);
+            }
+            else
+            {
+                _powerUpManager.generateTmpPowerUp(false, false);
+            }
+
+            string textDescriptionTmpPowerUpOne = "";
+            string textDescriptionTmpPowerUpTwo = "";
+            bool isEvolOne = false;
+            bool isEvolTwo = false;
+            // Check des proposition
+            // Proposition 1
+            if (_powerUpManager.tmpPowerUpOne.isWeapon)
+            {
+                // On check le cas ARME
+                if (weapons.Count == 4)
+                {
+                    // Afficher alors la description d'evolution
+                    textDescriptionTmpPowerUpOne = _powerUpManager.tmpPowerUpOne.descriptionEvol;
+                    Weapon foundWeapon = null;
+                    foreach (Weapon w in weapons)
+                    {
+                        if (w._name == _powerUpManager.tmpPowerUpOne.type)
+                        {
+                            foundWeapon = w;
+                            break;
+                        }
+                    }
+                    if (foundWeapon.lvl == 4)
+                    {
+                        isEvolOne = true;
+                    }
+                }
+                else
+                {
+                    // Afficher alors l'ajout de l'arme
+                    textDescriptionTmpPowerUpOne = _powerUpManager.tmpPowerUpOne.description;
+                }
+            }
+            else
+            {
+                // On check le cas POWER UP standard
+                if (alreadyHavePowerUp(_powerUpManager.tmpPowerUpOne))
+                {
+                    textDescriptionTmpPowerUpOne = _powerUpManager.tmpPowerUpOne.descriptionEvol;
+                }
+                else
+                {
+                    textDescriptionTmpPowerUpOne = _powerUpManager.tmpPowerUpOne.description;
+                }
+            }
+
+            // Proposition 2
+            if (_powerUpManager.tmpPowerUpTwo.isWeapon)
+            {
+                // On check le cas ARME
+                if (weapons.Count == 4)
+                {
+                    // Afficher alors la description d'evolution
+                    textDescriptionTmpPowerUpTwo = _powerUpManager.tmpPowerUpTwo.descriptionEvol;
+                    Weapon foundWeapon = null;
+                    foreach (Weapon w in weapons)
+                    {
+                        if (w._name == _powerUpManager.tmpPowerUpTwo.type)
+                        {
+                            foundWeapon = w;
+                            break;
+                        }
+                    }
+                    if (foundWeapon.lvl == 4)
+                    {
+                        isEvolTwo = true;
+                    }
+
+                }
+                else
+                {
+                    // Afficher alors l'ajout de l'arme
+                    textDescriptionTmpPowerUpTwo = _powerUpManager.tmpPowerUpTwo.description;
+                }
+            }
+            else
+            {
+                // On check le cas POWER UP standard
+                if (alreadyHavePowerUp(_powerUpManager.tmpPowerUpTwo))
+                {
+                    textDescriptionTmpPowerUpTwo = _powerUpManager.tmpPowerUpTwo.descriptionEvol;
+                }
+                else
+                {
+                    textDescriptionTmpPowerUpTwo = _powerUpManager.tmpPowerUpTwo.description;
+                }
+            }
 
             Sprite spriteOne = Resources.Load<Sprite>("PowerUps/" + _powerUpManager.tmpPowerUpOne.type);
             Sprite spriteTwo = Resources.Load<Sprite>("PowerUps/" + _powerUpManager.tmpPowerUpTwo.type);
@@ -168,8 +268,74 @@ public class Inventory : MonoBehaviour
                 imagePowerUpTwoGoPhone.GetComponent<Image>().sprite = spriteTwo;
                 textPowerUpTitleOnePhone.GetComponent<TextMeshProUGUI>().text = _powerUpManager.tmpPowerUpOne.title;
                 textPowerUpTitleTwoPhone.GetComponent<TextMeshProUGUI>().text = _powerUpManager.tmpPowerUpTwo.title;
-                textPowerUpDescriptionOnePhone.GetComponent<TextMeshProUGUI>().text = _powerUpManager.tmpPowerUpOne.description;
-                textPowerUpDescriptionTwoPhone.GetComponent<TextMeshProUGUI>().text = _powerUpManager.tmpPowerUpTwo.description;
+                textPowerUpDescriptionOnePhone.GetComponent<TextMeshProUGUI>().text = textDescriptionTmpPowerUpOne;
+                textPowerUpDescriptionTwoPhone.GetComponent<TextMeshProUGUI>().text = textDescriptionTmpPowerUpTwo;
+
+                if (isEvolOne)
+                {
+                    // On affiche l'evolution de l'arme
+                    imagePowerUpOneGoPhone.GetComponent<Image>().sprite = Resources.Load<Sprite>("PowerUps/" + _powerUpManager.tmpPowerUpOne.typeEvol);
+                    textPowerUpTitleOnePhone.GetComponent<TextMeshProUGUI>().text = _powerUpManager.tmpPowerUpOne.titleHasEvol;
+                    textPowerUpDescriptionOnePhone.GetComponent<TextMeshProUGUI>().text = _powerUpManager.tmpPowerUpOne.descriptionHasEvol;
+                    for (int i = 0; i < weapons.Count; i++)
+                    {
+                        if (weapons[i]._name == _powerUpManager.tmpPowerUpOne.type)
+                        {
+                            Weapon newWeapon = new Weapon(_powerUpManager.tmpPowerUpOne.typeEvol);
+                            newWeapon.pos = weapons[i].pos;
+                            weapons[i] = newWeapon;
+                            weapons[i].inventory = this;
+                            switch (weapons[i].pos)
+                            {
+                                case 0:
+                                    weaponPlayerPos1.GetComponent<SpriteRenderer>().sprite = weapons[i].weaponData.sprite;
+                                    break;
+                                case 1:
+                                    weaponPlayerPos2.GetComponent<SpriteRenderer>().sprite = weapons[i].weaponData.sprite;
+                                    break;
+                                case 2:
+                                    weaponPlayerPos3.GetComponent<SpriteRenderer>().sprite = weapons[i].weaponData.sprite;
+                                    break;
+                                case 3:
+                                    weaponPlayerPos4.GetComponent<SpriteRenderer>().sprite = weapons[i].weaponData.sprite;
+                                    break;
+                            }
+                        }
+                    }
+                }
+
+                if (isEvolTwo)
+                {
+                    // On affiche l'evolution de l'arme
+                    imagePowerUpTwoGoPhone.GetComponent<Image>().sprite = Resources.Load<Sprite>("PowerUps/" + _powerUpManager.tmpPowerUpTwo.typeEvol);
+                    textPowerUpTitleTwoPhone.GetComponent<TextMeshProUGUI>().text = _powerUpManager.tmpPowerUpTwo.titleHasEvol;
+                    textPowerUpDescriptionTwoPhone.GetComponent<TextMeshProUGUI>().text = _powerUpManager.tmpPowerUpTwo.descriptionHasEvol;
+                    for (int i = 0; i < weapons.Count; i++)
+                    {
+                        if (weapons[i]._name == _powerUpManager.tmpPowerUpTwo.type)
+                        {
+                            Weapon newWeapon = new Weapon(_powerUpManager.tmpPowerUpTwo.typeEvol);
+                            newWeapon.pos = weapons[i].pos;
+                            weapons[i] = newWeapon;
+                            weapons[i].inventory = this;
+                            switch (weapons[i].pos)
+                            {
+                                case 0:
+                                    weaponPlayerPos1.GetComponent<SpriteRenderer>().sprite = weapons[i].weaponData.sprite;
+                                    break;
+                                case 1:
+                                    weaponPlayerPos2.GetComponent<SpriteRenderer>().sprite = weapons[i].weaponData.sprite;
+                                    break;
+                                case 2:
+                                    weaponPlayerPos3.GetComponent<SpriteRenderer>().sprite = weapons[i].weaponData.sprite;
+                                    break;
+                                case 3:
+                                    weaponPlayerPos4.GetComponent<SpriteRenderer>().sprite = weapons[i].weaponData.sprite;
+                                    break;
+                            }
+                        }
+                    }
+                }
             }
 
             // Nouveau niveau d'xp
@@ -229,10 +395,24 @@ public class Inventory : MonoBehaviour
             weapons.Add(newWeaponClone);
             hasWeapon = true;
             weaponPlayerPos4.GetComponent<SpriteRenderer>().sprite = newWeaponClone.weaponData.sprite;
+            fullWeapon = true;
         }
         else
         {
             // Upgrade weapon
+            foreach (Weapon w in weapons)
+            {
+                if (w._name == newWeapon._name)
+                {
+                    w.lvl++;
+                    if (w.lvl == 5)
+                    {
+                        // Evolution de l'arme -> Afficher meilleur arme -> et meme mettre a l'ecran une animation de flash qui fait votre arme evolue comme pokemon
+                    }
+                }
+            }
+            // POSSIBLE QU'A 5 MAX APRES GIGA EVOLUTION
+            // Ajouter toute les armes
         }
 
     }
@@ -272,6 +452,9 @@ public class Inventory : MonoBehaviour
                     break;
                 case "bulletElec":
                     bulletElec += powerUp.lvl;
+                    break;
+                case "pistol":
+                    addWeapon(new Weapon("pistol"));
                     break;
             }
         }
@@ -391,5 +574,10 @@ public class Inventory : MonoBehaviour
             questUiGoPhone.SetActive(false);
             textQuestUiGoPhone.SetActive(false);
         }
+    }
+
+    private bool alreadyHavePowerUp(PowerUp powerUp)
+    {
+        return false;
     }
 }

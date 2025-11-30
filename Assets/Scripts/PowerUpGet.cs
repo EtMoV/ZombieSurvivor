@@ -60,8 +60,8 @@ public class PowerUpGet : MonoBehaviour
             _powerUpManager.iconPauseGoPhone.SetActive(false); // On cache le btn pause sur tel
 
             // generation des powerUp
-            _powerUpManager.generateTmpPowerUp(true);
-
+            _powerUpManager.generateTmpPowerUp(true, false);
+            
             Sprite spriteOne = Resources.Load<Sprite>("PowerUps/" + _powerUpManager.tmpPowerUpOne.type);
             Sprite spriteTwo = Resources.Load<Sprite>("PowerUps/" + _powerUpManager.tmpPowerUpTwo.type);
 
