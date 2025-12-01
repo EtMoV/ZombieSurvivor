@@ -40,9 +40,13 @@ public class PowerUpManager : MonoBehaviour
             new PowerUp("damage", 1, "More damage", "+1 bullet damage", "+1 bullet damage", true, false, "damageEvolution", "damageEvolutionDescription", "damageEvol"),
             new PowerUp("attackSpeed", 1, "Attack speed", "+1 attack speed","+1 attack speed", true, false, "attackSpeedEvolution", "attackSpeedEvolutionDescription", "attackSpeedEvol"),
             new PowerUp("bulletGlace", 1, "+1 Frozen Bullet", "More chance to fire a slow down bullet", "Increase slow", false, false, "bulletGlaceEvolution", "bulletGlaceEvolutionDescription", "bulletGlaceEvol"),
-            //new PowerUp("bulletFeu", 1, "+1 Fire Bullet", "More chance to fire a bullet who deals damage over time", "Increase damage over time", false, false, "bulletFeuEvolution", "bulletFeuEvolutionDescription", "bulletFeuEvol"),
-            //new PowerUp("bulletElec", 1, "+1 Electric Bullet", "More chance to fire a bullet who bounces off the nearest enemy", "Bounces on more ennemy", false, false,"bulletElecEvolution", "bulletElecEvolutionDescription", "bulletElecEvol"),
-            new PowerUp("pistol", 1, "Pistol", "A simple pistol", "Increase damage", false, true, "Deagle", "A bigger pistol", "spas"),
+            new PowerUp("bulletFeu", 1, "+1 Fire Bullet", "More chance to fire a bullet who deals damage over time", "Increase damage over time", false, false, "bulletFeuEvolution", "bulletFeuEvolutionDescription", "bulletFeuEvol"),
+            new PowerUp("bulletElec", 1, "+1 Electric Bullet", "More chance to fire a bullet who bounces off the nearest enemy", "Bounces on more ennemy", false, false,"bulletElecEvolution", "bulletElecEvolutionDescription", "bulletElecEvol"),
+            new PowerUp("pistol", 1, "Pistol", "A simple pistol", "Increase damage", false, true, "Deagle", "A bigger pistol", "deagle"),
+            new PowerUp("shotgun", 1, "Shotgun", "Perfect at short range", "Increase damage", false, true, "Spas 12", "Just kill them all", "spas"),
+            new PowerUp("subMachineGun", 1, "MP5", "Big attack speed", "Increase damage", false, true, "Gatling", "Just kill them all", "gatling"),
+            new PowerUp("assaultRifle", 1, "M16", "A mix between firepower and accuracy", "Increase damage", false, true, "Sniper", "Do head shot", "sniper"),
+            new PowerUp("grenade", 1, "Grenade", "BOOM", "Increase damage", false, true, "Rocket Laucnher", "Big Boom", "rocketLauncher"),
         };
         isActive = false;
     }

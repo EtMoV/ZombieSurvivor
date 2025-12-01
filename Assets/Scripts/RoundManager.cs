@@ -35,7 +35,7 @@ public class RoundManager : MonoBehaviour
         _powerUpManager = powerUpManagerGo.GetComponent<PowerUpManager>();
         _exitManager = exitManagerGo.GetComponent<ExitManager>();
         _arenaManager = arenaManagerGo.GetComponent<ArenaManager>();
-        currentRound = new Round(0, 6, 6, 1, false, false);
+        currentRound = new Round(0, 5, 5, 1, false, false);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -70,7 +70,7 @@ public class RoundManager : MonoBehaviour
         int nextNumberRound = currentRound.numberRound + 1;
         int nextNbZombiesSpawn = currentRound.nbZombieSpawn + 3;
         int nextMaxZombies = currentRound.maxZombies * 2;
-        int nextPvZombies = currentRound.pvZombie + 2;
+        int nextPvZombies = currentRound.pvZombie + 1;
         bool nextIsBoss = nextNumberRound >= 5 ? true : false;
         currentRound = new Round(nextNumberRound, nextNbZombiesSpawn, nextMaxZombies, nextPvZombies, nextIsBoss, false);
         StartCoroutine(activateRound());

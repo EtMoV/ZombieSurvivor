@@ -115,9 +115,6 @@ public class Inventory : MonoBehaviour
     {
         updateKillCountUI();
         addWeapon(new Weapon("pistol"), null); // Premiere arme
-        addWeapon(new Weapon("pistol"), null); // Premiere arme
-        addWeapon(new Weapon("pistol"), null); // Premiere arme
-        addWeapon(new Weapon("pistol"), null); // Premiere arme
         List<PowerUpState> powerUpStates = PowerUpStateManager.getPowerUps();
         foreach (PowerUpState p in powerUpStates)
         {
@@ -533,8 +530,22 @@ public class Inventory : MonoBehaviour
                 case "pistol":
                     addWeapon(new Weapon("pistol"), powerUp);
                     break;
+                case "shotgun":
+                    addWeapon(new Weapon("shotgun"), powerUp);
+                    break;
+                case "subMachineGun":
+                    addWeapon(new Weapon("subMachineGun"), powerUp);
+                    break;
+                case "assaultRifle":
+                    addWeapon(new Weapon("assaultRifle"), powerUp);
+                    break;
+                case "grenade":
+                    addWeapon(new Weapon("grenade"), powerUp);
+                    break;
             }
         }
+
+        powerUpList.Clear();
     }
 
     /* private bool questOne = false;
