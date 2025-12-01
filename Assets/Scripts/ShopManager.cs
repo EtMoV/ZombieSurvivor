@@ -84,7 +84,7 @@ public class ShopManager : MonoBehaviour
     {
         if (isBtnActive)
         {
-            _inventory.addWeapon(weaponTmpOne);
+            _inventory.addWeapon(weaponTmpOne, null);
             QuitShop();
         }
     }

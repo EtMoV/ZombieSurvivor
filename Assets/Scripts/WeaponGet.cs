@@ -35,7 +35,7 @@ public class WeaponGet : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             // Recupere l'arme
-            _inventory.addWeapon(new Weapon(weaponName));
+            _inventory.addWeapon(new Weapon(weaponName), null);
             Destroy(gameObject);
         }
     }

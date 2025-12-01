@@ -66,6 +66,26 @@ public class Inventory : MonoBehaviour
 
     public bool fullWeapon = false;
 
+    public GameObject fromEvolutionOne;
+    public GameObject arrowEvolutionOne;
+    public GameObject afterEvolutionOne;
+
+    public GameObject fromEvolutionTwo;
+    public GameObject arrowEvolutionTwo;
+    public GameObject afterEvolutionTwo;
+
+    public GameObject starOneOne;
+    public GameObject starTwoOne;
+    public GameObject starThreeOne;
+    public GameObject starFourOne;
+
+    public GameObject starOneTwo;
+    public GameObject starTwoTwo;
+    public GameObject starThreeTwo;
+    public GameObject starFourTwo;
+
+    public Coroutine tmpCoroutineStar;
+
     void Awake()
     {
         weapons = new List<Weapon>();
@@ -94,10 +114,10 @@ public class Inventory : MonoBehaviour
     void Start()
     {
         updateKillCountUI();
-        addWeapon(new Weapon("pistol")); // Premiere arme
-        addWeapon(new Weapon("pistol")); // Premiere arme
-        addWeapon(new Weapon("pistol")); // Premiere arme
-        addWeapon(new Weapon("pistol")); // Premiere arme
+        addWeapon(new Weapon("pistol"), null); // Premiere arme
+        addWeapon(new Weapon("pistol"), null); // Premiere arme
+        addWeapon(new Weapon("pistol"), null); // Premiere arme
+        addWeapon(new Weapon("pistol"), null); // Premiere arme
         List<PowerUpState> powerUpStates = PowerUpStateManager.getPowerUps();
         foreach (PowerUpState p in powerUpStates)
         {
@@ -120,9 +140,7 @@ public class Inventory : MonoBehaviour
                     break;
             }
         }
-
         PowerUpStateManager.clear();
-
     }
 
     public void FixedUpdate()
@@ -164,6 +182,8 @@ public class Inventory : MonoBehaviour
             string textDescriptionTmpPowerUpTwo = "";
             bool isEvolOne = false;
             bool isEvolTwo = false;
+            int lvlOne = 0;
+            int lvlTwo = 0;
             // Check des proposition
             // Proposition 1
             if (_powerUpManager.tmpPowerUpOne.isWeapon)
@@ -185,6 +205,10 @@ public class Inventory : MonoBehaviour
                     if (foundWeapon.lvl == 4)
                     {
                         isEvolOne = true;
+                    }
+                    else
+                    {
+                        lvlOne = foundWeapon.lvl;
                     }
                 }
                 else
@@ -227,6 +251,10 @@ public class Inventory : MonoBehaviour
                     {
                         isEvolTwo = true;
                     }
+                    else
+                    {
+                        lvlTwo = foundWeapon.lvl;
+                    }
 
                 }
                 else
@@ -254,7 +282,6 @@ public class Inventory : MonoBehaviour
             // Afficher l'ui du shop
             if (CanvaManager.isWatch.HasValue && CanvaManager.isWatch.Value)
             {
-
                 panelPowerUpGoWatch.SetActive(true);
                 imagePowerUpOneGoWatch.GetComponent<Image>().sprite = spriteOne;
                 imagePowerUpTwoGoWatch.GetComponent<Image>().sprite = spriteTwo;
@@ -270,6 +297,71 @@ public class Inventory : MonoBehaviour
                 textPowerUpTitleTwoPhone.GetComponent<TextMeshProUGUI>().text = _powerUpManager.tmpPowerUpTwo.title;
                 textPowerUpDescriptionOnePhone.GetComponent<TextMeshProUGUI>().text = textDescriptionTmpPowerUpOne;
                 textPowerUpDescriptionTwoPhone.GetComponent<TextMeshProUGUI>().text = textDescriptionTmpPowerUpTwo;
+                fromEvolutionOne.SetActive(false);
+                arrowEvolutionOne.SetActive(false);
+                afterEvolutionOne.SetActive(false);
+                fromEvolutionTwo.SetActive(false);
+                arrowEvolutionTwo.SetActive(false);
+                afterEvolutionTwo.SetActive(false);
+
+                // Affichage des stars
+                if (lvlOne == 1)
+                {
+                    starOneOne.SetActive(true);
+                    starTwoOne.SetActive(true);
+                    tmpCoroutineStar = StartCoroutine(Blink(starTwoOne.GetComponent<Image>(), 1f));
+                }
+                else if (lvlOne == 2)
+                {
+                    starOneOne.SetActive(true);
+                    starTwoOne.SetActive(true);
+                    starThreeOne.SetActive(true);
+                    tmpCoroutineStar = StartCoroutine(Blink(starThreeOne.GetComponent<Image>(), 1f));
+                }
+                else if (lvlOne == 3)
+                {
+                    starOneOne.SetActive(true);
+                    starTwoOne.SetActive(true);
+                    starThreeOne.SetActive(true);
+                    starFourOne.SetActive(true);
+                    tmpCoroutineStar = StartCoroutine(Blink(starFourOne.GetComponent<Image>(), 1f));
+                }
+                else
+                {
+                    starOneOne.SetActive(false);
+                    starTwoOne.SetActive(false);
+                    starThreeOne.SetActive(false);
+                    starFourOne.SetActive(false);
+                }
+
+                if (lvlTwo == 1)
+                {
+                    starOneTwo.SetActive(true);
+                    starTwoTwo.SetActive(true);
+                    tmpCoroutineStar = StartCoroutine(Blink(starTwoTwo.GetComponent<Image>(), 1f));
+                }
+                else if (lvlTwo == 2)
+                {
+                    starOneTwo.SetActive(true);
+                    starTwoTwo.SetActive(true);
+                    starThreeTwo.SetActive(true);
+                    tmpCoroutineStar = StartCoroutine(Blink(starThreeTwo.GetComponent<Image>(), 1f));
+                }
+                else if (lvlTwo == 3)
+                {
+                    starOneTwo.SetActive(true);
+                    starTwoTwo.SetActive(true);
+                    starThreeTwo.SetActive(true);
+                    starFourTwo.SetActive(true);
+                    tmpCoroutineStar = StartCoroutine(Blink(starFourTwo.GetComponent<Image>(), 1f));
+                }
+                else
+                {
+                    starOneTwo.SetActive(false);
+                    starTwoTwo.SetActive(false);
+                    starThreeTwo.SetActive(false);
+                    starFourTwo.SetActive(false);
+                }
 
                 if (isEvolOne)
                 {
@@ -277,31 +369,11 @@ public class Inventory : MonoBehaviour
                     imagePowerUpOneGoPhone.GetComponent<Image>().sprite = Resources.Load<Sprite>("PowerUps/" + _powerUpManager.tmpPowerUpOne.typeEvol);
                     textPowerUpTitleOnePhone.GetComponent<TextMeshProUGUI>().text = _powerUpManager.tmpPowerUpOne.titleHasEvol;
                     textPowerUpDescriptionOnePhone.GetComponent<TextMeshProUGUI>().text = _powerUpManager.tmpPowerUpOne.descriptionHasEvol;
-                    for (int i = 0; i < weapons.Count; i++)
-                    {
-                        if (weapons[i]._name == _powerUpManager.tmpPowerUpOne.type)
-                        {
-                            Weapon newWeapon = new Weapon(_powerUpManager.tmpPowerUpOne.typeEvol);
-                            newWeapon.pos = weapons[i].pos;
-                            weapons[i] = newWeapon;
-                            weapons[i].inventory = this;
-                            switch (weapons[i].pos)
-                            {
-                                case 0:
-                                    weaponPlayerPos1.GetComponent<SpriteRenderer>().sprite = weapons[i].weaponData.sprite;
-                                    break;
-                                case 1:
-                                    weaponPlayerPos2.GetComponent<SpriteRenderer>().sprite = weapons[i].weaponData.sprite;
-                                    break;
-                                case 2:
-                                    weaponPlayerPos3.GetComponent<SpriteRenderer>().sprite = weapons[i].weaponData.sprite;
-                                    break;
-                                case 3:
-                                    weaponPlayerPos4.GetComponent<SpriteRenderer>().sprite = weapons[i].weaponData.sprite;
-                                    break;
-                            }
-                        }
-                    }
+                    fromEvolutionOne.GetComponent<Image>().sprite = Resources.Load<Sprite>("PowerUps/" + _powerUpManager.tmpPowerUpOne.type);
+                    afterEvolutionOne.GetComponent<Image>().sprite = Resources.Load<Sprite>("PowerUps/" + _powerUpManager.tmpPowerUpOne.typeEvol);
+                    fromEvolutionOne.SetActive(true);
+                    arrowEvolutionOne.SetActive(true);
+                    afterEvolutionOne.SetActive(true);
                 }
 
                 if (isEvolTwo)
@@ -310,31 +382,11 @@ public class Inventory : MonoBehaviour
                     imagePowerUpTwoGoPhone.GetComponent<Image>().sprite = Resources.Load<Sprite>("PowerUps/" + _powerUpManager.tmpPowerUpTwo.typeEvol);
                     textPowerUpTitleTwoPhone.GetComponent<TextMeshProUGUI>().text = _powerUpManager.tmpPowerUpTwo.titleHasEvol;
                     textPowerUpDescriptionTwoPhone.GetComponent<TextMeshProUGUI>().text = _powerUpManager.tmpPowerUpTwo.descriptionHasEvol;
-                    for (int i = 0; i < weapons.Count; i++)
-                    {
-                        if (weapons[i]._name == _powerUpManager.tmpPowerUpTwo.type)
-                        {
-                            Weapon newWeapon = new Weapon(_powerUpManager.tmpPowerUpTwo.typeEvol);
-                            newWeapon.pos = weapons[i].pos;
-                            weapons[i] = newWeapon;
-                            weapons[i].inventory = this;
-                            switch (weapons[i].pos)
-                            {
-                                case 0:
-                                    weaponPlayerPos1.GetComponent<SpriteRenderer>().sprite = weapons[i].weaponData.sprite;
-                                    break;
-                                case 1:
-                                    weaponPlayerPos2.GetComponent<SpriteRenderer>().sprite = weapons[i].weaponData.sprite;
-                                    break;
-                                case 2:
-                                    weaponPlayerPos3.GetComponent<SpriteRenderer>().sprite = weapons[i].weaponData.sprite;
-                                    break;
-                                case 3:
-                                    weaponPlayerPos4.GetComponent<SpriteRenderer>().sprite = weapons[i].weaponData.sprite;
-                                    break;
-                            }
-                        }
-                    }
+                    fromEvolutionTwo.GetComponent<Image>().sprite = Resources.Load<Sprite>("PowerUps/" + _powerUpManager.tmpPowerUpTwo.type);
+                    afterEvolutionTwo.GetComponent<Image>().sprite = Resources.Load<Sprite>("PowerUps/" + _powerUpManager.tmpPowerUpTwo.typeEvol);
+                    fromEvolutionTwo.SetActive(true);
+                    arrowEvolutionTwo.SetActive(true);
+                    afterEvolutionTwo.SetActive(true);
                 }
             }
 
@@ -360,7 +412,7 @@ public class Inventory : MonoBehaviour
 
     }
 
-    public void addWeapon(Weapon newWeapon)
+    public void addWeapon(Weapon newWeapon, PowerUp powerUp)
     {
         Weapon newWeaponClone = newWeapon.Clone();
         newWeaponClone.inventory = this;
@@ -400,14 +452,39 @@ public class Inventory : MonoBehaviour
         else
         {
             // Upgrade weapon
-            foreach (Weapon w in weapons)
+            for (int j = 0; j < weapons.Count; j++)
             {
-                if (w._name == newWeapon._name)
+                if (weapons[j]._name == newWeapon._name)
                 {
-                    w.lvl++;
-                    if (w.lvl == 5)
+                    weapons[j].lvl++;
+                    if (weapons[j].lvl == 5)
                     {
                         // Evolution de l'arme -> Afficher meilleur arme -> et meme mettre a l'ecran une animation de flash qui fait votre arme evolue comme pokemon
+                        for (int i = 0; i < weapons.Count; i++)
+                        {
+                            if (weapons[i]._name == powerUp.type)
+                            {
+                                Weapon newWeaponEvol = new Weapon(powerUp.typeEvol);
+                                newWeaponEvol.pos = weapons[i].pos;
+                                weapons[i] = newWeaponEvol;
+                                weapons[i].inventory = this;
+                                switch (weapons[i].pos)
+                                {
+                                    case 0:
+                                        weaponPlayerPos1.GetComponent<SpriteRenderer>().sprite = weapons[i].weaponData.sprite;
+                                        break;
+                                    case 1:
+                                        weaponPlayerPos2.GetComponent<SpriteRenderer>().sprite = weapons[i].weaponData.sprite;
+                                        break;
+                                    case 2:
+                                        weaponPlayerPos3.GetComponent<SpriteRenderer>().sprite = weapons[i].weaponData.sprite;
+                                        break;
+                                    case 3:
+                                        weaponPlayerPos4.GetComponent<SpriteRenderer>().sprite = weapons[i].weaponData.sprite;
+                                        break;
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -454,7 +531,7 @@ public class Inventory : MonoBehaviour
                     bulletElec += powerUp.lvl;
                     break;
                 case "pistol":
-                    addWeapon(new Weapon("pistol"));
+                    addWeapon(new Weapon("pistol"), powerUp);
                     break;
             }
         }
@@ -579,5 +656,29 @@ public class Inventory : MonoBehaviour
     private bool alreadyHavePowerUp(PowerUp powerUp)
     {
         return false;
+    }
+
+    IEnumerator Blink(Image img, float speedBlink)
+    {
+        while (true)
+        {
+            // on fait osciller l’alpha entre 0 et 1 avec Mathf.PingPong
+            float a = Mathf.PingPong(Time.time * speedBlink, 1f);
+
+            Color c = img.color;
+            c.a = a;
+            img.color = c;
+
+            yield return null;
+        }
+    }
+
+    public void StopBlink()
+    {
+        if (tmpCoroutineStar != null)
+        {
+            StopCoroutine(tmpCoroutineStar);
+            tmpCoroutineStar = null;
+        }
     }
 }

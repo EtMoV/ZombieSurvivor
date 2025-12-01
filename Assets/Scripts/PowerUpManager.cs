@@ -40,8 +40,8 @@ public class PowerUpManager : MonoBehaviour
             new PowerUp("damage", 1, "More damage", "+1 bullet damage", "+1 bullet damage", true, false, "damageEvolution", "damageEvolutionDescription", "damageEvol"),
             new PowerUp("attackSpeed", 1, "Attack speed", "+1 attack speed","+1 attack speed", true, false, "attackSpeedEvolution", "attackSpeedEvolutionDescription", "attackSpeedEvol"),
             new PowerUp("bulletGlace", 1, "+1 Frozen Bullet", "More chance to fire a slow down bullet", "Increase slow", false, false, "bulletGlaceEvolution", "bulletGlaceEvolutionDescription", "bulletGlaceEvol"),
-            new PowerUp("bulletFeu", 1, "+1 Fire Bullet", "More chance to fire a bullet who deals damage over time", "Increase damage over time", false, false, "bulletFeuEvolution", "bulletFeuEvolutionDescription", "bulletFeuEvol"),
-            new PowerUp("bulletElec", 1, "+1 Electric Bullet", "More chance to fire a bullet who bounces off the nearest enemy", "Bounces on more ennemy", false, false,"bulletElecEvolution", "bulletElecEvolutionDescription", "bulletElecEvol"),
+            //new PowerUp("bulletFeu", 1, "+1 Fire Bullet", "More chance to fire a bullet who deals damage over time", "Increase damage over time", false, false, "bulletFeuEvolution", "bulletFeuEvolutionDescription", "bulletFeuEvol"),
+            //new PowerUp("bulletElec", 1, "+1 Electric Bullet", "More chance to fire a bullet who bounces off the nearest enemy", "Bounces on more ennemy", false, false,"bulletElecEvolution", "bulletElecEvolutionDescription", "bulletElecEvol"),
             new PowerUp("pistol", 1, "Pistol", "A simple pistol", "Increase damage", false, true, "Deagle", "A bigger pistol", "spas"),
         };
         isActive = false;
@@ -185,6 +185,8 @@ public class PowerUpManager : MonoBehaviour
 
     private void onAddPowerUp(PowerUp powerUp)
     {
+        _inventory.StopBlink();
+        
         PowerUp newInstancePowerUp = powerUp.Clone();
 
         PowerUp powerUpFind = _inventory.powerUpList.Find(p => p.type == newInstancePowerUp.type);
