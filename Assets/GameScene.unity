@@ -102019,6 +102019,8 @@ MonoBehaviour:
   posEnter: {x: 0, y: 0, z: 0}
   posEnterArena: {x: 5, y: 0, z: 0}
   arenaObjects: []
+  xpPrefab: {fileID: 524867009648265515, guid: d097aac67f219467b9f2e4e44832ae83, type: 3}
+  inventoryGo: {fileID: 758181841}
 --- !u!4 &2095642299
 Transform:
   m_ObjectHideFlags: 0

@@ -18,9 +18,15 @@ public class ArenaManager : MonoBehaviour
 
     public List<GameObject> arenaObjects = new List<GameObject>();
 
+    public GameObject xpPrefab;
+
+    public GameObject inventoryGo;
+    private Inventory _inventory;
+
     void Awake()
     {
         isActive = false;
+        _inventory = inventoryGo.GetComponent<Inventory>();
     }
 
     public int getZombieCount()
@@ -35,12 +41,65 @@ public class ArenaManager : MonoBehaviour
         return true;
     }
 
-    public void endArena()
+    public void endArena(GameObject lastZombie)
     {
         // Faire spawn un coffre à la fin de l'arène
-        shopGo.SetActive(true);
-        // Faire spawn la fleche vers le coffre
+        //shopGo.SetActive(true);
+        // Active l'exit de l'arène
+        canExit();
 
+        // Spawn XP en explosion depuis le centre
+        StartCoroutine(SpawnXPExplosion(lastZombie));
+
+        // Faire spawn la fleche vers le coffre
+    }
+
+    private System.Collections.IEnumerator SpawnXPExplosion(GameObject lastZombie)
+    {
+        int nbXP = 16;
+        float maxRadius = 1.5f;
+        float angleStep = 360f / nbXP;
+        Vector3 centerPos = lastZombie.transform.position;
+
+        for (int i = 0; i < nbXP; i++)
+        {
+            float angle = i * angleStep * Mathf.Deg2Rad;
+
+            XP xpInstantiate = Instantiate(xpPrefab, centerPos, Quaternion.identity).GetComponent<XP>();
+            xpInstantiate.inventory = _inventory;
+
+            // Désactiver la physique pour contrôler l'animation
+            Rigidbody2D rb = xpInstantiate.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.linearVelocity = Vector2.zero;
+            }
+
+            // Animation de déplacement vers l'extérieur en cercle
+            StartCoroutine(AnimateXPExplosion(xpInstantiate.transform, centerPos, angle, maxRadius));
+
+            yield return new WaitForSeconds(0.05f);
+        }
+    }
+
+    private System.Collections.IEnumerator AnimateXPExplosion(Transform xpTransform, Vector3 center, float angle, float distance)
+    {
+        float elapsedTime = 0f;
+        float duration = 0.4f;
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float progress = elapsedTime / duration;
+            // Easing: ralentit progressivement
+            float easeProgress = progress * progress;
+
+            float currentDistance = distance * easeProgress;
+            Vector3 newPos = center + new Vector3(Mathf.Cos(angle) * currentDistance, Mathf.Sin(angle) * currentDistance, 0);
+            xpTransform.position = newPos;
+
+            yield return null;
+        }
     }
 
     public void canExit()
@@ -48,7 +107,7 @@ public class ArenaManager : MonoBehaviour
         // Afficher la sortie de l'arène
         exitArenaGo.SetActive(true);
         exitArenaTextGo.SetActive(true);
-        
+
 
         // Afficher la fleche qui dirige vers la sortie de l'arène
     }

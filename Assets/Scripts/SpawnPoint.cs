@@ -40,6 +40,8 @@ public class SpawnPoint : MonoBehaviour
 
     public bool launchSpawnScenario = false;
 
+    private GameObject lastZombie = null;
+
     public void RelaunchSpawn(bool relaunchSpawn)
     {
         if (relaunchSpawn)
@@ -77,7 +79,7 @@ public class SpawnPoint : MonoBehaviour
         {
             launchSpawn = true;
             endArena = true;
-            _arenaManager.endArena();
+            _arenaManager.endArena(lastZombie);
         }
         else if (!endArena && launchSpawn && activeZombies.Count == 0)
         {
@@ -125,7 +127,7 @@ public class SpawnPoint : MonoBehaviour
 
             // Supprime de la liste à la mort
             Zombie zombieScript = newZombie.GetComponent<Zombie>();
-            zombieScript.OnDeath += () => activeZombies.Remove(newZombie);
+            zombieScript.OnDeath += () => {activeZombies.Remove(newZombie); lastZombie = newZombie;};
             yield return new WaitForSeconds(spawnInterval);
 
             if (i == nbZombie - 1)

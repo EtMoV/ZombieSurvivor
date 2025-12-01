@@ -102,8 +102,6 @@ public class Shop : MonoBehaviour
 
     IEnumerator SpinSpriteWeapon()
     {
-
-
         int index1 = Random.Range(0, randomWeapon.Count);
         displaySprite(randomWeapon[index1].weaponData.sprite);
 
