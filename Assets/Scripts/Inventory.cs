@@ -692,4 +692,28 @@ public class Inventory : MonoBehaviour
             tmpCoroutineStar = null;
         }
     }
+    public void ApplyBonus(Bonus bonus)
+    {
+        switch (bonus.type)
+        {
+            case "speed":
+                speed+=2;
+                break;
+            case "life":
+                lifeCount = maxLife;
+                break;
+            case "attackSpeed":
+                attackSpeed+=2;
+                break;
+        }
+
+        // Réinitialiser après 10 sec
+        Invoke("ResetBonus", 10f);
+    }
+
+    private void ResetBonus()
+    {
+        speed = 0;
+        attackSpeed = 0;
+    }
 }

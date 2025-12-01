@@ -84711,6 +84711,10 @@ MonoBehaviour:
   isScenario: 0
   fireAnimatorController: {fileID: 9100000, guid: c8250a0f23bc2427a9ff6367d4950f7b, type: 2}
   iceSprite: {fileID: 21300000, guid: 8f901750c6b454c6c944aa49e4ba77b9, type: 3}
+  bonusGetPrefab: {fileID: 4403594999041457610, guid: 3c38551d2a2fe460e99598b7dcefb022, type: 3}
+  attackSpeedBonusSprite: {fileID: 21300000, guid: 97596dfb05c10473488040ad60135935, type: 2}
+  lifeBonusSprite: {fileID: -5315183168329527540, guid: 1c4cd3a80f993491c9ebe20f0bf696d6, type: 3}
+  speedBonusSprite: {fileID: 21300000, guid: 1cea187d60c654a2ba0a86155ebbce70, type: 2}
 --- !u!114 &1372334665
 MonoBehaviour:
   m_ObjectHideFlags: 0

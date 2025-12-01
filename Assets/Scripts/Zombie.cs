@@ -1,8 +1,6 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class Zombie : MonoBehaviour
 {
@@ -54,6 +52,12 @@ public class Zombie : MonoBehaviour
 
     public RuntimeAnimatorController fireAnimatorController;
     public Sprite iceSprite;
+
+    public GameObject bonusGetPrefab;
+
+    public Sprite attackSpeedBonusSprite;
+    public Sprite lifeBonusSprite;
+    public Sprite speedBonusSprite;
 
     void Awake()
     {
@@ -417,6 +421,37 @@ public class Zombie : MonoBehaviour
                 Loot lootInstantiate = Instantiate(lootPrefab, transform.position, Quaternion.identity).GetComponent<Loot>();
                 lootInstantiate.inventory = inventory;
             }*/
+
+            // Generate random bonus
+            if (Random.value < 0.05f)
+            {
+                string[] options = { "attackSpeed", "life", "speed" };
+                string choice = options[Random.Range(0, options.Length)];
+                BonusGet bonusInstantiate = Instantiate(bonusGetPrefab, transform.position, Quaternion.identity).GetComponent<BonusGet>();
+                bonusInstantiate.inventory = inventory;
+                switch (choice)
+                {
+                    case "attackSpeed":
+                        bonusInstantiate.bonusType = "attackSpeed";
+                        bonusInstantiate.bonusSprite = attackSpeedBonusSprite;
+                        bonusInstantiate.transform.localScale = new Vector3(2f, 2f, 2f);
+                        bonusInstantiate.updateSprite();
+                        
+                        break;
+                    case "life":
+                        bonusInstantiate.bonusType = "life";
+                        bonusInstantiate.bonusSprite = lifeBonusSprite;
+                        bonusInstantiate.updateSprite();
+                        break;
+                    case "speed":
+                        bonusInstantiate.bonusType = "speed";
+                        bonusInstantiate.bonusSprite = speedBonusSprite;
+                        bonusInstantiate.updateSprite();
+                        bonusInstantiate.transform.localScale = new Vector3(2f, 2f, 2f);
+                        break;
+                }
+
+            }
         }
 
         // Desactivation du collider

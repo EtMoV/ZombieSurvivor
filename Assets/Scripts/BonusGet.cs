@@ -1,13 +1,15 @@
 using UnityEngine;
 
-public class XP : MonoBehaviour
+public class BonusGet : MonoBehaviour
 {
+    public string bonusType;
+    public Sprite bonusSprite;
     public Inventory inventory;
     public float amplitude = 0.5f; // hauteur du rebond
     public float speed = 2f;       // vitesse du rebond
     public float magnetismRadius = 2f; // rayon du magnétisme
     public float magnetismSpeed = 8f;   // vitesse d'attraction
-    
+
     private float startY; // position de départ sur l'axe Y
     private Transform playerTransform;
 
@@ -43,17 +45,24 @@ public class XP : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+
         if (collision.gameObject.CompareTag("Player"))
         {
-            inventory.xp++; // Augmente l'xp de 1
+            // Recupere le bonus
+            inventory.ApplyBonus(new Bonus(bonusType));
             Destroy(gameObject);
         }
     }
 
+    public void updateSprite()
+    {
+        GetComponent<SpriteRenderer>().sprite = bonusSprite;
+    }
+
     private void OnDrawGizmosSelected()
     {
-        // Affiche le rayon de magnétisme en bleu
-        Gizmos.color = Color.blue;
+        // Affiche le rayon de magnétisme en rouge
+        Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, magnetismRadius);
     }
 }

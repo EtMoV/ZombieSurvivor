@@ -21,6 +21,10 @@ public class ZombieFactory : MonoBehaviour
     public RuntimeAnimatorController fireAnimatorController;
     public Sprite iceSprite;
 
+    public GameObject bonusGetPrefab;
+    public Sprite attackSpeedBonusSprite;
+    public Sprite lifeBonusSprite;
+    public Sprite speedBonusSprite;
     public void Awake()
     {
         _inventory = inventoryGo.GetComponent<Inventory>();
@@ -40,6 +44,10 @@ public class ZombieFactory : MonoBehaviour
         zombieInstantiate.hasSpawnFromSpawnPoint = fromSpawnPoint;
         zombieInstantiate.fireAnimatorController = fireAnimatorController;
         zombieInstantiate.iceSprite = iceSprite;
+        zombieInstantiate.bonusGetPrefab = bonusGetPrefab;
+        zombieInstantiate.attackSpeedBonusSprite = attackSpeedBonusSprite;
+        zombieInstantiate.lifeBonusSprite = lifeBonusSprite;
+        zombieInstantiate.speedBonusSprite = speedBonusSprite;
         if (isBoss)
         {
             zombieInstantiate.zombieBossSprite = zombieBossSprite;
