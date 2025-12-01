@@ -436,7 +436,6 @@ public class Zombie : MonoBehaviour
                         bonusInstantiate.bonusSprite = attackSpeedBonusSprite;
                         bonusInstantiate.transform.localScale = new Vector3(2f, 2f, 2f);
                         bonusInstantiate.updateSprite();
-                        
                         break;
                     case "life":
                         bonusInstantiate.bonusType = "life";
