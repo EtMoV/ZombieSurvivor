@@ -56,7 +56,7 @@ public class RoundManager : MonoBehaviour
     {
         if (isScenario)
             return;
-            
+
         GameObject[] zombies = GameObject.FindGameObjectsWithTag("Zombie");
         if (zombies.Length == 0 && currentRound.currentNbZombieSpawn >= currentRound.maxZombies && !_shopManager.isActive && !_pauseManager.isActive && !_powerUpManager.isActive && !_exitManager.isActive && !_arenaManager.isActive)
         {
@@ -70,7 +70,7 @@ public class RoundManager : MonoBehaviour
         int nextNumberRound = currentRound.numberRound + 1;
         int nextNbZombiesSpawn = currentRound.nbZombieSpawn + 3;
         int nextMaxZombies = currentRound.maxZombies * 2;
-        int nextPvZombies = currentRound.pvZombie + 1;
+        int nextPvZombies = nextNumberRound % 3 == 0 ? currentRound.pvZombie + 1 : currentRound.pvZombie;
         bool nextIsBoss = nextNumberRound >= 5 ? true : false;
         currentRound = new Round(nextNumberRound, nextNbZombiesSpawn, nextMaxZombies, nextPvZombies, nextIsBoss, false);
         StartCoroutine(activateRound());

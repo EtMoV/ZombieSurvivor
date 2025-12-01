@@ -106,7 +106,7 @@ public class Inventory : MonoBehaviour
         bulletFeu = 0;
         bulletElec = 0;
         xp = 0;
-        nextXp = 2;
+        nextXp = 5;
         lootQte = 0;
         questIsDone = false;
     }
@@ -389,7 +389,7 @@ public class Inventory : MonoBehaviour
 
             // Nouveau niveau d'xp
             xp = 0;
-            nextXp = nextXp * 2;
+            nextXp = nextXp + 5;
         }
 
         // Manage quests
