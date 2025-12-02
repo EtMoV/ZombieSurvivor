@@ -38,7 +38,7 @@ public class ArenaManager : MonoBehaviour
 
     public bool getIsBoss()
     {
-        return true;
+        return false;
     }
 
     public void endArena(GameObject lastZombie)
