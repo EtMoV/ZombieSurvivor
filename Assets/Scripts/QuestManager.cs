@@ -52,16 +52,16 @@ public static class QuestManager
         SaveSystem.Save(data);
     }
     public static QuestState getQuestById(string questId)
-    {   
+    {
         SaveData data = SaveSystem.GetData();
 
         foreach (var q in data.quests)
         {
-           if(q.id == questId)
+            if (q.id == questId)
             {
                 return q;
             }
-          
+
         }
 
         return null;
@@ -100,4 +100,29 @@ public static class QuestManager
         return lastCompleted;
     }
 
+    public static List<QuestState> GetThreeQuestToDo()
+    {
+
+        List<QuestState> threeQuestFree = new List<QuestState>();
+
+        for (int i = 0; i < questsInit.Count; i++)
+        {
+            bool questCompleted = IsQuestCompleted(questsInit[i].id);
+            if (!questCompleted)
+            {
+                QuestState questState = getQuestById(questsInit[i].id);
+                if (questState == null)
+                    threeQuestFree.Add(questsInit[i]);
+                else
+                    threeQuestFree.Add(questState);
+            }
+
+            if (threeQuestFree.Count == 3)
+            {
+                break;
+            }
+        }
+
+        return threeQuestFree;
+    }
 }

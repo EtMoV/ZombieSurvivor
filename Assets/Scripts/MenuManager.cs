@@ -125,9 +125,6 @@ public class MenuManager : MonoBehaviour
 
     public void onQuests()
     {
-        // Recupere la quete courante
-        QuestState currentQuest = QuestManager.getCurrentQuest();
-
         List<QuestState> threeQuestFree = new List<QuestState>();
 
         for (int i = 0; i < QuestManager.questsInit.Count; i++)

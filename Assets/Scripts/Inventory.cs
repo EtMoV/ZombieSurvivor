@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -393,7 +394,7 @@ public class Inventory : MonoBehaviour
         }
 
         // Manage quests
-        //manageQuest();
+        manageQuest();
     }
 
     public void updateKillCountUI()
@@ -548,88 +549,53 @@ public class Inventory : MonoBehaviour
         powerUpList.Clear();
     }
 
-    /* private bool questOne = false;
-     private bool questTwo = false;
-     private bool questThree = false;
-     private bool questFour = false;
-     private bool questFive = false;
-     private bool questSix = false;
-     private bool questSeven = false;
-     private bool questEight = false;
-     private bool questNine = false;
-
-     public GameObject openDoorParking;
-     public GameObject openDoorForest;
-     public GameObject openDoorPublicDump;
-     public GameObject openDoorCity;
-     public GameObject openDoorCity2;*/
+    private bool questOne = false;
+    private bool questTwo = false;
+    private bool questThree = false;
 
     public void manageQuest()
     {
-        /* QuestState qs = QuestManager.getCurrentQuest();
-         if (!questIsDone && "1" == qs.id && !questOne && killCount >= 100 && lootQte >= 5 && !openDoorParking.activeSelf)
-         {
-             QuestManager.CompleteQuest("1");
-             questOne = true;
-             questIsDone = true;
-             DisplayNotification();
-         }
-         else if (!questIsDone && "2" == qs.id && !questTwo && killCount >= 200 && lootQte >= 5 && !openDoorForest.activeSelf)
-         {
-             QuestManager.CompleteQuest("2");
-             questTwo = true;
-             questIsDone = true;
-             DisplayNotification();
-         }
-         else if (!questIsDone && "3" == qs.id && !questThree && killCount >= 300 && lootQte >= 5 && !openDoorPublicDump.activeSelf)
-         {
-             QuestManager.CompleteQuest("3");
-             questThree = true;
-             questIsDone = true;
-             DisplayNotification();
-         }
-         else if (!questIsDone && "4" == qs.id && !questFour && killCount >= 400 && lootQte >= 5 && !openDoorParking.activeSelf)
-         {
-             QuestManager.CompleteQuest("4");
-             questFour = true;
-             questIsDone = true;
-             DisplayNotification();
-         }
-         else if (!questIsDone && "5" == qs.id && !questFive && killCount >= 500 && lootQte >= 5 && (!openDoorCity.activeSelf || !openDoorCity2.activeSelf))
-         {
-             QuestManager.CompleteQuest("5");
-             questFive = true;
-             questIsDone = true;
-             DisplayNotification();
-         }
-         else if (!questIsDone && "6" == qs.id && !questSix && killCount >= 600 && lootQte >= 5 && !openDoorForest.activeSelf)
-         {
-             QuestManager.CompleteQuest("6");
-             questSix = true;
-             questIsDone = true;
-             DisplayNotification();
-         }
-         else if (!questIsDone && "7" == qs.id && !questSeven && killCount >= 700 && lootQte >= 5 && !openDoorPublicDump.activeSelf)
-         {
-             QuestManager.CompleteQuest("7");
-             questSeven = true;
-             questIsDone = true;
-             DisplayNotification();
-         }
-         else if (!questIsDone && "8" == qs.id && !questEight && killCount >= 800 && lootQte >= 10 && (!openDoorCity.activeSelf || !openDoorCity2.activeSelf))
-         {
-             QuestManager.CompleteQuest("8");
-             questEight = true;
-             questIsDone = true;
-             DisplayNotification();
-         }
-         else if (!questIsDone && "9" == qs.id && !questNine && killCount >= 1000 && lootQte >= 10 && (!openDoorCity.activeSelf || !openDoorCity2.activeSelf))
-         {
-             QuestManager.CompleteQuest("9");
-             questNine = true;
-             questIsDone = true;
-             DisplayNotification();
-         }*/
+        List<QuestState> qs = QuestManager.GetThreeQuestToDo();
+        if (!questOne)
+        {
+            if (qs.Any(w => w.id == "1"))
+            {
+                if (killCount >= 100)
+                {
+                    QuestManager.CompleteQuest("1");
+                    questOne = true;
+                    DisplayNotification();
+                }
+            }
+        }
+
+        if (!questTwo)
+        {
+            if (qs.Any(w => w.id == "2"))
+            {
+                if (killCount >= 100000000)
+                {
+                    // TODO BOSS
+                    QuestManager.CompleteQuest("2");
+                    questTwo = true;
+                    DisplayNotification();
+                }
+            }
+        }
+
+        if (!questThree)
+        {
+            if (qs.Any(w => w.id == "3"))
+            {
+                if (killCount >= 100000000)
+                {
+                    // TODO CLEAN ALL BUILDING
+                    QuestManager.CompleteQuest("3");
+                    questTwo = true;
+                    DisplayNotification();
+                }
+            }
+        }
     }
 
     private void DisplayNotification()
@@ -697,13 +663,13 @@ public class Inventory : MonoBehaviour
         switch (bonus.type)
         {
             case "speed":
-                speed+=2;
+                speed += 2;
                 break;
             case "life":
                 lifeCount = maxLife;
                 break;
             case "attackSpeed":
-                attackSpeed+=2;
+                attackSpeed += 2;
                 break;
         }
 
