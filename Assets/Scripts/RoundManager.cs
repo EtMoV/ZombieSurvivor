@@ -27,6 +27,12 @@ public class RoundManager : MonoBehaviour
 
     public bool isScenario = false;
 
+    private bool nextIsBoss = false;
+
+    public GameObject bossAppearGo;
+
+    public GameObject victoryScreenGo;
+
     void Awake()
     {
         _gameManager = gameManagerGo.GetComponent<GameManager>();
@@ -41,6 +47,8 @@ public class RoundManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        nextIsBoss = false;
+
         if (isScenario)
             return;
         launchNextRound();
@@ -71,36 +79,37 @@ public class RoundManager : MonoBehaviour
         int nextNbZombiesSpawn = currentRound.nbZombieSpawn + 3;
         int nextMaxZombies = currentRound.maxZombies * 2;
         int nextPvZombies = nextNumberRound % 3 == 0 ? currentRound.pvZombie + 1 : currentRound.pvZombie;
-        bool nextIsBoss = nextNumberRound >= 5 ? true : false;
-        currentRound = new Round(nextNumberRound, nextNbZombiesSpawn, nextMaxZombies, nextPvZombies, nextIsBoss, false);
-        StartCoroutine(activateRound());
+        nextIsBoss = nextNumberRound % 10 == 0 ? true : false;
+
+        if (nextNumberRound == (10 + 1))
+        {
+            // Last round has been done, display victory screen
+            victoryScreenGo.SetActive(true);
+        }
+        else
+        {
+            currentRound = new Round(nextNumberRound, nextNbZombiesSpawn, nextMaxZombies, nextPvZombies, nextIsBoss, false);
+            StartCoroutine(activateRound());
+        }
     }
 
     private IEnumerator activateRound()
     {
-        if (CanvaManager.isWatch.HasValue && CanvaManager.isWatch.Value)
+        yield return new WaitForSeconds(1f);
+        if (!_gameManager.isDead)
         {
-            yield return new WaitForSeconds(1f);
-            if (!_gameManager.isDead)
-            {
-                roundTextGoWatch.SetActive(true);
-            }
-            roundTextGoWatch.GetComponent<TextMeshProUGUI>().text = "Wave " + currentRound.numberRound.ToString();
-            yield return new WaitForSeconds(3f);
-            roundTextGoWatch.SetActive(false);
-            currentRound.isActive = true;
+            roundTextGoPhone.SetActive(true);
         }
-        else
+
+        if (nextIsBoss)
         {
-            yield return new WaitForSeconds(1f);
-            if (!_gameManager.isDead)
-            {
-                roundTextGoPhone.SetActive(true);
-            }
-            roundTextGoPhone.GetComponent<TextMeshProUGUI>().text = "Wave " + currentRound.numberRound.ToString();
-            yield return new WaitForSeconds(3f);
-            roundTextGoPhone.SetActive(false);
-            currentRound.isActive = true;
+            bossAppearGo.SetActive(true);
+            bossAppearGo.GetComponent<BossAppear>().FlashBossText();
         }
+
+        roundTextGoPhone.GetComponent<TextMeshProUGUI>().text = "Wave " + currentRound.numberRound.ToString();
+        yield return new WaitForSeconds(3f);
+        roundTextGoPhone.SetActive(false);
+        currentRound.isActive = true;
     }
 }
