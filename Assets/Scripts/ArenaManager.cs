@@ -23,6 +23,10 @@ public class ArenaManager : MonoBehaviour
     public GameObject inventoryGo;
     private Inventory _inventory;
 
+    public int nbMaxArena = 4;
+
+    public int nbArenaDone = 0;
+
     void Awake()
     {
         isActive = false;
@@ -45,6 +49,8 @@ public class ArenaManager : MonoBehaviour
     {
         // Faire spawn un coffre à la fin de l'arène
         //shopGo.SetActive(true);
+        nbArenaDone++;
+
         // Active l'exit de l'arène
         canExit();
 

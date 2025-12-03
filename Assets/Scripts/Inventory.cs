@@ -87,10 +87,17 @@ public class Inventory : MonoBehaviour
 
     public Coroutine tmpCoroutineStar;
 
+    public GameObject roundManagerGo;
+    private RoundManager _roundManager;
+    public GameObject arenaManagerGo;
+    private ArenaManager _arenaManager;
+
     void Awake()
     {
         weapons = new List<Weapon>();
         _powerUpManager = powerUpManagerGo.GetComponent<PowerUpManager>();
+        _roundManager = roundManagerGo.GetComponent<RoundManager>();
+        _arenaManager = arenaManagerGo.GetComponent<ArenaManager>();
         maxLife = 5;
         lifeCount = maxLife;
         killCount = 0;
@@ -560,7 +567,7 @@ public class Inventory : MonoBehaviour
         {
             if (qs.Any(w => w.id == "1"))
             {
-                if (killCount >= 100)
+                if (killCount >= 1)
                 {
                     QuestManager.CompleteQuest("1");
                     questOne = true;
@@ -573,9 +580,8 @@ public class Inventory : MonoBehaviour
         {
             if (qs.Any(w => w.id == "2"))
             {
-                if (killCount >= 100000000)
+                if (_roundManager.isMapFinish && _roundManager.currentMapName == "mapOne")
                 {
-                    // TODO BOSS
                     QuestManager.CompleteQuest("2");
                     questTwo = true;
                     DisplayNotification();
@@ -587,11 +593,10 @@ public class Inventory : MonoBehaviour
         {
             if (qs.Any(w => w.id == "3"))
             {
-                if (killCount >= 100000000)
+                if (_arenaManager.nbArenaDone == _arenaManager.nbMaxArena)
                 {
-                    // TODO CLEAN ALL BUILDING
                     QuestManager.CompleteQuest("3");
-                    questTwo = true;
+                    questThree = true;
                     DisplayNotification();
                 }
             }

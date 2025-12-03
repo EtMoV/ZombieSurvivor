@@ -78549,6 +78549,8 @@ MonoBehaviour:
   starTwoTwo: {fileID: 505292495}
   starThreeTwo: {fileID: 301743807}
   starFourTwo: {fileID: 1536215420}
+  roundManagerGo: {fileID: 973929391}
+  arenaManagerGo: {fileID: 2095642297}
 --- !u!4 &758181843
 Transform:
   m_ObjectHideFlags: 0
@@ -80639,6 +80641,8 @@ MonoBehaviour:
   isScenario: 0
   bossAppearGo: {fileID: 1134669474}
   victoryScreenGo: {fileID: 1983689663}
+  isMapFinish: 0
+  currentMapName: mapOne
 --- !u!4 &973929393
 Transform:
   m_ObjectHideFlags: 0
@@ -102721,6 +102725,8 @@ MonoBehaviour:
   arenaObjects: []
   xpPrefab: {fileID: 524867009648265515, guid: d097aac67f219467b9f2e4e44832ae83, type: 3}
   inventoryGo: {fileID: 758181841}
+  nbMaxArena: 4
+  nbArenaDone: 0
 --- !u!4 &2095642299
 Transform:
   m_ObjectHideFlags: 0

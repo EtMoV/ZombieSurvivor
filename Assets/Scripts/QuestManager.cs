@@ -5,7 +5,7 @@ public static class QuestManager
     public static List<QuestState> questsInit = new List<QuestState>
     {
         new QuestState("1", false, "Kill 100 zombies", ""),
-        new QuestState("2", false, "Kill Boss on small sherif's town", ""),
+        new QuestState("2", false, "Finish small sherif's town", ""),
         new QuestState("3", false, "Clean all building in small sheriff's town", ""),
         new QuestState("4", false, "Stay tunned :)", ""),
     };

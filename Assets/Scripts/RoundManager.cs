@@ -33,6 +33,10 @@ public class RoundManager : MonoBehaviour
 
     public GameObject victoryScreenGo;
 
+    public bool isMapFinish = false;
+
+    public string currentMapName = "mapOne"; // TODO recuperer depuis le chargement de la scene
+
     void Awake()
     {
         _gameManager = gameManagerGo.GetComponent<GameManager>();
@@ -48,7 +52,7 @@ public class RoundManager : MonoBehaviour
     void Start()
     {
         nextIsBoss = false;
-
+        isMapFinish = false;
         if (isScenario)
             return;
         launchNextRound();
@@ -84,6 +88,7 @@ public class RoundManager : MonoBehaviour
         if (nextNumberRound == (10 + 1))
         {
             // Last round has been done, display victory screen
+            isMapFinish = true;
             victoryScreenGo.SetActive(true);
         }
         else
