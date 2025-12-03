@@ -50,6 +50,18 @@ public class MenuManager : MonoBehaviour
     public GameObject btnCreateFabricationWatch;
     public GameObject btnCreateFabricationPhone;
 
+    public GameObject mapGo;
+    public GameObject titleMapGo;
+
+    private MapZombie currentMapZombie;
+    private int currentIndexMapZombie;
+
+    private List<MapZombie> mapsZombie = new List<MapZombie>
+    {
+      new MapZombie("The sheriff's small town", "mapOne"),
+      new MapZombie("Stay tuned !", "mapStayTuned")
+    };
+
     public List<PowerUpState> possiblePowerUp = new List<PowerUpState>
         {
             new PowerUpState("speed", "speed", "Increase speed of player"),
@@ -65,7 +77,13 @@ public class MenuManager : MonoBehaviour
 
     public void Start()
     {
-        QuestState questState = QuestManager.getLastCompletedQuest();
+        // Gestion du menu fight par defaut
+        currentIndexMapZombie = 0;
+        currentMapZombie = mapsZombie[currentIndexMapZombie];
+        onChangeMap(0); // Pour mettre a jour l'ui
+
+        // Gestion des quetes
+        /*QuestState questState = QuestManager.getLastCompletedQuest();
         if (questState != null)
         {
             tempSchemaId = questState.schemaReward;
@@ -91,40 +109,58 @@ public class MenuManager : MonoBehaviour
                 }
 
             }
-        }
+        }*/
     }
 
     public void onPlay()
     {
         var existingCanvas = FindFirstObjectByType<Canvas>();
-        if (existingCanvas != null)
-            Destroy(existingCanvas.gameObject);
-        SceneManager.LoadScene(1);
+        if (currentIndexMapZombie == 0)
+        {
+            if (existingCanvas != null)
+                Destroy(existingCanvas.gameObject);
+            SceneManager.LoadScene(1);
+        }
     }
 
     public void onQuests()
     {
         // Recupere la quete courante
         QuestState currentQuest = QuestManager.getCurrentQuest();
-        if (CanvaManager.isWatch.HasValue && CanvaManager.isWatch.Value)
+
+        List<QuestState> threeQuestFree = new List<QuestState>();
+
+        for (int i = 0; i < QuestManager.questsInit.Count; i++)
         {
-            panelMenuWatch.SetActive(false);
-            panelQuestsWatch.SetActive(true);
+            bool questCompleted = QuestManager.IsQuestCompleted(QuestManager.questsInit[i].id);
+            if (!questCompleted)
+            {
+                QuestState questState = QuestManager.getQuestById(QuestManager.questsInit[i].id);
+                if (questState == null)
+                    threeQuestFree.Add(QuestManager.questsInit[i]);
+                else
+                    threeQuestFree.Add(questState);
+            }
 
-
-            questTextOneWatch.GetComponent<TextMeshProUGUI>().text = currentQuest.descriptionOne;
-            questTextTwoWatch.GetComponent<TextMeshProUGUI>().text = currentQuest.descriptionTwo;
-            questTextThreeWatch.GetComponent<TextMeshProUGUI>().text = currentQuest.descriptionThree;
+            if (threeQuestFree.Count == 3)
+            {
+                break;
+            }
         }
-        else
+
+        panelMenuPhone.SetActive(false);
+        panelQuestsPhone.SetActive(true);
+        if (threeQuestFree.Count > 0)
         {
-            panelMenuPhone.SetActive(false);
-            panelQuestsPhone.SetActive(true);
-
-
-            questTextOnePhone.GetComponent<TextMeshProUGUI>().text = currentQuest.descriptionOne;
-            questTextTwoPhone.GetComponent<TextMeshProUGUI>().text = currentQuest.descriptionTwo;
-            questTextThreePhone.GetComponent<TextMeshProUGUI>().text = currentQuest.descriptionThree;
+            questTextOnePhone.GetComponent<TextMeshProUGUI>().text = threeQuestFree[0].descriptionOne;
+        }
+        if (threeQuestFree.Count > 1)
+        {
+            questTextTwoPhone.GetComponent<TextMeshProUGUI>().text = threeQuestFree[1].descriptionOne;
+        }
+        if (threeQuestFree.Count > 2)
+        {
+            questTextThreePhone.GetComponent<TextMeshProUGUI>().text = threeQuestFree[2].descriptionOne;
         }
 
     }
@@ -335,5 +371,39 @@ public class MenuManager : MonoBehaviour
     public void onJoinDiscord()
     {
         Application.OpenURL("https://discord.gg/37s6ujvcPY");
+    }
+
+    public void onLeftChangeMap()
+    {
+        onChangeMap(-1);
+    }
+
+    public void onRightChangeMap()
+    {
+        onChangeMap(1);
+    }
+
+    private void onChangeMap(int changePos)
+    {
+        if (currentIndexMapZombie == 0 && changePos == -1)
+        {
+            return; // On est au max a gauche
+        }
+
+
+        if (currentIndexMapZombie == mapsZombie.Count - 1 && changePos == 1)
+        {
+            return; // On est au max a droite
+        }
+
+        mapGo.SetActive(true);
+        currentIndexMapZombie += changePos;
+        currentMapZombie = mapsZombie[currentIndexMapZombie];
+        mapGo.GetComponent<Image>().sprite = Resources.Load<Sprite>("Maps/" + currentMapZombie.pathImage);
+        titleMapGo.GetComponent<TextMeshProUGUI>().text = currentMapZombie.title;
+        if(currentIndexMapZombie == mapsZombie.Count - 1)
+        {
+            mapGo.SetActive(false);
+        }
     }
 }

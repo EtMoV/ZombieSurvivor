@@ -8798,7 +8798,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "The sheriff\u2019s small town"
+  m_text: Title
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -10079,7 +10079,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1209247621}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1336678052}
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+        m_MethodName: onLeftChangeMap
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1209247621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11414,6 +11426,8 @@ MonoBehaviour:
   descriptionResultFabricationPhone: {fileID: 1210163638}
   btnCreateFabricationWatch: {fileID: 80434022}
   btnCreateFabricationPhone: {fileID: 54177718}
+  mapGo: {fileID: 1990751485}
+  titleMapGo: {fileID: 1077046480}
   possiblePowerUp:
   - id: speed
     title: speed
@@ -12933,7 +12947,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1497531973}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1336678052}
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+        m_MethodName: onRightChangeMap
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1497531973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16309,7 +16335,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1760028687687917686, guid: a9788487aef2f4077bfdf2f603895973, type: 3}
+  m_Sprite: {fileID: 3211968643219338393, guid: ffe566184aca944c3a336665243d8eaf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

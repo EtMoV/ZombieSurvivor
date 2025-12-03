@@ -1,21 +1,13 @@
 using System.Collections.Generic;
-using System.Diagnostics;
-using UnityEngine;
 
 public static class QuestManager
 {
-    static List<QuestState> questsInit = new List<QuestState>
+    public static List<QuestState> questsInit = new List<QuestState>
     {
-        new QuestState("1", false, "Kill 100 zombies", "Get 5 loot", "Unlock Parking Zone", "shotgun"),
-        new QuestState("2", false, "Kill 200 zombies", "Get 5 loot", "Unlock Forest Zone", "bat"),
-        new QuestState("3", false, "Kill 300 zombies", "Get 5 loot", "Unlock Public dump Zone", "assaultRifle"),
-        new QuestState("4", false, "Kill 400 zombies", "Get 5 loot", "Unlock Parking Zone", "grenade"),
-        new QuestState("5", false, "Kill 500 zombies", "Get 5 loot", "Unlock City Zone", "ak"),
-        new QuestState("6", false, "Kill 600 zombies", "Get 5 loot", "Unlock Forest Zone", "sniper"),
-        new QuestState("7", false, "Kill 700 zombies", "Get 5 loot", "Unlock Public dump Zone", "rocketLauncher"),
-        new QuestState("8", false, "Kill 800 zombies", "Get 10 loot", "Unlock City Zone", "gatling"),
-        new QuestState("9", false, "Kill 1000 zombies", "Get 100 loot", "Unlock City Zone", "spas"),
-        new QuestState("10", false, "No more quest", "Stay tunned :)", "", ""),
+        new QuestState("1", false, "Kill 100 zombies", ""),
+        new QuestState("2", false, "Kill Boss on small sherif's town", ""),
+        new QuestState("3", false, "Clean all building in small sheriff's town", ""),
+        new QuestState("4", false, "Stay tunned :)", ""),
     };
 
     public static bool IsQuestCompleted(string questId)
@@ -58,6 +50,21 @@ public static class QuestManager
         }
 
         SaveSystem.Save(data);
+    }
+    public static QuestState getQuestById(string questId)
+    {   
+        SaveData data = SaveSystem.GetData();
+
+        foreach (var q in data.quests)
+        {
+           if(q.id == questId)
+            {
+                return q;
+            }
+          
+        }
+
+        return null;
     }
 
     public static QuestState getCurrentQuest()
