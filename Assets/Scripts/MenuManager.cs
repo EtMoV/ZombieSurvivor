@@ -151,13 +151,25 @@ public class MenuManager : MonoBehaviour
         {
             questTextOnePhone.GetComponent<TextMeshProUGUI>().text = threeQuestFree[0].descriptionOne;
         }
+        else
+        {
+            questTextOnePhone.SetActive(false);
+        }
         if (threeQuestFree.Count > 1)
         {
             questTextTwoPhone.GetComponent<TextMeshProUGUI>().text = threeQuestFree[1].descriptionOne;
         }
+        else
+        {
+            questTextTwoPhone.SetActive(false);
+        }
         if (threeQuestFree.Count > 2)
         {
             questTextThreePhone.GetComponent<TextMeshProUGUI>().text = threeQuestFree[2].descriptionOne;
+        }
+        else
+        {
+            questTextThreePhone.SetActive(false);
         }
 
     }
@@ -398,7 +410,7 @@ public class MenuManager : MonoBehaviour
         currentMapZombie = mapsZombie[currentIndexMapZombie];
         mapGo.GetComponent<Image>().sprite = Resources.Load<Sprite>("Maps/" + currentMapZombie.pathImage);
         titleMapGo.GetComponent<TextMeshProUGUI>().text = currentMapZombie.title;
-        if(currentIndexMapZombie == mapsZombie.Count - 1)
+        if (currentIndexMapZombie == mapsZombie.Count - 1)
         {
             mapGo.SetActive(false);
         }
