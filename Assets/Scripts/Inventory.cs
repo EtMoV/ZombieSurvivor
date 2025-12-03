@@ -567,7 +567,7 @@ public class Inventory : MonoBehaviour
         {
             if (qs.Any(w => w.id == "1"))
             {
-                if (killCount >= 1)
+                if (killCount >= 100)
                 {
                     QuestManager.CompleteQuest("1");
                     questOne = true;
