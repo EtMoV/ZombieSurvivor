@@ -102,4 +102,7 @@ InitTestScene*.unity*
 /Build
 /.DS_Store
 
-/Assets/FirebaseAssets/Firebase/Plugins/
+/Assets/Firebase
+Assets/Firebase/Plugins/
+Assets/Firebase
+
