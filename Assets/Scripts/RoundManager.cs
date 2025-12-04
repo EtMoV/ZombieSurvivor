@@ -1,4 +1,5 @@
 using System.Collections;
+using Firebase.Analytics;
 using TMPro;
 using UnityEngine;
 
@@ -90,6 +91,7 @@ public class RoundManager : MonoBehaviour
             // Last round has been done, display victory screen
             isMapFinish = true;
             victoryScreenGo.SetActive(true);
+            FirebaseAnalytics.LogEvent("victory", new Parameter("level", 1));
         }
         else
         {
