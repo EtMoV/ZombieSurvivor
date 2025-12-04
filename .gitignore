@@ -101,3 +101,5 @@ InitTestScene*.unity*
 /Builds
 /Build
 /.DS_Store
+
+/Firebase
