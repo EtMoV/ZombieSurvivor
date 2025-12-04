@@ -18,8 +18,14 @@ public class GridManager : MonoBehaviour
     public int gridSizeY;
     private Vector3 worldBottomLeft;
 
+    public GameObject mapManagerGo;
+    private MapManager _mapManager;
+
     public void GenerateGrid()
     {
+        _mapManager = mapManagerGo.GetComponent<MapManager>();
+        groundTilemap = _mapManager.currentMap.ground;
+        wallTilemap = _mapManager.currentMap.wall;
         if (groundTilemap == null)
         {
             Debug.LogError("Ground Tilemap manquante !");

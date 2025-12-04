@@ -16,12 +16,17 @@ public class Arena : MonoBehaviour
 
     public Tilemap arenaGroundTilemap;
     public Tilemap arenaWallTilemap;
-    public Tilemap worldGroundTilemap;
-    public Tilemap worldWallTilemap;
 
     public GameObject playerGo;
 
     public GameObject shopGo;
+    public GameObject mapManagerGo;
+    private MapManager _mapManager;
+
+    public void Awake()
+    {
+        _mapManager = mapManagerGo.GetComponent<MapManager>();
+    }
 
     public void enterArena()
     {
@@ -31,8 +36,8 @@ public class Arena : MonoBehaviour
         _arenaManager.posEnter = new Vector3(playerGo.transform.position.x, playerGo.transform.position.y, playerGo.transform.position.z);
         arenaGroundTilemap.gameObject.SetActive(true);
         arenaWallTilemap.gameObject.SetActive(true);
-        worldGroundTilemap.gameObject.SetActive(false);
-        worldWallTilemap.gameObject.SetActive(false);
+        _mapManager.currentMap.ground.gameObject.SetActive(false);
+        _mapManager.currentMap.wall.gameObject.SetActive(false);
         exitArenaGo.SetActive(false);
         exitArenaTextGo.SetActive(false);
         spawnPointGo.SetActive(true);

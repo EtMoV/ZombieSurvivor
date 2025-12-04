@@ -18,17 +18,17 @@ public class PlayerZombieSpawn : MonoBehaviour
     private ZombieFactory _zombieFactory;
     private RoundManager _roundManager;
 
-    [Header("Tilemap sol")]
-    public Tilemap backgroundTilemap; // sol
-
-    public Tilemap wallTilemap; // murs
-
     public bool isScenario = false;
+
+    public GameObject mapManagerGo;
+
+    private MapManager _mapManager;
 
     void Awake()
     {
         _zombieFactory = gameManagerGo.GetComponent<ZombieFactory>();
         _roundManager = roundManagerGo.GetComponent<RoundManager>();
+        _mapManager = mapManagerGo.GetComponent<MapManager>();
         activeZombies = new List<GameObject>();
     }
 
@@ -40,15 +40,15 @@ public class PlayerZombieSpawn : MonoBehaviour
 
     bool IsValidSpawn(Vector2 position)
     {
-        Vector3Int cellPos = backgroundTilemap.WorldToCell(position);
+        Vector3Int cellPos = _mapManager.currentMap.ground.WorldToCell(position);
 
         // La tile de sol doit exister
-        TileBase bgTile = backgroundTilemap.GetTile(cellPos);
+        TileBase bgTile = _mapManager.currentMap.ground.GetTile(cellPos);
         if (bgTile == null)
             return false;
 
         // Vérifie si on est dans un mur → interdit
-        TileBase wallTile = wallTilemap.GetTile(cellPos);
+        TileBase wallTile = _mapManager.currentMap.wall.GetTile(cellPos);
         if (wallTile != null)
             return false;
 

@@ -567,7 +567,7 @@ public class Inventory : MonoBehaviour
         {
             if (qs.Any(w => w.id == "1"))
             {
-                if (killCount >= 100)
+                if (killCount >= 1000)
                 {
                     QuestManager.CompleteQuest("1");
                     questOne = true;
@@ -580,7 +580,7 @@ public class Inventory : MonoBehaviour
         {
             if (qs.Any(w => w.id == "2"))
             {
-                if (_roundManager.isMapFinish && _roundManager.currentMapName == "mapOne")
+                if (_roundManager.isMapFinish && StoreDataScene.currentMap == "mapOne")
                 {
                     QuestManager.CompleteQuest("2");
                     questTwo = true;
@@ -593,7 +593,7 @@ public class Inventory : MonoBehaviour
         {
             if (qs.Any(w => w.id == "3"))
             {
-                if (_arenaManager.nbArenaDone == _arenaManager.nbMaxArena)
+                if (_arenaManager.nbArenaDone == _arenaManager.nbMaxArena && StoreDataScene.currentMap == "mapOne")
                 {
                     QuestManager.CompleteQuest("3");
                     questThree = true;

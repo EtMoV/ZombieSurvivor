@@ -60,6 +60,7 @@ public class MenuManager : MonoBehaviour
     private List<MapZombie> mapsZombie = new List<MapZombie>
     {
       new MapZombie("The sheriff's small town", "mapOne"),
+      new MapZombie("The highway", "mapTwo"),
       new MapZombie("Stay tuned !", "mapStayTuned")
     };
 
@@ -82,35 +83,6 @@ public class MenuManager : MonoBehaviour
         currentIndexMapZombie = 0;
         currentMapZombie = mapsZombie[currentIndexMapZombie];
         onChangeMap(0); // Pour mettre a jour l'ui
-
-        // Gestion des quetes
-        /*QuestState questState = QuestManager.getLastCompletedQuest();
-        if (questState != null)
-        {
-            tempSchemaId = questState.schemaReward;
-            if (!SchemaManager.SchemaExists(tempSchemaId))
-            {
-                if (CanvaManager.isWatch.HasValue && CanvaManager.isWatch.Value)
-                {
-                    // On affiche le panel de prestige car un nouveau schema a ete debloque
-                    panelMenuWatch.SetActive(false);
-                    panelPrestigeMenuWatch.SetActive(true);
-                    // Affichage du prestige
-                    textBeforePrestigeGoWatch.GetComponent<TextMeshProUGUI>().text = PrestigeManager.getPrestige().ToString();
-                    textAfterPrestigeGoWatch.GetComponent<TextMeshProUGUI>().text = (PrestigeManager.getPrestige() + 1).ToString();
-                }
-                else
-                {
-                    // On affiche le panel de prestige car un nouveau schema a ete debloque
-                    panelMenuPhone.SetActive(false);
-                    panelPrestigeMenuPhone.SetActive(true);
-                    // Affichage du prestige
-                    textBeforePrestigeGoPhone.GetComponent<TextMeshProUGUI>().text = PrestigeManager.getPrestige().ToString();
-                    textAfterPrestigeGoPhone.GetComponent<TextMeshProUGUI>().text = (PrestigeManager.getPrestige() + 1).ToString();
-                }
-
-            }
-        }*/
     }
 
     public void onPlay()
@@ -118,7 +90,16 @@ public class MenuManager : MonoBehaviour
         var existingCanvas = FindFirstObjectByType<Canvas>();
         if (currentIndexMapZombie == 0)
         {
-            FirebaseAnalytics.LogEvent("game_started", new Parameter("level", 1));
+            StoreDataScene.currentMap = "mapOne";
+            FirebaseAnalytics.LogEvent("game_started", new Parameter("level", StoreDataScene.currentMap));
+            if (existingCanvas != null)
+                Destroy(existingCanvas.gameObject);
+            SceneManager.LoadScene(1);
+        }
+        else if (currentIndexMapZombie == 1)
+        {
+            StoreDataScene.currentMap = "mapTwo";
+            FirebaseAnalytics.LogEvent("game_started", new Parameter("level", StoreDataScene.currentMap));
             if (existingCanvas != null)
                 Destroy(existingCanvas.gameObject);
             SceneManager.LoadScene(1);

@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
     // Restart the game
     public void RestartGame()
     {
-        FirebaseAnalytics.LogEvent("restart_game", new Parameter("level", 1), new Parameter("totalKill", _inventory.totalKillCount));
+        FirebaseAnalytics.LogEvent("restart_game", new Parameter("level", StoreDataScene.currentMap), new Parameter("totalKill", _inventory.totalKillCount));
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
     }

@@ -15,9 +15,6 @@ public class ArenaExit : MonoBehaviour
     public Tilemap arenaGroundTilemap;
     public Tilemap arenaWallTilemap;
 
-    public Tilemap worldGroundTilemap;
-    public Tilemap worldWallTilemap;
-
     public GameObject PlayerGo;
     private PlayerZombieSpawn _playerZombieSpawn;
 
@@ -28,11 +25,15 @@ public class ArenaExit : MonoBehaviour
 
     public GameObject fadeBlackGo;
 
+    public GameObject mapManagerGo;
+    private MapManager _mapManager;
+
     public void Awake()
     {
         _gridManager = gridManagerGo.GetComponent<GridManager>();
         _playerZombieSpawn = PlayerGo.GetComponent<PlayerZombieSpawn>();
         _arenaManager = arenaManagerGo.GetComponent<ArenaManager>();
+        _mapManager = mapManagerGo.GetComponent<MapManager>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -50,15 +51,15 @@ public class ArenaExit : MonoBehaviour
 
         arenaGroundTilemap.gameObject.SetActive(false);
         arenaWallTilemap.gameObject.SetActive(false);
-        worldGroundTilemap.gameObject.SetActive(true);
-        worldWallTilemap.gameObject.SetActive(true);
+        _mapManager.currentMap.ground.gameObject.SetActive(true);
+        _mapManager.currentMap.wall.gameObject.SetActive(true);
         exitArenaTextGo.SetActive(false);
         spawnPointGo.SetActive(false);
         shopGo.SetActive(false);
         _playerZombieSpawn.isActive = true;
         _arenaManager.isActive = false;
-        _gridManager.groundTilemap = worldGroundTilemap;
-        _gridManager.wallTilemap = worldWallTilemap;
+        _gridManager.groundTilemap = _mapManager.currentMap.ground;
+        _gridManager.wallTilemap = _mapManager.currentMap.wall;
         PlayerGo.transform.position = _arenaManager.posEnter; // On remet le joueur à l'entrée de l'arène
 
         // On reaffiche les element
@@ -70,7 +71,7 @@ public class ArenaExit : MonoBehaviour
         });
         _arenaManager.arenaObjects.Clear();
 
-       
+
         gameObject.SetActive(false);
     }
 }

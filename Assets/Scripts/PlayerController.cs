@@ -221,7 +221,7 @@ public class PlayerController : MonoBehaviour
             animator.Play("PlayerDie");
             StartCoroutine(CameraShake(0.1f, 0.3f));
             StartCoroutine(LoseScreenCoroutine(1.5f));
-            FirebaseAnalytics.LogEvent("die", new Parameter("level", 1), new Parameter("totalKill", _inventory.totalKillCount));
+            FirebaseAnalytics.LogEvent("die", new Parameter("level", StoreDataScene.currentMap), new Parameter("totalKill", _inventory.totalKillCount));
             Destroy(gameObject, 2f);
         }
     }

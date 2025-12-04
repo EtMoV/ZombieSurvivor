@@ -36,8 +36,6 @@ public class RoundManager : MonoBehaviour
 
     public bool isMapFinish = false;
 
-    public string currentMapName = "mapOne"; // TODO recuperer depuis le chargement de la scene
-
     void Awake()
     {
         _gameManager = gameManagerGo.GetComponent<GameManager>();
@@ -91,7 +89,7 @@ public class RoundManager : MonoBehaviour
             // Last round has been done, display victory screen
             isMapFinish = true;
             victoryScreenGo.SetActive(true);
-            FirebaseAnalytics.LogEvent("victory", new Parameter("level", 1));
+            FirebaseAnalytics.LogEvent("victory", new Parameter("level", StoreDataScene.currentMap));
         }
         else
         {
