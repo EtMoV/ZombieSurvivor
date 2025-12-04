@@ -423,7 +423,7 @@ public class Zombie : MonoBehaviour
             }*/
 
             // Generate random bonus
-            if (Random.value < 0.05f)
+            if (Random.value < 0.01f)
             {
                 string[] options = { "attackSpeed", "life", "speed" };
                 string choice = options[Random.Range(0, options.Length)];

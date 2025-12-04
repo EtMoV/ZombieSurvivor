@@ -669,17 +669,18 @@ public class Inventory : MonoBehaviour
         {
             case "speed":
                 speed += 2;
+                // Réinitialiser après 10 sec
+                Invoke("ResetBonus", 10f);
                 break;
             case "life":
                 lifeCount = maxLife;
                 break;
             case "attackSpeed":
                 attackSpeed += 2;
+                // Réinitialiser après 10 sec
+                Invoke("ResetBonus", 10f);
                 break;
         }
-
-        // Réinitialiser après 10 sec
-        Invoke("ResetBonus", 10f);
     }
 
     private void ResetBonus()
