@@ -388,7 +388,7 @@ public class Zombie : MonoBehaviour
     public void createBoss()
     {
         transform.localScale = new Vector3(2f, 2f, 1f);
-        life *= 5;
+        life *= 10;
         isBoss = true;
         GetComponent<SpriteRenderer>().sprite = zombieBossSprite;
     }
