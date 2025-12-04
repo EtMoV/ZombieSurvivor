@@ -1,4 +1,5 @@
 using System.Collections;
+using Firebase.Analytics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -220,6 +221,7 @@ public class PlayerController : MonoBehaviour
             animator.Play("PlayerDie");
             StartCoroutine(CameraShake(0.1f, 0.3f));
             StartCoroutine(LoseScreenCoroutine(1.5f));
+            FirebaseAnalytics.LogEvent("die", new Parameter("level", 1), new Parameter("totalKill", _inventory.totalKillCount));
             Destroy(gameObject, 2f);
         }
     }
@@ -266,9 +268,9 @@ public class PlayerController : MonoBehaviour
             Color color = image.color;
             color.a = 0.25f; // 25% d'opacité
             image.color = color;
-            
+
             yield return new WaitForSeconds(0.8f);
-            
+
             color.a = 0f; // Retour à transparent
             image.color = color;
         }

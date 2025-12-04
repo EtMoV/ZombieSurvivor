@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using Firebase.Analytics;
 
 public class GameManager : MonoBehaviour
 {
@@ -68,6 +69,7 @@ public class GameManager : MonoBehaviour
     // Restart the game
     public void RestartGame()
     {
+        FirebaseAnalytics.LogEvent("restart_game", new Parameter("level", 1), new Parameter("totalKill", _inventory.totalKillCount));
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
     }
@@ -75,6 +77,7 @@ public class GameManager : MonoBehaviour
     // Restart the game
     public void QuitToMenu()
     {
+        FirebaseAnalytics.LogEvent("quit_to_menu", new Parameter("level", 1), new Parameter("totalKill", _inventory.totalKillCount));
         var existingCanvas = FindFirstObjectByType<Canvas>();
         if (existingCanvas != null)
             Destroy(existingCanvas.gameObject);

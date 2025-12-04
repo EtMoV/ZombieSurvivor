@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Firebase.Analytics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -117,6 +118,7 @@ public class MenuManager : MonoBehaviour
         var existingCanvas = FindFirstObjectByType<Canvas>();
         if (currentIndexMapZombie == 0)
         {
+            FirebaseAnalytics.LogEvent("game_started", new Parameter("level", 1));
             if (existingCanvas != null)
                 Destroy(existingCanvas.gameObject);
             SceneManager.LoadScene(1);

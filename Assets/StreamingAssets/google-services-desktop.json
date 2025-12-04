@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "497268086588",
+    "project_id": "zombiesurvivor-f0fb2",
+    "storage_bucket": "zombiesurvivor-f0fb2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:497268086588:android:8f7835f49034c745c63039",
+        "android_client_info": {
+          "package_name": "com.etmov.zombiewearsurvivor"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDiQtIZA9PAYbgQLjgTLDF5w6AdPAiymYE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
