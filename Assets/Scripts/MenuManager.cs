@@ -60,7 +60,7 @@ public class MenuManager : MonoBehaviour
     private List<MapZombie> mapsZombie = new List<MapZombie>
     {
       new MapZombie("The sheriff's small town", "mapOne"),
-      new MapZombie("The highway", "mapTwo"),
+      new MapZombie("The appartment", "mapTwo"),
       new MapZombie("Stay tuned !", "mapStayTuned")
     };
 

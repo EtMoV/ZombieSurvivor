@@ -7,10 +7,10 @@ public class Container : MonoBehaviour
     public int cost;
     public GameObject inventoryGO;
     private Inventory _inventory;
-    public GameObject lootPrefab;
+    public GameObject xpPrefab;
 
     public Sprite openSprite;
-    
+
     void Awake()
     {
         isOpen = false;
@@ -28,16 +28,16 @@ public class Container : MonoBehaviour
             if (!isOpen)
             {
                 isOpen = true;
-                
+
                 // Update Sprite
                 GetComponent<SpriteRenderer>().sprite = openSprite;
 
                 // Instanciation du loot
-                int randomLoots = Random.Range(1, 4); // Nombre aléatoire entre 1 et 3
+                int randomLoots = Random.Range(1, 11); // Nombre aléatoire entre 1 et 10
                 for (int i = 0; i < randomLoots; i++)
                 {
-                    Loot lootInstantiate = Instantiate(lootPrefab, transform.position, Quaternion.identity).GetComponent<Loot>();
-                    lootInstantiate.inventory = _inventory;
+                    XP xpInstantiate = Instantiate(xpPrefab, transform.position, Quaternion.identity).GetComponent<XP>();
+                    xpInstantiate.inventory = _inventory;
                 }
             }
         }
