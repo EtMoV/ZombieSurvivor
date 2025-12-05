@@ -560,6 +560,12 @@ public class Inventory : MonoBehaviour
     private bool questTwo = false;
     private bool questThree = false;
 
+    private bool questFour = false;
+
+    private bool questFive = false;
+
+    //private bool questSix = false;
+
     public void manageQuest()
     {
         List<QuestState> qs = QuestManager.GetThreeQuestToDo();
@@ -601,6 +607,46 @@ public class Inventory : MonoBehaviour
                 }
             }
         }
+
+        if (!questFour)
+        {
+            if (qs.Any(w => w.id == "4"))
+            {
+                if (killCount >= 2000)
+                {
+                    QuestManager.CompleteQuest("4");
+                    questFour = true;
+                    DisplayNotification();
+                }
+            }
+        }
+
+        if (!questFive)
+        {
+            if (qs.Any(w => w.id == "5"))
+            {
+                if (_roundManager.isMapFinish && StoreDataScene.currentMap == "mapTwo")
+                {
+                    QuestManager.CompleteQuest("5");
+                    questFive = true;
+                    DisplayNotification();
+                }
+            }
+        }
+
+        /*if (!questSix)
+        {
+            if (qs.Any(w => w.id == "6"))
+            {
+            TODO TOUT LES CONTAINERS
+                if ( StoreDataScene.currentMap == "mapTwo")
+                {
+                    QuestManager.CompleteQuest("6");
+                    questSix = true;
+                    DisplayNotification();
+                }
+            }
+        }*/
     }
 
     private void DisplayNotification()

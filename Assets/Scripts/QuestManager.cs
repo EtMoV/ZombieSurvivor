@@ -4,10 +4,12 @@ public static class QuestManager
 {
     public static List<QuestState> questsInit = new List<QuestState>
     {
-        new QuestState("1", false, "Kill 100 zombies", ""),
+        new QuestState("1", false, "Kill 1000 zombies", ""),
         new QuestState("2", false, "Finish small sherif's town", ""),
         new QuestState("3", false, "Clean all building in small sheriff's town", ""),
-        new QuestState("4", false, "Stay tunned :)", ""),
+        new QuestState("4", false, "Kill 2000 zombies", ""),
+        new QuestState("5", false, "Finish the appartment", ""),
+        new QuestState("6", false, "Stay tunned :)", ""),
     };
 
     public static bool IsQuestCompleted(string questId)
