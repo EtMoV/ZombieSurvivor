@@ -1,4 +1,5 @@
 using System.Collections;
+using Firebase.Analytics;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -47,6 +48,8 @@ public class ArenaExit : MonoBehaviour
 
     private IEnumerator CoroutineCollision(Collision2D collision)
     {
+        FirebaseAnalytics.LogEvent("exit_arena");
+
         yield return new WaitForSeconds(0.6f);
 
         arenaGroundTilemap.gameObject.SetActive(false);

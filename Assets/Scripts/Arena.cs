@@ -1,3 +1,4 @@
+using Firebase.Analytics;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -30,6 +31,7 @@ public class Arena : MonoBehaviour
 
     public void enterArena()
     {
+        FirebaseAnalytics.LogEvent("enter_arena");
 
         _arenaManager = arenaManagerGo.GetComponent<ArenaManager>();
         _gridManager = gridManagerGo.GetComponent<GridManager>();

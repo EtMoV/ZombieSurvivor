@@ -199,6 +199,7 @@ public class MenuManager : MonoBehaviour
 
     public void onMenu()
     {
+        FirebaseAnalytics.LogEvent("onMenu");
         if (CanvaManager.isWatch.HasValue && CanvaManager.isWatch.Value)
         {
             panelMenuWatch.SetActive(true);
@@ -362,17 +363,20 @@ public class MenuManager : MonoBehaviour
 
     public void onJoinDiscord()
     {
+        FirebaseAnalytics.LogEvent("onJoinDiscord");
         Application.OpenURL("https://discord.gg/37s6ujvcPY");
     }
 
     public void onLeftChangeMap()
     {
         onChangeMap(-1);
+        FirebaseAnalytics.LogEvent("onLeftChangeMap");
     }
 
     public void onRightChangeMap()
     {
         onChangeMap(1);
+        FirebaseAnalytics.LogEvent("onRightChangeMap");
     }
 
     private void onChangeMap(int changePos)

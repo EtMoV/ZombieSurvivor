@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Firebase.Analytics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -165,6 +166,8 @@ public class Inventory : MonoBehaviour
 
         if (xp >= nextXp)
         {
+            FirebaseAnalytics.LogEvent("levelUp", new Parameter("xp", xp));
+
             // Level up
             // Stopper le jeu 
             gameplayRootGo.SetActive(false);

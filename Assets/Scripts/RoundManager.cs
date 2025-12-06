@@ -80,7 +80,7 @@ public class RoundManager : MonoBehaviour
     {
         int nextNumberRound = currentRound.numberRound + 1;
         int nextNbZombiesSpawn = currentRound.nbZombieSpawn + 10;
-        int nextMaxZombies = nextNumberRound % 2 == 0  ? currentRound.maxZombies * 2 : currentRound.maxZombies + 10;
+        int nextMaxZombies = nextNumberRound % 2 == 0 ? currentRound.maxZombies * 2 : currentRound.maxZombies + 10;
         int nextPvZombies = nextNumberRound % 2 == 0 ? currentRound.pvZombie + 1 : currentRound.pvZombie;
         nextIsBoss = nextNumberRound % 10 == 0 ? true : false;
 
@@ -93,6 +93,7 @@ public class RoundManager : MonoBehaviour
         }
         else
         {
+            FirebaseAnalytics.LogEvent("new_round", new Parameter("round", nextNumberRound));
             currentRound = new Round(nextNumberRound, nextNbZombiesSpawn, nextMaxZombies, nextPvZombies, nextIsBoss, false);
             StartCoroutine(activateRound());
         }
