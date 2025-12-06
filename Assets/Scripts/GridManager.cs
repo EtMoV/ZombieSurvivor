@@ -21,11 +21,16 @@ public class GridManager : MonoBehaviour
     public GameObject mapManagerGo;
     private MapManager _mapManager;
 
+    public bool isHub;
     public void GenerateGrid()
     {
-        _mapManager = mapManagerGo.GetComponent<MapManager>();
-        groundTilemap = _mapManager.currentMap.ground;
-        wallTilemap = _mapManager.currentMap.wall;
+        if (!isHub)
+        {
+            _mapManager = mapManagerGo.GetComponent<MapManager>();
+            groundTilemap = _mapManager.currentMap.ground;
+            wallTilemap = _mapManager.currentMap.wall;
+        }
+        
         if (groundTilemap == null)
         {
             Debug.LogError("Ground Tilemap manquante !");

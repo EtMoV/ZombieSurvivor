@@ -35,13 +35,15 @@ public class PlayerController : MonoBehaviour
 
     public float attractionXpRadius = 15f; // Distance d'attraction
     public float attractionXpSpeed = 8f; // Vitesse d'attraction
+    public bool isHub;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        _inventory = inventoryGO.GetComponent<Inventory>();
+        if (!isHub)
+            _inventory = inventoryGO.GetComponent<Inventory>();
         targetPosition = rb.position;
     }
 
@@ -97,8 +99,17 @@ public class PlayerController : MonoBehaviour
         if (moveInput.magnitude > 0.1f)
         {
             // La vitesse dépend de la distance du joystick
-            Vector2 velocity = moveInput.normalized * (moveSpeed + _inventory.speed) * moveInput.magnitude;
-            rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
+            if (isHub)
+            {
+                Vector2 velocity = moveInput.normalized * moveSpeed * moveInput.magnitude;
+                rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
+            }
+            else
+            {
+                Vector2 velocity = moveInput.normalized * (moveSpeed + _inventory.speed) * moveInput.magnitude;
+                rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
+            }
+
 
             UpdateSpriteDirection(moveInput.x);
             StartRunningAnimation();
@@ -121,8 +132,17 @@ public class PlayerController : MonoBehaviour
 
         if (direction.magnitude > stopThreshold)
         {
-            Vector2 velocity = direction.normalized * (moveSpeed + _inventory.speed);
-            rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
+            if (isHub)
+            {
+                Vector2 velocity = direction.normalized * moveSpeed;
+                rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
+            }
+            else
+            {
+                Vector2 velocity = direction.normalized * (moveSpeed + _inventory.speed);
+                rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
+            }
+
 
             UpdateSpriteDirection(direction.x);
             StartRunningAnimation();
