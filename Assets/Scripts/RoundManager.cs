@@ -1,5 +1,6 @@
 using System.Collections;
 using Firebase.Analytics;
+using NUnit.Framework;
 using TMPro;
 using UnityEngine;
 
@@ -36,6 +37,12 @@ public class RoundManager : MonoBehaviour
 
     public bool isMapFinish = false;
 
+    public bool isTuto = false;
+
+    public bool launchRoundTuto = false;
+
+    private bool roundIsCreated = false;
+
     void Awake()
     {
         _gameManager = gameManagerGo.GetComponent<GameManager>();
@@ -44,7 +51,14 @@ public class RoundManager : MonoBehaviour
         _powerUpManager = powerUpManagerGo.GetComponent<PowerUpManager>();
         _exitManager = exitManagerGo.GetComponent<ExitManager>();
         _arenaManager = arenaManagerGo.GetComponent<ArenaManager>();
-        currentRound = new Round(0, 5, 5, 1, false, false);
+        if (isTuto)
+        {
+            currentRound = new Round(0, 0, 0, 1, false, false);
+        }
+        else
+        {
+            currentRound = new Round(0, 5, 5, 1, false, false);
+        }
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -54,7 +68,19 @@ public class RoundManager : MonoBehaviour
         isMapFinish = false;
         if (isScenario)
             return;
-        launchNextRound();
+
+        if (isTuto)
+        {
+            if (launchRoundTuto)
+            {
+                launchNextRound();
+            }
+        }
+        else
+        {
+            launchNextRound();
+        }
+
     }
 
     // Update is called once per frame
@@ -69,9 +95,16 @@ public class RoundManager : MonoBehaviour
             return;
 
         GameObject[] zombies = GameObject.FindGameObjectsWithTag("Zombie");
-        if (zombies.Length == 0 && currentRound.currentNbZombieSpawn >= currentRound.maxZombies && !_shopManager.isActive && !_pauseManager.isActive && !_powerUpManager.isActive && !_exitManager.isActive && !_arenaManager.isActive)
+        if (!roundIsCreated && isTuto && launchRoundTuto && zombies.Length == 0 && currentRound.currentNbZombieSpawn >= currentRound.maxZombies && !_shopManager.isActive && !_pauseManager.isActive && !_powerUpManager.isActive && !_exitManager.isActive && !_arenaManager.isActive)
         {
             // On passe au round suivant si plus de zombie et qu'ils ont tous spawn
+            roundIsCreated = true;
+            launchNextRound();
+        }
+        else if (!roundIsCreated && !isTuto && zombies.Length == 0 && currentRound.currentNbZombieSpawn >= currentRound.maxZombies && !_shopManager.isActive && !_pauseManager.isActive && !_powerUpManager.isActive && !_exitManager.isActive && !_arenaManager.isActive)
+        {
+            // On passe au round suivant si plus de zombie et qu'ils ont tous spawn
+            roundIsCreated = true;
             launchNextRound();
         }
     }
@@ -83,6 +116,15 @@ public class RoundManager : MonoBehaviour
         int nextMaxZombies = nextNumberRound % 2 == 0 ? currentRound.maxZombies * 2 : currentRound.maxZombies + 10;
         int nextPvZombies = nextNumberRound % 2 == 0 ? currentRound.pvZombie + 1 : currentRound.pvZombie;
         nextIsBoss = nextNumberRound % 10 == 0 ? true : false;
+
+        if (isTuto)
+        {
+            nextNumberRound = currentRound.numberRound + 1;
+            nextNbZombiesSpawn = currentRound.nbZombieSpawn + 50;
+            nextMaxZombies = currentRound.maxZombies + 200;
+            nextPvZombies = currentRound.pvZombie + 1;
+            nextIsBoss = nextNumberRound % 10 == 0 ? true : false;
+        }
 
         if (nextNumberRound == (10 + 1))
         {
@@ -97,6 +139,8 @@ public class RoundManager : MonoBehaviour
             currentRound = new Round(nextNumberRound, nextNbZombiesSpawn, nextMaxZombies, nextPvZombies, nextIsBoss, false);
             StartCoroutine(activateRound());
         }
+
+        roundIsCreated = false;
     }
 
     private IEnumerator activateRound()
