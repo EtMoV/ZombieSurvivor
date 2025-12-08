@@ -15,7 +15,7 @@ public class HubManager : MonoBehaviour
     private List<ItemBuy> itemsBuy = new List<ItemBuy>
     {
         new ItemBuy(1, 20, "MP5", "A high rate of fire", "subMachineGun", "weapon"),
-        new ItemBuy(2, 10, "Leather armor", "A little protection", "leatherArmor", "armor")
+        new ItemBuy(2, 10, "Leather armor", "A little protection, give 1 more HP", "leatherArmor", "armor")
     };
 
     public GameObject panelDetailItemBuy;
@@ -32,6 +32,7 @@ public class HubManager : MonoBehaviour
     {
         updateStoreItem();
         updateLootCount();
+        InventoryManagerState.AddItem(new ItemBuy(0, 0, "Pistol", "A simple pistol", "pistol", "weapon")); // Add Pistol has default weapon
     }
 
     public void onClicNextNarration()

@@ -123,7 +123,35 @@ public class Inventory : MonoBehaviour
     void Start()
     {
         updateKillCountUI();
-        addWeapon(new Weapon("pistol"), null); // Premiere arme
+        // Chargement de l'equipement
+        SaveData data = SaveSystem.GetData();
+        if (data.equipment.weapon != null && data.equipment.weapon.title != "")
+        {
+            switch (data.equipment.weapon.title)
+            {
+                case "Pistol":
+                    addWeapon(new Weapon("pistol"), null);
+                    break;
+                case "MP5":
+                    addWeapon(new Weapon("subMachineGun"), null);
+                    break;
+            }
+        }
+
+        if (data.equipment.armor != null && data.equipment.armor.title != "")
+        {
+            switch (data.equipment.armor.title)
+            {
+                case "Leather armor":
+                    maxLife = maxLife + 1;
+                    lifeCount = maxLife;
+                    Debug.Log(lifeCount);
+                    break;
+
+            }
+        }
+
+        // Chargement des powerUp
         List<PowerUpState> powerUpStates = PowerUpStateManager.getPowerUps();
         foreach (PowerUpState p in powerUpStates)
         {

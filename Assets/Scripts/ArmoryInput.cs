@@ -119,13 +119,15 @@ public class ArmoryInput : MonoBehaviour
 
         if (data.equipment.weapon != null && data.equipment.weapon.spriteName != "")
         {
-            Debug.Log(data.equipment.weapon);
             itemWeaponGo.SetActive(true);
             itemWeaponGo.GetComponent<Image>().sprite = Resources.Load<Sprite>("Items/" + data.equipment.weapon.spriteName);
         }
         else
         {
-            itemWeaponGo.SetActive(false);
+            // Pistol par defaut
+            data.equipment.weapon = new ItemState(0, 0, "Pistol", "A simple pistol", "pistol", "weapon");
+            itemWeaponGo.GetComponent<Image>().sprite = Resources.Load<Sprite>("Items/" + data.equipment.weapon.spriteName);
+            itemWeaponGo.SetActive(true);
         }
 
         if (data.equipment.armor != null && data.equipment.armor.spriteName != "")
