@@ -14,4 +14,6 @@ public class SaveData
     public List<EpisodeState> episodes = new List<EpisodeState>();
 
     public List<ItemState> items = new List<ItemState>();
+
+    public EquipmentState equipment = new EquipmentState();
 }

@@ -7,6 +7,8 @@ public class ArmoryInput : MonoBehaviour
 {
     public GameObject panelInventory;
 
+    public GameObject lootPanel;
+
     public Transform inventoryParent;
 
     public GameObject itemPrefab;
@@ -15,14 +17,19 @@ public class ArmoryInput : MonoBehaviour
     public GameObject titleDetailItemBuy;
     public GameObject descriptionDetailItemBuy;
     public GameObject imageDetailItemBuy;
-    private ItemBuy _itemTmp;
+    private ItemState _itemTmp;
+
+    public GameObject itemWeaponGo;
+    public GameObject itemArmorGo;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            panelInventory.SetActive(true);
+            UpdateEquipment();
 
+            panelInventory.SetActive(true);
+            lootPanel.SetActive(false);
             // On nettoie la grid
             foreach (Transform child in inventoryParent)
             {
@@ -71,7 +78,13 @@ public class ArmoryInput : MonoBehaviour
         titleDetailItemBuy.GetComponent<TextMeshProUGUI>().text = item.title;
         descriptionDetailItemBuy.GetComponent<TextMeshProUGUI>().text = item.description;
         imageDetailItemBuy.GetComponent<Image>().sprite = Resources.Load<Sprite>("Items/" + item.spriteName);
-        _itemTmp = item;
+        _itemTmp = new ItemState(item.id, item.cost, item.title, item.description, item.spriteName, item.type);
+    }
+
+    public void OnBackInventory()
+    {
+        panelInventory.SetActive(false);
+        lootPanel.SetActive(true);
     }
 
     public void OnBackDetailItem()
@@ -82,8 +95,49 @@ public class ArmoryInput : MonoBehaviour
 
     public void OnEquipDetailItem()
     {
-        // TODO
         panelInventory.SetActive(true);
         panelDetailItem.SetActive(false);
+        if (_itemTmp.type == "weapon")
+        {
+            SaveData data = SaveSystem.GetData();
+
+            data.equipment.weapon = _itemTmp;
+        }
+        else if (_itemTmp.type == "armor")
+        {
+            SaveData data = SaveSystem.GetData();
+
+            data.equipment.armor = _itemTmp;
+        }
+
+        UpdateEquipment();
+    }
+
+    private void UpdateEquipment()
+    {
+        SaveData data = SaveSystem.GetData();
+
+        if (data.equipment.weapon != null && data.equipment.weapon.spriteName != "")
+        {
+            Debug.Log(data.equipment.weapon);
+            itemWeaponGo.SetActive(true);
+            itemWeaponGo.GetComponent<Image>().sprite = Resources.Load<Sprite>("Items/" + data.equipment.weapon.spriteName);
+        }
+        else
+        {
+            itemWeaponGo.SetActive(false);
+        }
+
+        if (data.equipment.armor != null && data.equipment.armor.spriteName != "")
+        {
+            itemArmorGo.SetActive(true);
+            itemArmorGo.GetComponent<Image>().sprite = Resources.Load<Sprite>("Items/" + data.equipment.armor.spriteName);
+        }
+        else
+        {
+            itemArmorGo.SetActive(false);
+        }
+
+        SaveSystem.Save(data);
     }
 }

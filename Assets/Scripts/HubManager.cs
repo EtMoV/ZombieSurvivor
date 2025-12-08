@@ -128,11 +128,6 @@ public class HubManager : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
-    public void OnBackInventory()
-    {
-        panelInventory.SetActive(false);
-    }
-
     private void updateStoreItem()
     {
         foreach (Transform child in buyParent)
