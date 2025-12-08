@@ -10,11 +10,8 @@ public class HubManager : MonoBehaviour
 {
     public GameObject panelBuyNarration;
     public GameObject panelBuy;
-
     public GameObject itemBuyPrefab;
-
     public Transform buyParent;
-
     private List<ItemBuy> itemsBuy = new List<ItemBuy>
     {
         new ItemBuy(1, 20, "MP5", "A high rate of fire", "subMachineGun", "weapon"),
@@ -22,26 +19,18 @@ public class HubManager : MonoBehaviour
     };
 
     public GameObject panelDetailItemBuy;
-
     public GameObject titleDetailItemBuy;
     public GameObject descriptionDetailItemBuy;
     public GameObject costDetailItemBuy;
-
     public GameObject imageDetailItemBuy;
-
     private ItemBuy _itemBuyTmp;
-
     public GameObject textCountLootGo;
-
     public GameObject panelGoOut;
+    public GameObject panelInventory;
 
     public void Start()
     {
-        foreach (ItemBuy item in itemsBuy)
-        {
-            addItemBuyToGrid(item);
-        }
-
+        updateStoreItem();
         updateLootCount();
     }
 
@@ -63,6 +52,7 @@ public class HubManager : MonoBehaviour
         {
             GameObject itemInstantiate = Instantiate(itemBuyPrefab, buyParent);
             ItemBuy itemBuyInstantiate = itemInstantiate.GetComponent<ItemBuy>();
+            itemBuyInstantiate.id = item.id;
             itemBuyInstantiate.cost = item.cost;
             itemBuyInstantiate.description = item.description;
             itemBuyInstantiate.title = item.title;
@@ -109,9 +99,11 @@ public class HubManager : MonoBehaviour
         if (LootManager.getLoots() >= _itemBuyTmp.cost)
         {
             LootManager.subLoot(_itemBuyTmp.cost);
+            updateLootCount();
             InventoryManagerState.AddItem(_itemBuyTmp);
             panelBuy.SetActive(true);
             panelDetailItemBuy.SetActive(false);
+            updateStoreItem();
         }
     }
 
@@ -134,6 +126,25 @@ public class HubManager : MonoBehaviour
         if (existingCanvas != null)
             Destroy(existingCanvas.gameObject);
         SceneManager.LoadScene(1);
+    }
+
+    public void OnBackInventory()
+    {
+        panelInventory.SetActive(false);
+    }
+
+    private void updateStoreItem()
+    {
+        foreach (Transform child in buyParent)
+        {
+            Destroy(child.gameObject);
+        }
+
+        foreach (ItemBuy item in itemsBuy)
+        {
+            addItemBuyToGrid(item);
+        }
+
     }
 }
 

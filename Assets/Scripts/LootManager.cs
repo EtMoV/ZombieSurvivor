@@ -56,7 +56,7 @@ public static class LootManager
     {
         SaveData data = SaveSystem.GetData();
 
-        if (data.loots[0].quantity - quantity >= 0)
+        if (data.loots.Count > 0 && data.loots[0].quantity - quantity >= 0)
             data.loots[0].quantity -= quantity;
 
         SaveSystem.Save(data);
