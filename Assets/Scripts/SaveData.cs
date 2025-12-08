@@ -12,4 +12,6 @@ public class SaveData
     public List<WeaponUnlockState> weaponUnlocks = new List<WeaponUnlockState>();
 
     public List<EpisodeState> episodes = new List<EpisodeState>();
+
+    public List<ItemState> items = new List<ItemState>();
 }
