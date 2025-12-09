@@ -66,6 +66,24 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void displayLoseTutoScreen()
+    {
+        isDead = true;
+        iconPauseGoWatch.SetActive(false);
+        iconPauseGoPhone.SetActive(false);
+        _playerController.joystickUiGo.SetActive(false); // On cache le joystick
+        gameplayRoot.SetActive(false); // stoppe le jeu sans toucher au temps
+        // Ajout du loot
+        for (int i = 0; i < _inventory.lootQte; i++)
+        {
+            LootManager.AddLoot();
+        }
+
+        losePanelPhone.SetActive(true); // Affichage du panel de défaite
+        killCountDieUiTextPhone.GetComponent<TextMeshProUGUI>().text = _inventory.totalKillCount.ToString();
+        textUiLoot.GetComponent<TextMeshProUGUI>().text = _inventory.lootQte.ToString();
+    }
+
     // Restart the game
     public void RestartGame()
     {
@@ -83,5 +101,16 @@ public class GameManager : MonoBehaviour
             Destroy(existingCanvas.gameObject);
         SceneManager.LoadScene(0);
     }
+
+    public void QuitToHub()
+    {
+        FirebaseAnalytics.LogEvent("quit_to_hub_tuto", new Parameter("totalKill", _inventory.totalKillCount));
+        var existingCanvas = FindFirstObjectByType<Canvas>();
+        if (existingCanvas != null)
+            Destroy(existingCanvas.gameObject);
+        SceneManager.LoadScene(3);
+    }
+
+
 }
 

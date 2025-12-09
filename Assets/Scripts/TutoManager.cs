@@ -29,6 +29,7 @@ public class TutoManager : MonoBehaviour
 
     public GameObject panelNarrationGo;
     public GameObject textNarrationGo;
+    public GameObject playerGo;
 
     void Start()
     {
@@ -62,6 +63,7 @@ public class TutoManager : MonoBehaviour
         else
         {
             panelNarrationGo.SetActive(false);
+            playerGo.GetComponent<PlayerZombieSpawn>().RelaunchSpawn();
         }
     }
 

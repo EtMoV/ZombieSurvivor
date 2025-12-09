@@ -120,13 +120,14 @@ public class RoundManager : MonoBehaviour
         if (isTuto)
         {
             nextNumberRound = currentRound.numberRound + 1;
-            nextNbZombiesSpawn = currentRound.nbZombieSpawn + 50;
-            nextMaxZombies = currentRound.maxZombies + 200;
+            nextNbZombiesSpawn = currentRound.nbZombieSpawn + 20;
+            nextMaxZombies = currentRound.maxZombies + 20;
             nextPvZombies = currentRound.pvZombie + 1;
             nextIsBoss = nextNumberRound % 10 == 0 ? true : false;
+            FirebaseAnalytics.LogEvent("new_round_tuto", new Parameter("round", nextNumberRound));
         }
 
-        if (nextNumberRound == (10 + 1))
+        if (nextNumberRound == (10 + 1) && !isTuto)
         {
             // Last round has been done, display victory screen
             isMapFinish = true;

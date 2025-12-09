@@ -14,6 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Episode_1.unity
     guid: 08b76141f89b54fb7b0a9ac365964b8a
+  - enabled: 1
+    path: Assets/HubScene.unity
+    guid: 7383868635b8b478b86112d3c63b75b8
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 711f69be8066e474083c12372a0be012, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
