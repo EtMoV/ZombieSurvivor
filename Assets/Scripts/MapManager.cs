@@ -75,6 +75,9 @@ public class MapManager : MonoBehaviour
                 containerMapTwo_6.SetActive(true);
                 openContainerMapTwo_6.SetActive(true);
                 break;
+            case "mapThree":
+                 setMapByIndex(3);
+                break;
             default:
                 // Tuto
                 setMapByIndex(2);

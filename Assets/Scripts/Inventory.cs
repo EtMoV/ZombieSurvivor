@@ -456,7 +456,7 @@ public class Inventory : MonoBehaviour
         }
 
         // Manage quests
-        manageQuest();
+        //manageQuest();
     }
 
     public void updateKillCountUI()

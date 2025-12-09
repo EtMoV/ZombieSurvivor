@@ -112562,6 +112562,10 @@ MonoBehaviour:
     wall: {fileID: 452935879}
   - ground: {fileID: 953124527}
     wall: {fileID: 1619304988}
+  - ground: {fileID: 0}
+    wall: {fileID: 0}
+  - ground: {fileID: 0}
+    wall: {fileID: 0}
   EnterArenaPrefabMapOne: {fileID: 4741721860362282311}
   DoorArenaPrefabMapOne: {fileID: 1671050285}
   EnterArenaPrefabMapOne_1: {fileID: 671487594}
