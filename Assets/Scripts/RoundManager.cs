@@ -112,10 +112,10 @@ public class RoundManager : MonoBehaviour
     public void launchNextRound()
     {
         int nextNumberRound = currentRound.numberRound + 1;
-        int nextNbZombiesSpawn = currentRound.nbZombieSpawn + 10;
-        int nextMaxZombies = nextNumberRound % 2 == 0 ? currentRound.maxZombies * 2 : currentRound.maxZombies + 10;
+        int nextNbZombiesSpawn = currentRound.nbZombieSpawn + 20;
+        int nextMaxZombies = nextNumberRound % 2 == 0 ? currentRound.maxZombies * 2 : currentRound.maxZombies + 20;
         int nextPvZombies = nextNumberRound % 2 == 0 ? currentRound.pvZombie + 1 : currentRound.pvZombie;
-        nextIsBoss = nextNumberRound % 10 == 0 ? true : false;
+        nextIsBoss = nextNumberRound % 3 == 0 ? true : false;
 
         if (isTuto)
         {
@@ -123,7 +123,7 @@ public class RoundManager : MonoBehaviour
             nextNbZombiesSpawn = currentRound.nbZombieSpawn + 20;
             nextMaxZombies = currentRound.maxZombies + 20;
             nextPvZombies = currentRound.pvZombie + 1;
-            nextIsBoss = nextNumberRound % 10 == 0 ? true : false;
+            nextIsBoss = false;
             FirebaseAnalytics.LogEvent("new_round_tuto", new Parameter("round", nextNumberRound));
         }
 
