@@ -6,12 +6,12 @@ Sprite:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: leatherArmor
+  m_Name: grenade
   m_Rect:
     serializedVersion: 2
-    x: 0
-    y: 0
-    width: 13
+    x: 36
+    y: 111
+    width: 10
     height: 11
   m_Offset: {x: 0, y: 0}
   m_Border: {x: 0, y: 0, z: 0, w: 0}
@@ -21,7 +21,7 @@ Sprite:
   m_IsPolygon: 0
   m_PackingTag: 
   m_RenderDataKey:
-    a649b7216436f495e8fc1a319459819e: 2860768655726451345
+    a649b7216436f495e8fc1a319459819e: -549789443665989942
   m_AtlasTags: []
   m_SpriteAtlas: {fileID: 0}
   m_RD:
@@ -102,18 +102,18 @@ Sprite:
         format: 0
         dimension: 0
       m_DataSize: 80
-      _typelessdata: 000050be0000303e000000000000503e0000303e00000000000050be000030be000000000000503e000030be00000000000000000000b03d0000803d0000b03d00000000000000000000803d00000000
+      _typelessdata: 000020be0000303e000000000000203e0000303e00000000000020be000030be000000000000203e000030be00000000143b313e0000743f2776623e0000743f143b313e00005e3f2776623e00005e3f
     m_Bindpose: []
     textureRect:
       serializedVersion: 2
-      x: 0
-      y: 0
-      width: 13
+      x: 36
+      y: 111
+      width: 10
       height: 11
     textureRectOffset: {x: 0, y: 0}
     atlasRectOffset: {x: -1, y: -1}
     settingsRaw: 64
-    uvTransform: {x: 32, y: 6.5, z: 32, w: 5.5}
+    uvTransform: {x: 32, y: 41, z: 32, w: 116.5}
     downscaleMultiplier: 1
   m_AtlasRD:
     serializedVersion: 3
@@ -193,25 +193,27 @@ Sprite:
         format: 0
         dimension: 0
       m_DataSize: 80
-      _typelessdata: 000050be0000303e000000000000503e0000303e00000000000050be000030be000000000000503e000030be00000000000000000000b03d0000803d0000b03d00000000000000000000803d00000000
+      _typelessdata: 000020be0000303e000000000000203e0000303e00000000000020be000030be000000000000203e000030be00000000143b313e0000743f2776623e0000743f143b313e00005e3f2776623e00005e3f
     m_Bindpose: []
     textureRect:
       serializedVersion: 2
-      x: 0
-      y: 0
-      width: 13
+      x: 36
+      y: 111
+      width: 10
       height: 11
     textureRectOffset: {x: 0, y: 0}
     atlasRectOffset: {x: -1, y: -1}
     settingsRaw: 64
-    uvTransform: {x: 32, y: 6.5, z: 32, w: 5.5}
+    uvTransform: {x: 32, y: 41, z: 32, w: 116.5}
     downscaleMultiplier: 1
   m_PhysicsShape:
-  - - {x: -0.203125, y: 0.171875}
-    - {x: -0.203125, y: -0.171875}
-    - {x: 0.046875, y: -0.171875}
-    - {x: 0.203125, y: -0.109375}
-    - {x: 0.203125, y: 0.171875}
+  - - {x: -0.125, y: 0.171875}
+    - {x: -0.15625, y: 0.140625}
+    - {x: -0.15625, y: -0.171875}
+    - {x: 0.09375, y: -0.171875}
+    - {x: 0.15625, y: -0.078125}
+    - {x: 0.15625, y: 0.140625}
+    - {x: 0.125, y: 0.171875}
   m_Bones: []
   m_ScriptableObjects: []
-  m_SpriteID: 19a95257fed73b720800000000000000
+  m_SpriteID: ace6705f961ce58f0800000000000000

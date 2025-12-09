@@ -135,6 +135,15 @@ public class Inventory : MonoBehaviour
                 case "MP5":
                     addWeapon(new Weapon("subMachineGun"), null);
                     break;
+                case "Shotgun":
+                    addWeapon(new Weapon("shotgun"), null);
+                    break;
+                case "M16":
+                    addWeapon(new Weapon("assaultRifle"), null);
+                    break;
+                case "Grenade":
+                    addWeapon(new Weapon("grenade"), null);
+                    break;
             }
         }
 
@@ -142,8 +151,24 @@ public class Inventory : MonoBehaviour
         {
             switch (data.equipment.armor.title)
             {
-                case "Leather armor":
+                case "Wood armor":
                     maxLife = maxLife + 1;
+                    lifeCount = maxLife;
+                    break;
+                case "Leather armor":
+                    maxLife = maxLife + 2;
+                    lifeCount = maxLife;
+                    break;
+                case "Copper armor":
+                    maxLife = maxLife + 3;
+                    lifeCount = maxLife;
+                    break;
+                case "Metal armor":
+                    maxLife = maxLife + 4;
+                    lifeCount = maxLife;
+                    break;
+                case "Diamond armor":
+                    maxLife = maxLife + 5;
                     lifeCount = maxLife;
                     break;
 

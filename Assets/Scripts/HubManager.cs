@@ -14,8 +14,15 @@ public class HubManager : MonoBehaviour
     public Transform buyParent;
     private List<ItemBuy> itemsBuy = new List<ItemBuy>
     {
-        new ItemBuy(1, 20, "MP5", "A high rate of fire", "subMachineGun", "weapon"),
-        new ItemBuy(2, 10, "Leather armor", "A little protection, give 1 more HP", "leatherArmor", "armor")
+        new ItemBuy(1, 10, "Wood armor", "A little protection, give 1 more HP", "woodArmor", "armor"),
+        new ItemBuy(2, 25, "MP5", "A high rate of fire", "subMachineGun", "weapon"),
+        new ItemBuy(3, 25, "Leather armor", "A better protection, give 2 more HP", "leatherArmor", "armor"),
+        new ItemBuy(4, 50, "Shotgun", "Very effective at short range", "shotgun", "weapon"),
+        new ItemBuy(5, 50, "Copper armor", "A good protection, give 3 more HP", "cooperArmor", "armor"),
+        new ItemBuy(6, 100, "M16", "Very powerful and accurate", "assaultRifle", "weapon"),
+        new ItemBuy(7, 100, "Metal armor", "A very good protection, give 4 more HP", "metalArmor", "armor"),
+        new ItemBuy(8, 200, "Grenade", "K - BOOM", "grenade", "weapon"),
+        new ItemBuy(9, 200, "Diamond armor", "The best protection, give 5 more HP", "diamondArmor", "armor"),
     };
 
     public GameObject panelDetailItemBuy;
