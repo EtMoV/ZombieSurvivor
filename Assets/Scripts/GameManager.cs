@@ -68,6 +68,11 @@ public class GameManager : MonoBehaviour
 
     public void displayLoseTutoScreen()
     {
+        // Tuto est realise
+        SaveData data = SaveSystem.GetData();
+        data.isTutoDone = true;
+        SaveSystem.Save(data);
+        
         isDead = true;
         iconPauseGoWatch.SetActive(false);
         iconPauseGoPhone.SetActive(false);
@@ -92,7 +97,6 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(currentScene.name);
     }
 
-    // Restart the game
     public void QuitToMenu()
     {
         FirebaseAnalytics.LogEvent("quit_to_menu", new Parameter("level", 1), new Parameter("totalKill", _inventory.totalKillCount));
@@ -108,7 +112,7 @@ public class GameManager : MonoBehaviour
         var existingCanvas = FindFirstObjectByType<Canvas>();
         if (existingCanvas != null)
             Destroy(existingCanvas.gameObject);
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(0);
     }
 
 

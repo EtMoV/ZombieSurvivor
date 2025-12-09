@@ -145,7 +145,6 @@ public class Inventory : MonoBehaviour
                 case "Leather armor":
                     maxLife = maxLife + 1;
                     lifeCount = maxLife;
-                    Debug.Log(lifeCount);
                     break;
 
             }

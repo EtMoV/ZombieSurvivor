@@ -17,5 +17,7 @@ public class SaveData
 
     public EquipmentState equipment = new EquipmentState();
 
+    public bool isTutoHubDone;
+
     public bool isTutoDone;
 }

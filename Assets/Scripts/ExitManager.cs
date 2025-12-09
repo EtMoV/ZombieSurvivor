@@ -112,7 +112,7 @@ public class ExitManager : MonoBehaviour
             LootManager.AddLoot();
         }
 
-        // Load la scene de menu
+        // Load la scene du hub
         SceneManager.LoadScene(0);
     }
 

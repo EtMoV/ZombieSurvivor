@@ -31,7 +31,8 @@ public class HubManager : MonoBehaviour
     public List<string> narrationTutoText = new List<string>()
     {
         "Well, dead again...",
-        "Here I can upgrade my gear before I go try to survive outside again."
+        "Here I can upgrade my gear before I go try to survive outside again.",
+        "Luckily I have some savings."
     };
 
     public GameObject panelNarrationTuto;
@@ -48,6 +49,23 @@ public class HubManager : MonoBehaviour
 
         if (!data.isTutoDone)
         {
+            // Mise en place de l'equipement de base
+            data.equipment.weapon = new ItemState(0, 0, "Pistol", "A simple pistol", "pistol", "weapon");
+
+            FirebaseAnalytics.LogEvent("launch_tuto");
+            var existingCanvas = FindFirstObjectByType<Canvas>();
+            if (existingCanvas != null)
+                Destroy(existingCanvas.gameObject);
+            SceneManager.LoadScene(1);
+        }
+        else if (!data.isTutoHubDone)
+        {
+            FirebaseAnalytics.LogEvent("launch_tuto_hub");
+            for (int i = 0; i < 10; i++)
+            {
+                LootManager.AddLoot();
+            }
+            updateLootCount();
             onClickNextNarrationTuto();
         }
     }
@@ -65,7 +83,7 @@ public class HubManager : MonoBehaviour
             panelNarrationTuto.SetActive(false);
             // Le tuto est realise
             SaveData data = SaveSystem.GetData();
-            data.isTutoDone = true;
+            data.isTutoHubDone = true;
             SaveSystem.Save(data);
         }
     }
@@ -160,7 +178,7 @@ public class HubManager : MonoBehaviour
         FirebaseAnalytics.LogEvent("game_started", new Parameter("level", StoreDataScene.currentMap));
         if (existingCanvas != null)
             Destroy(existingCanvas.gameObject);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 
     private void updateStoreItem()
