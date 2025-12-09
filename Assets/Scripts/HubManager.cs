@@ -178,15 +178,37 @@ public class HubManager : MonoBehaviour
         panelGoOut.SetActive(false);
     }
 
-    public void OnYesGoOutMenu()
+    public void OnBackGoOut()
+    {
+        panelGoOut.SetActive(false);
+    }
+
+    public void DoGoOut()
     {
         panelGoOut.SetActive(false);
         var existingCanvas = FindFirstObjectByType<Canvas>();
-        StoreDataScene.currentMap = "mapOne";
         FirebaseAnalytics.LogEvent("game_started", new Parameter("level", StoreDataScene.currentMap));
         if (existingCanvas != null)
             Destroy(existingCanvas.gameObject);
         SceneManager.LoadScene(2);
+    }
+
+    public void OnLvlOne()
+    {
+        StoreDataScene.currentMap = "mapOne";
+        DoGoOut();
+    }
+
+    public void OnLvlTwo()
+    {
+        StoreDataScene.currentMap = "mapTwo";
+        DoGoOut();
+    }
+
+    public void OnLvlThree()
+    {
+        StoreDataScene.currentMap = "mapThree";
+        DoGoOut();
     }
 
     private void updateStoreItem()
