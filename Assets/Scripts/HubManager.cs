@@ -158,6 +158,7 @@ public class HubManager : MonoBehaviour
     {
         if (LootManager.getLoots() >= _itemBuyTmp.cost)
         {
+            FirebaseAnalytics.LogEvent("buy_item", new Parameter("item", _itemBuyTmp.title));
             LootManager.subLoot(_itemBuyTmp.cost);
             updateLootCount();
             InventoryManagerState.AddItem(_itemBuyTmp);
