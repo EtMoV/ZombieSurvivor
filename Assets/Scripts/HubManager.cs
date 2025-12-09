@@ -39,7 +39,6 @@ public class HubManager : MonoBehaviour
     {
         panelBuyNarration.SetActive(false);
         panelBuy.SetActive(true);
-
     }
 
     public void onBackBuyMenu()

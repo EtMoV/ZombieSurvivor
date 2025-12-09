@@ -5,7 +5,6 @@ using System.Collections;
 public class FadeBlack : MonoBehaviour
 {
     public Image blackImage; // L'image noire à faire apparaître
-    public float fadeDuration = 0.5f; // Durée du fondu
 
     // Fonction publique pour lancer le fondu
     public void ShowBlack(float duration)
