@@ -28,11 +28,46 @@ public class HubManager : MonoBehaviour
     public GameObject panelGoOut;
     public GameObject panelInventory;
 
+    public List<string> narrationTutoText = new List<string>()
+    {
+        "Well, dead again...",
+        "Here I can upgrade my gear before I go try to survive outside again."
+    };
+
+    public GameObject panelNarrationTuto;
+
+    public GameObject textNarrationTuto;
+
     public void Start()
     {
         updateStoreItem();
         updateLootCount();
         InventoryManagerState.AddItem(new ItemBuy(0, 0, "Pistol", "A simple pistol", "pistol", "weapon")); // Add Pistol has default weapon
+
+        SaveData data = SaveSystem.GetData();
+
+        if (!data.isTutoDone)
+        {
+            onClickNextNarrationTuto();
+        }
+    }
+
+    public void onClickNextNarrationTuto()
+    {
+        if (narrationTutoText.Count > 0)
+        {
+            panelNarrationTuto.SetActive(true);
+            textNarrationTuto.GetComponent<TextMeshProUGUI>().text = narrationTutoText[0];
+            narrationTutoText.RemoveAt(0);
+        }
+        else
+        {
+            panelNarrationTuto.SetActive(false);
+            // Le tuto est realise
+            SaveData data = SaveSystem.GetData();
+            data.isTutoDone = true;
+            SaveSystem.Save(data);
+        }
     }
 
     public void onClicNextNarration()
