@@ -158,7 +158,7 @@ public class RoundManager : MonoBehaviour
             bossAppearGo.GetComponent<BossAppear>().FlashBossText();
         }
 
-        roundTextGoPhone.GetComponent<TextMeshProUGUI>().text = "Wave " + currentRound.numberRound.ToString();
+        roundTextGoPhone.GetComponent<TextMeshProUGUI>().text = "Wave " + currentRound.numberRound.ToString() + " / 10";
         yield return new WaitForSeconds(3f);
         roundTextGoPhone.SetActive(false);
         currentRound.isActive = true;

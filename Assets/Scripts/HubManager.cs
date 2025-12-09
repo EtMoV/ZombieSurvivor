@@ -173,11 +173,6 @@ public class HubManager : MonoBehaviour
         textCountLootGo.GetComponent<TextMeshProUGUI>().text = LootManager.getLoots().ToString();
     }
 
-    public void OnNoGoOutMenu()
-    {
-        panelGoOut.SetActive(false);
-    }
-
     public void OnBackGoOut()
     {
         panelGoOut.SetActive(false);

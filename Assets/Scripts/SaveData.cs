@@ -20,4 +20,6 @@ public class SaveData
     public bool isTutoHubDone;
 
     public bool isTutoDone;
+
+    public string lastLevelDone;
 }

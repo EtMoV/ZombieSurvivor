@@ -30731,6 +30731,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   panelGoOut: {fileID: 751023417}
+  btnLvlTwo: {fileID: 529475894}
+  btnLvlThree: {fileID: 1797528877}
 --- !u!1 &1753349568
 GameObject:
   m_ObjectHideFlags: 0
