@@ -113924,7 +113924,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1442520366
 RectTransform:
   m_ObjectHideFlags: 0
@@ -134096,7 +134096,7 @@ MonoBehaviour:
   posEnter: {x: 0, y: 0, z: 0}
   posEnterArena: {x: 5, y: 0, z: 0}
   arenaObjects: []
-  xpPrefab: {fileID: 524867009648265515, guid: d097aac67f219467b9f2e4e44832ae83, type: 3}
+  lootPrefab: {fileID: 524867009648265515, guid: e3ea976c818fc4619a1106f4a497601f, type: 3}
   inventoryGo: {fileID: 758181841}
   nbMaxArena: 4
   nbArenaDone: 0

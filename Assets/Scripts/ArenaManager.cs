@@ -18,7 +18,7 @@ public class ArenaManager : MonoBehaviour
 
     public List<GameObject> arenaObjects = new List<GameObject>();
 
-    public GameObject xpPrefab;
+    public GameObject lootPrefab;
 
     public GameObject inventoryGo;
     private Inventory _inventory;
@@ -62,7 +62,7 @@ public class ArenaManager : MonoBehaviour
 
     private System.Collections.IEnumerator SpawnXPExplosion(GameObject lastZombie)
     {
-        int nbXP = 16;
+        int nbXP = 3;
         float maxRadius = 1.5f;
         float angleStep = 360f / nbXP;
         Vector3 centerPos = lastZombie.transform.position;
@@ -71,18 +71,18 @@ public class ArenaManager : MonoBehaviour
         {
             float angle = i * angleStep * Mathf.Deg2Rad;
 
-            XP xpInstantiate = Instantiate(xpPrefab, centerPos, Quaternion.identity).GetComponent<XP>();
-            xpInstantiate.inventory = _inventory;
+            Loot lootInstantiate = Instantiate(lootPrefab, centerPos, Quaternion.identity).GetComponent<Loot>();
+            lootInstantiate.inventory = _inventory;
 
             // Désactiver la physique pour contrôler l'animation
-            Rigidbody2D rb = xpInstantiate.GetComponent<Rigidbody2D>();
+            Rigidbody2D rb = lootInstantiate.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
                 rb.linearVelocity = Vector2.zero;
             }
 
             // Animation de déplacement vers l'extérieur en cercle
-            StartCoroutine(AnimateXPExplosion(xpInstantiate.transform, centerPos, angle, maxRadius));
+            StartCoroutine(AnimateXPExplosion(lootInstantiate.transform, centerPos, angle, maxRadius));
 
             yield return new WaitForSeconds(0.05f);
         }

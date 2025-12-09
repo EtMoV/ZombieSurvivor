@@ -416,11 +416,11 @@ public class Zombie : MonoBehaviour
             xpInstantiate.inventory = inventory;
 
             // Instanciation du loot si boss
-            /*if (isBoss)
+            if (isBoss)
             {
                 Loot lootInstantiate = Instantiate(lootPrefab, transform.position, Quaternion.identity).GetComponent<Loot>();
                 lootInstantiate.inventory = inventory;
-            }*/
+            }
 
             // Generate random bonus
             if (Random.value < 0.01f)
