@@ -21,5 +21,6 @@ public class SaveData
 
     public bool isTutoDone;
 
-    public string lastLevelDone;
+    public bool mapOneDone;
+    public bool mapTwoDone;
 }

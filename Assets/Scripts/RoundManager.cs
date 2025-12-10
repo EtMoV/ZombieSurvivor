@@ -112,9 +112,9 @@ public class RoundManager : MonoBehaviour
     public void launchNextRound()
     {
         int nextNumberRound = currentRound.numberRound + 1;
-        int nextNbZombiesSpawn = currentRound.nbZombieSpawn + 20;
-        int nextMaxZombies = nextNumberRound % 2 == 0 ? currentRound.maxZombies * 2 : currentRound.maxZombies + 20;
-        int nextPvZombies = nextNumberRound % 2 == 0 ? currentRound.pvZombie + 1 : currentRound.pvZombie;
+        int nextNbZombiesSpawn = 1;//currentRound.nbZombieSpawn + 20;
+        int nextMaxZombies = 1;//nextNumberRound % 2 == 0 ? currentRound.maxZombies * 2 : currentRound.maxZombies + 20;
+        int nextPvZombies = 1;//nextNumberRound % 2 == 0 ? currentRound.pvZombie + 1 : currentRound.pvZombie;
         nextIsBoss = nextNumberRound % 3 == 0 ? true : false;
 
         if (isTuto)
@@ -132,6 +132,20 @@ public class RoundManager : MonoBehaviour
             // Last round has been done, display victory screen
             isMapFinish = true;
             victoryScreenGo.SetActive(true);
+
+            // On enregistre la map gagne
+            SaveData data = SaveSystem.GetData();
+            if(StoreDataScene.currentMap == "mapOne")
+            {
+                data.mapOneDone = true;
+            }
+            else if(StoreDataScene.currentMap == "mapTwo")
+            {
+                 data.mapTwoDone = true;
+            }
+            // AJOUTER ICI LES PROCHAINS LEVELS
+            SaveSystem.Save(data);
+
             FirebaseAnalytics.LogEvent("victory", new Parameter("level", StoreDataScene.currentMap));
         }
         else
