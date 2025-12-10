@@ -112,9 +112,9 @@ public class RoundManager : MonoBehaviour
     public void launchNextRound()
     {
         int nextNumberRound = currentRound.numberRound + 1;
-        int nextNbZombiesSpawn = 1;//currentRound.nbZombieSpawn + 20;
-        int nextMaxZombies = 1;//nextNumberRound % 2 == 0 ? currentRound.maxZombies * 2 : currentRound.maxZombies + 20;
-        int nextPvZombies = 1;//nextNumberRound % 2 == 0 ? currentRound.pvZombie + 1 : currentRound.pvZombie;
+        int nextNbZombiesSpawn = currentRound.nbZombieSpawn + 20;
+        int nextMaxZombies = nextNumberRound % 2 == 0 ? currentRound.maxZombies * 2 : currentRound.maxZombies + 20;
+        int nextPvZombies = nextNumberRound % 2 == 0 ? currentRound.pvZombie + 1 : currentRound.pvZombie;
         nextIsBoss = nextNumberRound % 3 == 0 ? true : false;
 
         if (isTuto)
