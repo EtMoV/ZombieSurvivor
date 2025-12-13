@@ -40,6 +40,13 @@ public class MapManager : MonoBehaviour
     public GameObject openContainerMapThree_4;
     public GameObject openContainerMapThree_5;
     public GameObject openContainerMapThree_6;
+    public GameObject openContainerMapFour_1;
+    public GameObject openContainerMapFour_2;
+    public GameObject openContainerMapFour_3;
+    public GameObject openContainerMapFour_4;
+    public GameObject openContainerMapFour_5;
+    public GameObject openContainerMapFour_6;
+    public GameObject openContainerMapFour_7;
 
     public void setMapByIndex(int indexChoose)
     {
@@ -82,13 +89,23 @@ public class MapManager : MonoBehaviour
                 openContainerMapTwo_6.SetActive(true);
                 break;
             case "mapThree":
-                 setMapByIndex(3);
-                 openContainerMapThree_1.SetActive(true);
-                 openContainerMapThree_2.SetActive(true);
-                 openContainerMapThree_3.SetActive(true);
-                 openContainerMapThree_4.SetActive(true);
-                 openContainerMapThree_5.SetActive(true);
-                 openContainerMapThree_6.SetActive(true);
+                setMapByIndex(3);
+                openContainerMapThree_1.SetActive(true);
+                openContainerMapThree_2.SetActive(true);
+                openContainerMapThree_3.SetActive(true);
+                openContainerMapThree_4.SetActive(true);
+                openContainerMapThree_5.SetActive(true);
+                openContainerMapThree_6.SetActive(true);
+                break;
+            case "mapFour":
+                setMapByIndex(4);
+                openContainerMapFour_1.SetActive(true);
+                openContainerMapFour_2.SetActive(true);
+                openContainerMapFour_3.SetActive(true);
+                openContainerMapFour_4.SetActive(true);
+                openContainerMapFour_5.SetActive(true);
+                openContainerMapFour_6.SetActive(true);
+                openContainerMapFour_7.SetActive(true);
                 break;
             default:
                 // Tuto

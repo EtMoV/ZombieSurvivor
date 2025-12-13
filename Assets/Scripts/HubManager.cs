@@ -206,6 +206,12 @@ public class HubManager : MonoBehaviour
         DoGoOut();
     }
 
+       public void OnLvlFour()
+    {
+        StoreDataScene.currentMap = "mapFour";
+        DoGoOut();
+    }
+
     private void updateStoreItem()
     {
         foreach (Transform child in buyParent)
