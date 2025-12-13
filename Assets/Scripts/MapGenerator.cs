@@ -86,6 +86,9 @@ public class MapGenerator : MonoBehaviour
                     case 'O':
                         tilemapWalls.SetTile(pos, tileObject);
                         break;
+                    case 'W':
+                        tilemapWalls.SetTile(pos, selectedGroundTile);
+                        break;
                 }
             }
         }

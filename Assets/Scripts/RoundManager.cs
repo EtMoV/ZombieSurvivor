@@ -135,13 +135,17 @@ public class RoundManager : MonoBehaviour
 
             // On enregistre la map gagne
             SaveData data = SaveSystem.GetData();
-            if(StoreDataScene.currentMap == "mapOne")
+            if (StoreDataScene.currentMap == "mapOne")
             {
                 data.mapOneDone = true;
             }
-            else if(StoreDataScene.currentMap == "mapTwo")
+            else if (StoreDataScene.currentMap == "mapTwo")
             {
-                 data.mapTwoDone = true;
+                data.mapTwoDone = true;
+            }
+            else if (StoreDataScene.currentMap == "mapThree")
+            {
+                data.mapThreeDone = true;
             }
             // AJOUTER ICI LES PROCHAINS LEVELS
             SaveSystem.Save(data);

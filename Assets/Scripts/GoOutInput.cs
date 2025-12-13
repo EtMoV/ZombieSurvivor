@@ -15,11 +15,18 @@ public class GoOutInput : MonoBehaviour
             SaveData data = SaveSystem.GetData();
             btnLvlTwo.SetActive(false);
             btnLvlThree.SetActive(false);
+
             // AJOUTER DANS L'ORDRE INVERSE LES MAP
-            if (data.mapTwoDone)
+            if (data.mapThreeDone)
             {
                 btnLvlTwo.SetActive(true);
-                // btnLvlThree.SetActive(true); TODO
+                btnLvlThree.SetActive(true);
+                //btnLvlFour.SetActive(true); TODO
+            }
+            else if (data.mapTwoDone)
+            {
+                btnLvlTwo.SetActive(true);
+                btnLvlThree.SetActive(true);
             }
             else if (data.mapOneDone)
             {
