@@ -43,6 +43,8 @@ public class RoundManager : MonoBehaviour
 
     private bool roundIsCreated = false;
 
+    public GameObject inventoryGo;
+
     void Awake()
     {
         _gameManager = gameManagerGo.GetComponent<GameManager>();
@@ -127,11 +129,18 @@ public class RoundManager : MonoBehaviour
             FirebaseAnalytics.LogEvent("new_round_tuto", new Parameter("round", nextNumberRound));
         }
 
-        if (nextNumberRound == (10 + 1) && !isTuto)
+        if (nextNumberRound == (10 + 1) && !isTuto && !isMapFinish)
         {
             // Last round has been done, display victory screen
             isMapFinish = true;
             victoryScreenGo.SetActive(true);
+
+            // Ajout du loot
+            for (int i = 0; i < inventoryGo.GetComponent<Inventory>().lootQte; i++)
+            {
+                
+                LootManager.AddLoot();
+            }
 
             // On enregistre la map gagne
             SaveData data = SaveSystem.GetData();

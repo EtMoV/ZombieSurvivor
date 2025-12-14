@@ -15,4 +15,4 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 6820941d7c7a043f39d00858305bdd6a, type: 2}
   typeFire: pistol
   attackSpeed: 0.5
-  damage: 1
+  damage: 2

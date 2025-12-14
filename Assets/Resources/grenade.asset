@@ -15,4 +15,4 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 1152dca258e0a4c14831550b2f825d42, type: 2}
   typeFire: grenade
   attackSpeed: 0.4
-  damage: 3
+  damage: 5
