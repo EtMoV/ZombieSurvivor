@@ -45,6 +45,13 @@ public class RoundManager : MonoBehaviour
 
     public GameObject inventoryGo;
 
+    public GameObject adsManagerGo;
+    public GameObject btnX2Reward;
+
+    public GameObject textUiLoot;
+
+    public GameObject killCount;
+
     void Awake()
     {
         _gameManager = gameManagerGo.GetComponent<GameManager>();
@@ -134,11 +141,14 @@ public class RoundManager : MonoBehaviour
             // Last round has been done, display victory screen
             isMapFinish = true;
             victoryScreenGo.SetActive(true);
+            btnX2Reward.SetActive(true);
+            textUiLoot.GetComponent<TextMeshProUGUI>().text = inventoryGo.GetComponent<Inventory>().lootQte.ToString();
+            killCount.GetComponent<TextMeshProUGUI>().text = inventoryGo.GetComponent<Inventory>().totalKillCount.ToString();
 
             // Ajout du loot
             for (int i = 0; i < inventoryGo.GetComponent<Inventory>().lootQte; i++)
             {
-                
+
                 LootManager.AddLoot();
             }
 
@@ -193,5 +203,19 @@ public class RoundManager : MonoBehaviour
         yield return new WaitForSeconds(3f);
         roundTextGoPhone.SetActive(false);
         currentRound.isActive = true;
+    }
+
+    public void showRewardedVideo()
+    {
+        adsManagerGo.GetComponent<AdsManager>().ShowRewarded();
+
+        // On rajoute le loot X2 (on relance la boucle d'ajout de loot)
+        for (int i = 0; i < inventoryGo.GetComponent<Inventory>().lootQte; i++)
+        {
+            LootManager.AddLoot();
+        }
+
+        textUiLoot.GetComponent<TextMeshProUGUI>().text = (inventoryGo.GetComponent<Inventory>().lootQte * 2).ToString();
+        btnX2Reward.SetActive(false);
     }
 }

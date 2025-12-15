@@ -22,6 +22,10 @@ public class GameManager : MonoBehaviour
 
     public GameObject textUiLoot;
 
+    public GameObject adsManagerGo;
+
+    public GameObject btnX2Reward;
+
     void Awake()
     {
         _inventory = inventoryGO.GetComponent<Inventory>();
@@ -62,6 +66,7 @@ public class GameManager : MonoBehaviour
             losePanelPhone.SetActive(true); // Affichage du panel de défaite
             killCountDieUiTextPhone.GetComponent<TextMeshProUGUI>().text = _inventory.totalKillCount.ToString();
             textUiLoot.GetComponent<TextMeshProUGUI>().text = _inventory.lootQte.ToString();
+            btnX2Reward.SetActive(true);
         }
 
     }
@@ -113,6 +118,20 @@ public class GameManager : MonoBehaviour
         if (existingCanvas != null)
             Destroy(existingCanvas.gameObject);
         SceneManager.LoadScene(0);
+    }
+
+    public void showRewardedVideo()
+    {
+        adsManagerGo.GetComponent<AdsManager>().ShowRewarded();
+        
+        // On rajoute le loot X2 (on relance la boucle d'ajout de loot)
+         for (int i = 0; i < _inventory.lootQte; i++)
+        {
+            LootManager.AddLoot();
+        }
+
+        textUiLoot.GetComponent<TextMeshProUGUI>().text = (_inventory.lootQte * 2).ToString();
+        btnX2Reward.SetActive(false);
     }
 
 
