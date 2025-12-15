@@ -15,43 +15,56 @@ public class AdsManager : MonoBehaviour
         // Initialise Unity Services (nécessaire avant LevelPlay)
         await UnityServices.InitializeAsync();
 
-        // Rewarded Ad
+        // ------------------ Rewarded Ad ------------------
         rewardedAd = new LevelPlayRewardedAd(rewardedPlacement);
-        rewardedAd.OnAdLoaded += OnRewardedLoaded;
-        rewardedAd.OnAdRewarded += OnRewardedReward;
-        rewardedAd.OnAdClosed += (info) => rewardedAd.LoadAd();
 
+        // Callbacks
+        rewardedAd.OnAdLoaded += (info) => Debug.Log("Rewarded ad loaded");
+        rewardedAd.OnAdRewarded += OnRewardedReward;
+        rewardedAd.OnAdClosed += (info) =>
+        {
+            Debug.Log("Rewarded ad closed, reloading...");
+            rewardedAd.LoadAd();
+        };
+
+        // Charge l'ad
         rewardedAd.LoadAd();
 
-        // Interstitial Ad
+        // ------------------ Interstitial Ad ------------------
         interstitialAd = new LevelPlayInterstitialAd(interstitialPlacement);
-        interstitialAd.OnAdLoaded += OnInterstitialLoaded;
-        interstitialAd.OnAdClosed += (info) => interstitialAd.LoadAd();
 
+        // Callbacks
+        interstitialAd.OnAdLoaded += (info) => Debug.Log("Interstitial ad loaded");
+        interstitialAd.OnAdClosed += (info) =>
+        {
+            Debug.Log("Interstitial ad closed, reloading...");
+            interstitialAd.LoadAd();
+        };
+
+        // Charge l'ad
         interstitialAd.LoadAd();
     }
 
-    void OnRewardedLoaded(LevelPlayAdInfo info)
-    {
-        Debug.Log("Rewarded loaded");
-    }
-
+    // ------------------ Rewarded Callbacks ------------------
     void OnRewardedReward(LevelPlayAdInfo info, LevelPlayReward reward)
     {
-        Debug.Log($"Rewarded! {reward.Name} x{reward.Amount}");
-        // Donne la récompense ici
+        Debug.Log($"Reward granted: {reward.Name} x{reward.Amount}");
+        // Donne la récompense au joueur ici
     }
 
-    void OnInterstitialLoaded(LevelPlayAdInfo info)
-    {
-        Debug.Log("Interstitial loaded");
-    }
-
+    // ------------------ Public Methods ------------------
     public void ShowRewarded()
     {
+        Debug.Log($"IsAdReady: {rewardedAd.IsAdReady()}, IsPlacementCapped: {LevelPlayRewardedAd.IsPlacementCapped(rewardedPlacement)}");
+
         if (rewardedAd.IsAdReady() && !LevelPlayRewardedAd.IsPlacementCapped(rewardedPlacement))
         {
-            rewardedAd.ShowAd(rewardedPlacement);
+            rewardedAd.ShowAd(); // ✅ ne passe pas le placement ici
+            Debug.Log("Showing rewarded ad...");
+        }
+        else
+        {
+            Debug.LogWarning("Rewarded ad not ready or placement capped!");
         }
     }
 
@@ -59,7 +72,12 @@ public class AdsManager : MonoBehaviour
     {
         if (interstitialAd.IsAdReady())
         {
-            interstitialAd.ShowAd(interstitialPlacement);
+            interstitialAd.ShowAd(); // ✅ ne passe pas le placement ici
+            Debug.Log("Showing interstitial ad...");
+        }
+        else
+        {
+            Debug.LogWarning("Interstitial ad not ready!");
         }
     }
 }
