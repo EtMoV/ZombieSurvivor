@@ -47,6 +47,12 @@ public class MapManager : MonoBehaviour
     public GameObject openContainerMapFour_5;
     public GameObject openContainerMapFour_6;
     public GameObject openContainerMapFour_7;
+    public GameObject openContainerMapFive_1;
+    public GameObject openContainerMapFive_2;
+    public GameObject openContainerMapFive_3;
+    public GameObject openContainerMapFive_4;
+    public GameObject openContainerMapFive_5;
+    public GameObject openContainerMapFive_6;
 
     public void setMapByIndex(int indexChoose)
     {
@@ -106,6 +112,15 @@ public class MapManager : MonoBehaviour
                 openContainerMapFour_5.SetActive(true);
                 openContainerMapFour_6.SetActive(true);
                 openContainerMapFour_7.SetActive(true);
+                break;
+            case "mapFive":
+                setMapByIndex(5);
+                openContainerMapFive_1.SetActive(true);
+                openContainerMapFive_2.SetActive(true);
+                openContainerMapFive_3.SetActive(true);
+                openContainerMapFive_4.SetActive(true);
+                openContainerMapFive_5.SetActive(true);
+                openContainerMapFive_6.SetActive(true);
                 break;
             default:
                 // Tuto

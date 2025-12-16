@@ -6,6 +6,7 @@ public class GoOutInput : MonoBehaviour
     public GameObject btnLvlTwo;
     public GameObject btnLvlThree;
     public GameObject btnLvlFour;
+    public GameObject btnLvlFive;
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -18,14 +19,24 @@ public class GoOutInput : MonoBehaviour
             btnLvlTwo.SetActive(false);
             btnLvlThree.SetActive(false);
             btnLvlFour.SetActive(false);
-            if (data.mapFourDone)
+            btnLvlFive.SetActive(false);
+
+            if (data.mapFiveDone)
             {
                 btnLvlTwo.SetActive(true);
                 btnLvlThree.SetActive(true);
                 btnLvlFour.SetActive(true);
-                //btnLvlFive.SetActive(true); TODO
+                btnLvlFive.SetActive(true);
+                // btnLvlSix.SetActive(true); TODO
             }
-            if (data.mapThreeDone)
+            else if (data.mapFourDone)
+            {
+                btnLvlTwo.SetActive(true);
+                btnLvlThree.SetActive(true);
+                btnLvlFour.SetActive(true);
+                btnLvlFive.SetActive(true);
+            }
+            else if (data.mapThreeDone)
             {
                 btnLvlTwo.SetActive(true);
                 btnLvlThree.SetActive(true);
