@@ -212,9 +212,14 @@ public class HubManager : MonoBehaviour
         DoGoOut();
     }
 
-       public void OnLvlFive()
+    public void OnLvlFive()
     {
         StoreDataScene.currentMap = "mapFive";
+        DoGoOut();
+    }
+    public void OnLvlSix()
+    {
+        StoreDataScene.currentMap = "mapSix";
         DoGoOut();
     }
 

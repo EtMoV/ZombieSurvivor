@@ -53,6 +53,14 @@ public class MapManager : MonoBehaviour
     public GameObject openContainerMapFive_4;
     public GameObject openContainerMapFive_5;
     public GameObject openContainerMapFive_6;
+    public GameObject EnterArenaPrefabMapFive_1;
+    public GameObject DoorArenaPrefabMapFive_1;
+    public GameObject EnterArenaPrefabMapFive_2;
+    public GameObject DoorArenaPrefabMapFive_2;
+    public GameObject EnterArenaPrefabMapFive_3;
+    public GameObject DoorArenaPrefabMapFive_3;
+    public GameObject EnterArenaPrefabMapFive_4;
+    public GameObject DoorArenaPrefabMapFive_4;
 
     public void setMapByIndex(int indexChoose)
     {
@@ -121,6 +129,17 @@ public class MapManager : MonoBehaviour
                 openContainerMapFive_4.SetActive(true);
                 openContainerMapFive_5.SetActive(true);
                 openContainerMapFive_6.SetActive(true);
+                break;
+            case "mapSix":
+                setMapByIndex(6);
+                EnterArenaPrefabMapFive_1.SetActive(true);
+                DoorArenaPrefabMapFive_1.SetActive(true);
+                EnterArenaPrefabMapFive_2.SetActive(true);
+                DoorArenaPrefabMapFive_2.SetActive(true);
+                EnterArenaPrefabMapFive_3.SetActive(true);
+                DoorArenaPrefabMapFive_3.SetActive(true);
+                EnterArenaPrefabMapFive_4.SetActive(true);
+                DoorArenaPrefabMapFive_4.SetActive(true);
                 break;
             default:
                 // Tuto
