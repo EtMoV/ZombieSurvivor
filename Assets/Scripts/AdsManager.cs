@@ -4,8 +4,8 @@ using Unity.Services.LevelPlay;
 
 public class AdsManager : MonoBehaviour
 {
-    private ILevelPlayRewardedAd rewardedAd;
-    private ILevelPlayInterstitialAd interstitialAd;
+    private LevelPlayRewardedAd rewardedAd;
+    private LevelPlayInterstitialAd interstitialAd;
 
     private string rewardedPlacement = "bqpd3v72q9ynn8xc"; // bqpd3v72q9ynn8xc
     private string interstitialPlacement = "ql2lyyucqwkxgssy"; // ql2lyyucqwkxgssy
@@ -16,7 +16,6 @@ public class AdsManager : MonoBehaviour
     {
         // Initialise Unity Services (Analytics, Remote Config, etc.)
         await UnityServices.InitializeAsync();
-
 
         // Register initialization callbacks pour LevelPlay
         LevelPlay.OnInitSuccess += SdkInitializationCompletedEvent;
@@ -32,7 +31,6 @@ public class AdsManager : MonoBehaviour
     {
         Debug.Log("LevelPlay SDK initialized successfully");
         sdkInitialized = true;
-
         // Maintenant que le SDK est prêt, créer et charger les ads
         InitializeRewardedAd();
         InitializeInterstitialAd();
