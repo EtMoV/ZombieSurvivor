@@ -182,6 +182,10 @@ public class RoundManager : MonoBehaviour
             {
                 data.mapSevenDone = true;
             }
+            else if (StoreDataScene.currentMap == "mapEight")
+            {
+                data.mapEightDone = true;
+            }
             // AJOUTER ICI LES PROCHAINS LEVELS
             SaveSystem.Save(data);
 

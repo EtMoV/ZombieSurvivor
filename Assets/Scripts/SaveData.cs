@@ -28,4 +28,5 @@ public class SaveData
     public bool mapFiveDone;
     public bool mapSixDone;
     public bool mapSevenDone;
+    public bool mapEightDone;
 }
