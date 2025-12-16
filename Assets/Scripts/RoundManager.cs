@@ -179,7 +179,7 @@ public class RoundManager : MonoBehaviour
 
             FirebaseAnalytics.LogEvent("victory", new Parameter("level", StoreDataScene.currentMap));
         }
-        else
+        else if(!isMapFinish)
         {
             FirebaseAnalytics.LogEvent("new_round", new Parameter("round", nextNumberRound));
             currentRound = new Round(nextNumberRound, nextNbZombiesSpawn, nextMaxZombies, nextPvZombies, nextIsBoss, false);
