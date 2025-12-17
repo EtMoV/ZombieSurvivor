@@ -183,6 +183,7 @@ public class HubManager : MonoBehaviour
         panelGoOut.SetActive(false);
         var existingCanvas = FindFirstObjectByType<Canvas>();
         FirebaseAnalytics.LogEvent("game_started", new Parameter("level", StoreDataScene.currentMap));
+        FirebaseAnalytics.LogEvent(StoreDataScene.currentMap);
         if (existingCanvas != null)
             Destroy(existingCanvas.gameObject);
         SceneManager.LoadScene(2);
