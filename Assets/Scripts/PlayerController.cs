@@ -223,8 +223,8 @@ public class PlayerController : MonoBehaviour
 
             // Shake de l'écran
             StartCoroutine(CameraShake(0.1f, 0.3f));
-            StartCoroutine(HitPanelAlphaCoroutine());
-            StartCoroutine(ResetHitStateAfterDelay(0.8f));
+            HitPanelAlphaCoroutine();
+            Invoke("ResetHitStateAfterDelay", 0.8f);
 
             GameObject[] zombies = GameObject.FindGameObjectsWithTag("Zombie");
             foreach (GameObject zombie in zombies)
@@ -256,9 +256,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private IEnumerator ResetHitStateAfterDelay(float delay)
+    private void ResetHitStateAfterDelay()
     {
-        yield return new WaitForSeconds(delay);
         isHit = false;
     }
 
@@ -297,20 +296,20 @@ public class PlayerController : MonoBehaviour
             gameManager.displayLoseTutoScreen();
     }
 
-    private IEnumerator HitPanelAlphaCoroutine()
+    private void HitPanelAlphaCoroutine()
     {
         Image image = hitPanel.GetComponent<Image>();
+        Color color = image.color;
+        color.a = 0.25f; // 25% d'opacité
+        image.color = color;
+        Invoke("HitPanelOriginalColor", 0.8f);
+    }
 
-        if (image != null)
-        {
-            Color color = image.color;
-            color.a = 0.25f; // 25% d'opacité
-            image.color = color;
-
-            yield return new WaitForSeconds(0.8f);
-
-            color.a = 0f; // Retour à transparent
-            image.color = color;
-        }
+    private void HitPanelOriginalColor()
+    {
+        Image image = hitPanel.GetComponent<Image>();
+        Color color = image.color;
+        color.a = 0f; // Retour à transparent
+        image.color = color;
     }
 }
