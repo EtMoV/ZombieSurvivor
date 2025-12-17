@@ -11,6 +11,7 @@ public class GoOutInput : MonoBehaviour
     public GameObject btnLvlSeven;
 
     public GameObject btnLvlEight;
+    public GameObject btnLvlNine;
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -27,8 +28,9 @@ public class GoOutInput : MonoBehaviour
             btnLvlSix.SetActive(false);
             btnLvlSeven.SetActive(false);
             btnLvlEight.SetActive(false);
+            btnLvlNine.SetActive(false);
 
-            if (data.mapEightDone)
+            if (data.mapNineDone)
             {
                 btnLvlTwo.SetActive(true);
                 btnLvlThree.SetActive(true);
@@ -37,7 +39,19 @@ public class GoOutInput : MonoBehaviour
                 btnLvlSix.SetActive(true);
                 btnLvlSeven.SetActive(true);
                 btnLvlEight.SetActive(true);
-                // btnLvlNine.SetActive(true); TODO
+                btnLvlNine.SetActive(true);
+                // btnLvlTen.SetActive(true); TODO
+            }
+            else if (data.mapEightDone)
+            {
+                btnLvlTwo.SetActive(true);
+                btnLvlThree.SetActive(true);
+                btnLvlFour.SetActive(true);
+                btnLvlFive.SetActive(true);
+                btnLvlSix.SetActive(true);
+                btnLvlSeven.SetActive(true);
+                btnLvlEight.SetActive(true);
+                btnLvlNine.SetActive(true);
             }
             else if (data.mapSevenDone)
             {

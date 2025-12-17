@@ -76,6 +76,11 @@ public class MapManager : MonoBehaviour
     public GameObject openContainerMapEight_5;
     public GameObject openContainerMapEight_6;
 
+    public GameObject openContainerMapNine_1;
+    public GameObject openContainerMapNine_2;
+    public GameObject openContainerMapNine_3;
+    public GameObject openContainerMapNine_4;
+
     public void setMapByIndex(int indexChoose)
     {
         currentMap = tilemaps[indexChoose];
@@ -172,6 +177,13 @@ public class MapManager : MonoBehaviour
                 openContainerMapEight_4.SetActive(true);
                 openContainerMapEight_5.SetActive(true);
                 openContainerMapEight_6.SetActive(true);
+                break;
+            case "mapNine":
+                setMapByIndex(9);
+                openContainerMapNine_1.SetActive(true);
+                openContainerMapNine_2.SetActive(true);
+                openContainerMapNine_3.SetActive(true);
+                openContainerMapNine_4.SetActive(true);
                 break;
             default:
                 // Tuto
