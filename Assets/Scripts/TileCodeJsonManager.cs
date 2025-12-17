@@ -42,8 +42,9 @@ public class TileCodeJsonManager
 
     string GetTileGuid(TileBase tile)
     {
-        string path = AssetDatabase.GetAssetPath(tile);
-        return AssetDatabase.AssetPathToGUID(path);
+      //  string path = AssetDatabase.GetAssetPath(tile);
+       // return AssetDatabase.AssetPathToGUID(path);
+       return ""; // FOR DEV AND BUILD BECAUSE KO ELSE
     }
 
     public string GetOrCreateCode(TileBase tile, string prefix)
