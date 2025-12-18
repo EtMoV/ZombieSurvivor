@@ -98,26 +98,23 @@ public class PlayerController : MonoBehaviour
     private void HandleJoystickMovement()
     {
         moveInput = joystick != null ? joystick.Direction : Vector2.zero;
+
         if (moveInput.magnitude > 0.1f)
         {
-            // La vitesse dépend de la distance du joystick
-            if (isHub)
-            {
-                Vector2 velocity = moveInput.normalized * moveSpeed * moveInput.magnitude;
-                rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
-            }
-            else
-            {
-                Vector2 velocity = moveInput.normalized * (moveSpeed + _inventory.speed) * moveInput.magnitude;
-                rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
-            }
+            float finalSpeed = isHub
+                ? moveSpeed
+                : moveSpeed + _inventory.speed;
 
+            Vector2 velocity = moveInput.normalized * finalSpeed * moveInput.magnitude;
+
+            rb.linearVelocity = velocity;
 
             UpdateSpriteDirection(moveInput.x);
             StartRunningAnimation();
         }
         else
         {
+            rb.linearVelocity = Vector2.zero;
             StopRunningAnimation();
         }
     }

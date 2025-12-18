@@ -233,6 +233,7 @@ public class RoundManager : MonoBehaviour
     {
         adsManagerGo.GetComponent<AdsManager>().ShowRewarded();
 
+        FirebaseAnalytics.LogEvent("pub_victory");
         // On rajoute le loot X2 (on relance la boucle d'ajout de loot)
         for (int i = 0; i < inventoryGo.GetComponent<Inventory>().lootQte; i++)
         {

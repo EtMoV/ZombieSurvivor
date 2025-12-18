@@ -123,7 +123,8 @@ public class GameManager : MonoBehaviour
     public void showRewardedVideo()
     {
         adsManagerGo.GetComponent<AdsManager>().ShowRewarded();
-        
+
+        FirebaseAnalytics.LogEvent("pub_die");
         // On rajoute le loot X2 (on relance la boucle d'ajout de loot)
          for (int i = 0; i < _inventory.lootQte; i++)
         {
