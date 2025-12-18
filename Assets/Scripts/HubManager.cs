@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Firebase.Analytics;
 using TMPro;
@@ -46,6 +47,34 @@ public class HubManager : MonoBehaviour
 
     public GameObject textNarrationTuto;
 
+    public GameObject panelWaifuMenu;
+
+    public GameObject panelWaifuDetailMenu;
+
+    public GameObject waifuPrefab;
+
+    public GameObject titleDetailWaifu;
+
+    public GameObject descriptionDetailWaifu;
+
+    public GameObject imageDetailWaifu;
+
+    private List<Waifu> allWaifus = new List<Waifu>
+    {
+        new Waifu(1, "Maria", "You are my hero <3", "1"),
+        new Waifu(2, "Aiko", "Your smile makes my heart go doki doki <3", "2"),
+        new Waifu(3, "Luna", "I will always watch the stars with you *", "3"),
+        new Waifu(4, "Mika", "I baked this just for you, with love <3", "4"),
+        new Waifu(5, "Yumi", "Being with you is my favorite adventure <.>", "5"),
+        new Waifu(6, "Sakura", "Even cherry blossoms blush around you <.>", "6"),
+        new Waifu(7, "Neko", "I might be a little shy… but I love you <3", "7"),
+        new Waifu(8, "Hana", "Every day blooms brighter by your side <3", "8"),
+        new Waifu(9, "Rin", "I’ll protect you no matter what, promise <!>", "9"),
+        new Waifu(10, "Emi", "Your happiness is my favorite melody <3", "10"),
+    };
+
+    public Transform waifuParent;
+
     public void Start()
     {
         updateStoreItem();
@@ -74,6 +103,60 @@ public class HubManager : MonoBehaviour
             }
             updateLootCount();
             onClickNextNarrationTuto();
+        }
+
+
+        // Chargement des waifus
+        loadWaifuFromData();
+        foreach (Waifu waifu in allWaifus)
+        {
+            addItemWaifuToGrid(waifu);
+        }
+    }
+
+    private void loadWaifuFromData()
+    {
+        SaveData data = SaveSystem.GetData();
+        if (data.mapOneDone)
+        {
+            InventoryManagerState.AddWaifu(allWaifus[0]);
+        }
+        if (data.mapTwoDone)
+        {
+            InventoryManagerState.AddWaifu(allWaifus[1]);
+        }
+        if (data.mapThreeDone)
+        {
+            InventoryManagerState.AddWaifu(allWaifus[2]);
+        }
+        if (data.mapFourDone)
+        {
+            InventoryManagerState.AddWaifu(allWaifus[3]);
+        }
+
+        if (data.mapFiveDone)
+        {
+            InventoryManagerState.AddWaifu(allWaifus[4]);
+        }
+        if (data.mapSixDone)
+        {
+            InventoryManagerState.AddWaifu(allWaifus[5]);
+        }
+        if (data.mapSevenDone)
+        {
+            InventoryManagerState.AddWaifu(allWaifus[6]);
+        }
+        if (data.mapEightDone)
+        {
+            InventoryManagerState.AddWaifu(allWaifus[7]);
+        }
+        if (data.mapNineDone)
+        {
+            InventoryManagerState.AddWaifu(allWaifus[8]);
+        }
+        if (data.mapTenDone)
+        {
+            InventoryManagerState.AddWaifu(allWaifus[9]);
         }
     }
 
@@ -258,6 +341,63 @@ public class HubManager : MonoBehaviour
             addItemBuyToGrid(item);
         }
 
+    }
+
+    public void addItemWaifuToGrid(Waifu waifu)
+    {
+        GameObject waifuInstantiateGo = Instantiate(waifuPrefab, waifuParent);
+        Waifu waifuInstantiate = waifuInstantiateGo.GetComponent<Waifu>();
+        waifuInstantiate.id = waifu.id;
+        if (InventoryManagerState.ExistWaifu(waifu.id))
+        {
+            waifuInstantiate.title = waifu.title;
+            waifuInstantiate.description = waifu.description;
+            waifuInstantiate.spriteName = waifu.spriteName;
+        }
+        else
+        {
+            waifuInstantiate.title = "???";
+            waifuInstantiate.description = "Unlock more level";
+            waifuInstantiate.spriteName = "default";
+        }
+
+
+        waifuInstantiate.GetComponent<Image>().sprite = Resources.Load<Sprite>("Waifus/" + waifuInstantiate.spriteName);
+
+        // Ajout de l'event onClick
+        EventTrigger trigger = waifuInstantiateGo.GetComponent<EventTrigger>();
+        if (trigger == null)
+            trigger = gameObject.AddComponent<EventTrigger>();
+
+        // Crée une entrée pour un type d’événement
+        EventTrigger.Entry entry = new EventTrigger.Entry();
+        entry.eventID = EventTriggerType.PointerClick;
+
+        // Ajoute la méthode à appeler
+        entry.callback.AddListener((data) => { OnClickWaifu(waifuInstantiate); });
+
+        // Ajoute l'entrée à l'EventTrigger
+        trigger.triggers.Add(entry);
+    }
+
+    public void OnClickWaifu(Waifu waifu)
+    {
+        panelWaifuMenu.SetActive(false);
+        panelWaifuDetailMenu.SetActive(true);
+        titleDetailWaifu.GetComponent<TextMeshProUGUI>().text = waifu.title;
+        descriptionDetailWaifu.GetComponent<TextMeshProUGUI>().text = waifu.description;
+        imageDetailWaifu.GetComponent<Image>().sprite = Resources.Load<Sprite>("Waifus/" + waifu.spriteName);
+    }
+
+    public void onBackWaifuMenu()
+    {
+        panelWaifuMenu.SetActive(false);
+    }
+
+    public void onBackWaifuDetailMenu()
+    {
+        panelWaifuMenu.SetActive(true);
+        panelWaifuDetailMenu.SetActive(false);
     }
 }
 

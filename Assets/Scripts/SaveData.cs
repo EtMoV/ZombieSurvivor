@@ -15,6 +15,8 @@ public class SaveData
 
     public List<ItemState> items = new List<ItemState>();
 
+    public List<WaifuState> waifus = new List<WaifuState>();
+
     public EquipmentState equipment = new EquipmentState();
 
     public bool isTutoHubDone;
