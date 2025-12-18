@@ -244,12 +244,12 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(CameraShake(0.1f, 0.3f));
             if (isTuto)
             {
-                StartCoroutine(LoseTutoScreenCoroutine(1.5f));
+                Invoke("LoseTutoScreenCoroutine", 1.5f);
                 FirebaseAnalytics.LogEvent("die_tuto", new Parameter("level", StoreDataScene.currentMap), new Parameter("totalKill", _inventory.totalKillCount));
             }
             else
             {
-                StartCoroutine(LoseScreenCoroutine(1.5f));
+                Invoke("LoseScreenCoroutine", 1.5f);
                 FirebaseAnalytics.LogEvent("die", new Parameter("level", StoreDataScene.currentMap), new Parameter("totalKill", _inventory.totalKillCount));
             }
             Destroy(gameObject, 2f);
@@ -280,17 +280,15 @@ public class PlayerController : MonoBehaviour
         camera.transform.position = originalPosition;
     }
 
-    private IEnumerator LoseScreenCoroutine(float delay)
+    private void LoseScreenCoroutine()
     {
-        yield return new WaitForSeconds(delay);
         GameManager gameManager = FindFirstObjectByType<GameManager>();
         if (gameManager != null)
             gameManager.displayLoseScreen();
     }
 
-    private IEnumerator LoseTutoScreenCoroutine(float delay)
+    private void LoseTutoScreenCoroutine()
     {
-        yield return new WaitForSeconds(delay);
         GameManager gameManager = FindFirstObjectByType<GameManager>();
         if (gameManager != null)
             gameManager.displayLoseTutoScreen();
