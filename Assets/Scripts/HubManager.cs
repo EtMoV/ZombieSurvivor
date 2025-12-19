@@ -81,7 +81,7 @@ public class HubManager : MonoBehaviour
         updateLootCount();
         InventoryManagerState.AddItem(new ItemBuy(0, 0, "Pistol", "A simple pistol", "pistol", "weapon")); // Add Pistol has default weapon
 
-        SaveData data = SaveSystem.GetData();
+        /*SaveData data = SaveSystem.GetData();
 
         if (!data.isTutoDone)
         {
@@ -103,9 +103,14 @@ public class HubManager : MonoBehaviour
             }
             updateLootCount();
             onClickNextNarrationTuto();
+        }*/
+
+        for (int i = 0; i < 10; i++)
+        {
+            LootManager.AddLoot();
         }
-
-
+        updateLootCount();
+        
         // Chargement des waifus
         loadWaifuFromData();
         foreach (Waifu waifu in allWaifus)
