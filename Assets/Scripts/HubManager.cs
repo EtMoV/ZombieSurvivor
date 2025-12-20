@@ -71,6 +71,7 @@ public class HubManager : MonoBehaviour
         new Waifu(8, "Hana", "Every day blooms brighter by your side <3", "8"),
         new Waifu(9, "Rin", "I’ll protect you no matter what, promise <!>", "9"),
         new Waifu(10, "Emi", "Your happiness is my favorite melody <3", "10"),
+        new Waifu(11, "Raiko", "Love you so much <3", "11"),
     };
 
     public Transform waifuParent;
@@ -110,7 +111,7 @@ public class HubManager : MonoBehaviour
             LootManager.AddLoot();
         }
         updateLootCount();
-        
+
         // Chargement des waifus
         loadWaifuFromData();
         foreach (Waifu waifu in allWaifus)
@@ -162,6 +163,10 @@ public class HubManager : MonoBehaviour
         if (data.mapTenDone)
         {
             InventoryManagerState.AddWaifu(allWaifus[9]);
+        }
+        if (data.mapElevenDone)
+        {
+            InventoryManagerState.AddWaifu(allWaifus[10]);
         }
     }
 
@@ -331,6 +336,11 @@ public class HubManager : MonoBehaviour
     public void OnLvlTen()
     {
         StoreDataScene.currentMap = "mapTen";
+        DoGoOut();
+    }
+    public void OnLvlEleven()
+    {
+        StoreDataScene.currentMap = "mapEleven";
         DoGoOut();
     }
 
