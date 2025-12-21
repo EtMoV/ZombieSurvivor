@@ -55,7 +55,7 @@ public class GoOutInput : MonoBehaviour
             btnLvlNineteen.SetActive(false);
             btnLvlTwenty.SetActive(false);
             btnLvlTwentyone.SetActive(false);
-            
+
             if (data.mapTwentyoneDone)
             {
                 btnLvlTwo.SetActive(true);
@@ -77,7 +77,7 @@ public class GoOutInput : MonoBehaviour
                 btnLvlEighteen.SetActive(true);
                 btnLvlNineteen.SetActive(true);
                 btnLvlTwenty.SetActive(true);
-                btnLvlTwentyone.SetActive(false);
+                btnLvlTwentyone.SetActive(true);
                 // btnLvlTwentytwo.SetActive(false); TODO
             }
             else if (data.mapTwentyDone)
@@ -101,7 +101,7 @@ public class GoOutInput : MonoBehaviour
                 btnLvlEighteen.SetActive(true);
                 btnLvlNineteen.SetActive(true);
                 btnLvlTwenty.SetActive(true);
-                btnLvlTwentyone.SetActive(false);
+                btnLvlTwentyone.SetActive(true);
             }
             else if (data.mapNineteenDone)
             {
