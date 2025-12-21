@@ -116,10 +116,6 @@ public class HubManager : MonoBehaviour
             onClickNextNarrationTuto();
         }*/
 
-        for (int i = 0; i < 10; i++)
-        {
-            LootManager.AddLoot();
-        }
         updateLootCount();
 
         // Chargement des waifus
