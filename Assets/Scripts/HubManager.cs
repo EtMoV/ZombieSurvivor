@@ -72,6 +72,16 @@ public class HubManager : MonoBehaviour
         new Waifu(9, "Rin", "I’ll protect you no matter what, promise <!>", "9"),
         new Waifu(10, "Emi", "Your happiness is my favorite melody <3", "10"),
         new Waifu(11, "Raiko", "Love you so much <3", "11"),
+        new Waifu(12, "Ayumi", "I’ll walk every step of the way with you <3", "12"),
+        new Waifu(13, "Hoshi", "You’re my favorite wish upon a star <.>", "13"),
+        new Waifu(14, "Mei", "Just hearing your voice makes me smile <.>", "14"),
+        new Waifu(15, "Yuki", "Even the cold melts when I’m with you <3", "15"),
+        new Waifu(16, "Akari", "I’ll light up your darkest nights <3", "16"),
+        new Waifu(17, "Hina", "Being together feels like a warm spring day <.>", "17"),
+        new Waifu(18, "Saki", "I saved my cutest smile just for you <3", "18"),
+        new Waifu(19, "Natsuki", "Summer is sweeter when you’re by my side :)", "19"),
+        new Waifu(20, "Kaori", "Close your eyes… I’m right here with you Oo", "20"),
+        new Waifu(21, "Asuka", "I might tease you, but it’s because I care <3", "21"),
     };
 
     public Transform waifuParent;
@@ -167,6 +177,46 @@ public class HubManager : MonoBehaviour
         if (data.mapElevenDone)
         {
             InventoryManagerState.AddWaifu(allWaifus[10]);
+        }
+        if (data.mapTwelveDone)
+        {
+            InventoryManagerState.AddWaifu(allWaifus[11]);
+        }
+        if (data.mapThirteenDone)
+        {
+            InventoryManagerState.AddWaifu(allWaifus[12]);
+        }
+        if (data.mapFourteenDone)
+        {
+            InventoryManagerState.AddWaifu(allWaifus[13]);
+        }
+        if (data.mapFifteenDone)
+        {
+            InventoryManagerState.AddWaifu(allWaifus[14]);
+        }
+        if (data.mapSixteenDone)
+        {
+            InventoryManagerState.AddWaifu(allWaifus[15]);
+        }
+        if (data.mapSeventeenDone)
+        {
+            InventoryManagerState.AddWaifu(allWaifus[16]);
+        }
+        if (data.mapEighteenDone)
+        {
+            InventoryManagerState.AddWaifu(allWaifus[17]);
+        }
+        if (data.mapNineteenDone)
+        {
+            InventoryManagerState.AddWaifu(allWaifus[18]);
+        }
+        if (data.mapTwentyDone)
+        {
+            InventoryManagerState.AddWaifu(allWaifus[19]);
+        }
+        if (data.mapTwentyoneDone)
+        {
+            InventoryManagerState.AddWaifu(allWaifus[20]);
         }
     }
 
@@ -341,6 +391,56 @@ public class HubManager : MonoBehaviour
     public void OnLvlEleven()
     {
         StoreDataScene.currentMap = "mapEleven";
+        DoGoOut();
+    }
+    public void OnLvlTwelve()
+    {
+        StoreDataScene.currentMap = "mapTwelve";
+        DoGoOut();
+    }
+    public void OnLvlThirteen()
+    {
+        StoreDataScene.currentMap = "mapThirteen";
+        DoGoOut();
+    }
+    public void OnLvlFourteen()
+    {
+        StoreDataScene.currentMap = "mapFourteen";
+        DoGoOut();
+    }
+    public void OnLvlFifteen()
+    {
+        StoreDataScene.currentMap = "mapFifteen";
+        DoGoOut();
+    }
+    public void OnLvlSixteen()
+    {
+        StoreDataScene.currentMap = "mapSixteen";
+        DoGoOut();
+    }
+    public void OnLvlSeventeen()
+    {
+        StoreDataScene.currentMap = "mapSeventeen";
+        DoGoOut();
+    }
+    public void OnLvlEighteen()
+    {
+        StoreDataScene.currentMap = "mapEighteen";
+        DoGoOut();
+    }
+    public void OnLvlNineteen()
+    {
+        StoreDataScene.currentMap = "mapNineteen";
+        DoGoOut();
+    }
+    public void OnLvlTwenty()
+    {
+        StoreDataScene.currentMap = "mapTwenty";
+        DoGoOut();
+    }
+    public void OnLvlTwentyone()
+    {
+        StoreDataScene.currentMap = "mapTwentyone";
         DoGoOut();
     }
 

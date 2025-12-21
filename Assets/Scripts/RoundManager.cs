@@ -1,6 +1,5 @@
 using System.Collections;
 using Firebase.Analytics;
-using NUnit.Framework;
 using TMPro;
 using UnityEngine;
 
@@ -197,6 +196,46 @@ public class RoundManager : MonoBehaviour
             else if (StoreDataScene.currentMap == "mapEleven")
             {
                 data.mapElevenDone = true;
+            }
+            else if (StoreDataScene.currentMap == "mapTwelve")
+            {
+                data.mapTwelveDone = true;
+            }
+            else if (StoreDataScene.currentMap == "mapThirteen")
+            {
+                data.mapThirteenDone = true;
+            }
+            else if (StoreDataScene.currentMap == "mapFourteen")
+            {
+                data.mapFourteenDone = true;
+            }
+            else if (StoreDataScene.currentMap == "mapFifteen")
+            {
+                data.mapFifteenDone = true;
+            }
+            else if (StoreDataScene.currentMap == "mapSixteen")
+            {
+                data.mapSixteenDone = true;
+            }
+            else if (StoreDataScene.currentMap == "mapSeventeen")
+            {
+                data.mapSeventeenDone = true;
+            }
+            else if (StoreDataScene.currentMap == "mapEighteen")
+            {
+                data.mapEighteenDone = true;
+            }
+            else if (StoreDataScene.currentMap == "mapNineteen")
+            {
+                data.mapNineteenDone = true;
+            }
+            else if (StoreDataScene.currentMap == "mapTwenty")
+            {
+                data.mapTwentyDone = true;
+            }
+            else if (StoreDataScene.currentMap == "mapTwentyone")
+            {
+                data.mapTwentyoneDone = true;
             }
             // AJOUTER ICI LES PROCHAINS LEVELS
             SaveSystem.Save(data);

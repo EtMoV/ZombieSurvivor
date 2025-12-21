@@ -90,7 +90,38 @@ public class MapManager : MonoBehaviour
     public GameObject openContainerMapEleven_2;
     public GameObject openContainerMapEleven_3;
     public GameObject openContainerMapEleven_4;
-    
+
+    public GameObject openContainerMapTwelve_1;
+    public GameObject openContainerMapTwelve_2;
+
+    public GameObject openContainerMapThirteen_1;
+    public GameObject openContainerMapThirteen_2;
+
+    public GameObject openContainerMapFourteen_1;
+    public GameObject openContainerMapFourteen_2;
+
+    public GameObject openContainerMapFifteen_1;
+    public GameObject openContainerMapFifteen_2;
+
+    public GameObject openContainerMapSixteen_1;
+    public GameObject openContainerMapSixteen_2;
+
+    public GameObject openContainerMapSeventeen_1;
+    public GameObject openContainerMapSeventeen_2;
+
+    public GameObject openContainerMapEighteen_1;
+    public GameObject openContainerMapEighteen_2;
+
+    public GameObject openContainerMapNineteen_1;
+    public GameObject openContainerMapNineteen_2;
+
+    public GameObject openContainerMapTwenty_1;
+    public GameObject openContainerMapTwenty_2;
+
+    public GameObject openContainerMapTwentyone_1;
+    public GameObject openContainerMapTwentyone_2;
+
+
     public void setMapByIndex(int indexChoose)
     {
         currentMap = tilemaps[indexChoose];
@@ -208,6 +239,56 @@ public class MapManager : MonoBehaviour
                 openContainerMapEleven_2.SetActive(true);
                 openContainerMapEleven_3.SetActive(true);
                 openContainerMapEleven_4.SetActive(true);
+                break;
+            case "mapTwelve":
+                setMapByIndex(12);
+                openContainerMapTwelve_1.SetActive(true);
+                openContainerMapTwelve_2.SetActive(true);
+                break;
+            case "mapThirteen":
+                setMapByIndex(13);
+                openContainerMapThirteen_1.SetActive(true);
+                openContainerMapThirteen_2.SetActive(true);
+                break;
+            case "mapFourteen":
+                setMapByIndex(14);
+                openContainerMapFourteen_1.SetActive(true);
+                openContainerMapFourteen_2.SetActive(true);
+                break;
+            case "mapFifteen":
+                setMapByIndex(15);
+                openContainerMapFifteen_1.SetActive(true);
+                openContainerMapFifteen_2.SetActive(true);
+                break;
+            case "mapSixteen":
+                setMapByIndex(16);
+                openContainerMapSixteen_1.SetActive(true);
+                openContainerMapSixteen_2.SetActive(true);
+                break;
+            case "mapSeventeen":
+                setMapByIndex(17);
+                openContainerMapSeventeen_1.SetActive(true);
+                openContainerMapSeventeen_2.SetActive(true);
+                break;
+            case "mapEighteen":
+                setMapByIndex(18);
+                openContainerMapEighteen_1.SetActive(true);
+                openContainerMapEighteen_2.SetActive(true);
+                break;
+            case "mapNineteen":
+                setMapByIndex(19);
+                openContainerMapNineteen_1.SetActive(true);
+                openContainerMapNineteen_2.SetActive(true);
+                break;
+            case "mapTwenty":
+                setMapByIndex(20);
+                openContainerMapTwenty_1.SetActive(true);
+                openContainerMapTwenty_2.SetActive(true);
+                break;
+            case "mapTwentyone":
+                setMapByIndex(21);
+                openContainerMapTwentyone_1.SetActive(true);
+                openContainerMapTwentyone_2.SetActive(true);
                 break;
             default:
                 // Tuto

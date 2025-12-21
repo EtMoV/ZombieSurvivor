@@ -35,4 +35,14 @@ public class SaveData
     public bool mapTenDone;
 
     public bool mapElevenDone;
+    public bool mapTwelveDone;
+    public bool mapThirteenDone;
+    public bool mapFourteenDone;
+    public bool mapFifteenDone;
+    public bool mapSixteenDone;
+    public bool mapSeventeenDone;
+    public bool mapEighteenDone;
+    public bool mapNineteenDone;
+    public bool mapTwentyDone;
+    public bool mapTwentyoneDone;
 }

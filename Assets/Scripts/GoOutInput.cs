@@ -15,6 +15,16 @@ public class GoOutInput : MonoBehaviour
     public GameObject btnLvlTen;
 
     public GameObject btnLvlEleven;
+    public GameObject btnLvlTwelve;
+    public GameObject btnLvlThirteen;
+    public GameObject btnLvlFourteen;
+    public GameObject btnLvlFifteen;
+    public GameObject btnLvlSixteen;
+    public GameObject btnLvlSeventeen;
+    public GameObject btnLvlEighteen;
+    public GameObject btnLvlNineteen;
+    public GameObject btnLvlTwenty;
+    public GameObject btnLvlTwentyone;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -35,8 +45,18 @@ public class GoOutInput : MonoBehaviour
             btnLvlNine.SetActive(false);
             btnLvlTen.SetActive(false);
             btnLvlEleven.SetActive(false);
-
-            if (data.mapElevenDone)
+            btnLvlTwelve.SetActive(false);
+            btnLvlThirteen.SetActive(false);
+            btnLvlFourteen.SetActive(false);
+            btnLvlFifteen.SetActive(false);
+            btnLvlSixteen.SetActive(false);
+            btnLvlSeventeen.SetActive(false);
+            btnLvlEighteen.SetActive(false);
+            btnLvlNineteen.SetActive(false);
+            btnLvlTwenty.SetActive(false);
+            btnLvlTwentyone.SetActive(false);
+            
+            if (data.mapTwentyoneDone)
             {
                 btnLvlTwo.SetActive(true);
                 btnLvlThree.SetActive(true);
@@ -48,7 +68,202 @@ public class GoOutInput : MonoBehaviour
                 btnLvlNine.SetActive(true);
                 btnLvlTen.SetActive(true);
                 btnLvlEleven.SetActive(true);
-                // btnLvlTwelve.SetActive(true); TODO
+                btnLvlTwelve.SetActive(true);
+                btnLvlThirteen.SetActive(true);
+                btnLvlFourteen.SetActive(true);
+                btnLvlFifteen.SetActive(true);
+                btnLvlSixteen.SetActive(true);
+                btnLvlSeventeen.SetActive(true);
+                btnLvlEighteen.SetActive(true);
+                btnLvlNineteen.SetActive(true);
+                btnLvlTwenty.SetActive(true);
+                btnLvlTwentyone.SetActive(false);
+                // btnLvlTwentytwo.SetActive(false); TODO
+            }
+            else if (data.mapTwentyDone)
+            {
+                btnLvlTwo.SetActive(true);
+                btnLvlThree.SetActive(true);
+                btnLvlFour.SetActive(true);
+                btnLvlFive.SetActive(true);
+                btnLvlSix.SetActive(true);
+                btnLvlSeven.SetActive(true);
+                btnLvlEight.SetActive(true);
+                btnLvlNine.SetActive(true);
+                btnLvlTen.SetActive(true);
+                btnLvlEleven.SetActive(true);
+                btnLvlTwelve.SetActive(true);
+                btnLvlThirteen.SetActive(true);
+                btnLvlFourteen.SetActive(true);
+                btnLvlFifteen.SetActive(true);
+                btnLvlSixteen.SetActive(true);
+                btnLvlSeventeen.SetActive(true);
+                btnLvlEighteen.SetActive(true);
+                btnLvlNineteen.SetActive(true);
+                btnLvlTwenty.SetActive(true);
+                btnLvlTwentyone.SetActive(false);
+            }
+            else if (data.mapNineteenDone)
+            {
+                btnLvlTwo.SetActive(true);
+                btnLvlThree.SetActive(true);
+                btnLvlFour.SetActive(true);
+                btnLvlFive.SetActive(true);
+                btnLvlSix.SetActive(true);
+                btnLvlSeven.SetActive(true);
+                btnLvlEight.SetActive(true);
+                btnLvlNine.SetActive(true);
+                btnLvlTen.SetActive(true);
+                btnLvlEleven.SetActive(true);
+                btnLvlTwelve.SetActive(true);
+                btnLvlThirteen.SetActive(true);
+                btnLvlFourteen.SetActive(true);
+                btnLvlFifteen.SetActive(true);
+                btnLvlSixteen.SetActive(true);
+                btnLvlSeventeen.SetActive(true);
+                btnLvlEighteen.SetActive(true);
+                btnLvlNineteen.SetActive(true);
+                btnLvlTwenty.SetActive(true);
+            }
+            else if (data.mapEighteenDone)
+            {
+                btnLvlTwo.SetActive(true);
+                btnLvlThree.SetActive(true);
+                btnLvlFour.SetActive(true);
+                btnLvlFive.SetActive(true);
+                btnLvlSix.SetActive(true);
+                btnLvlSeven.SetActive(true);
+                btnLvlEight.SetActive(true);
+                btnLvlNine.SetActive(true);
+                btnLvlTen.SetActive(true);
+                btnLvlEleven.SetActive(true);
+                btnLvlTwelve.SetActive(true);
+                btnLvlThirteen.SetActive(true);
+                btnLvlFourteen.SetActive(true);
+                btnLvlFifteen.SetActive(true);
+                btnLvlSixteen.SetActive(true);
+                btnLvlSeventeen.SetActive(true);
+                btnLvlEighteen.SetActive(true);
+                btnLvlNineteen.SetActive(true);
+            }
+            else if (data.mapSeventeenDone)
+            {
+                btnLvlTwo.SetActive(true);
+                btnLvlThree.SetActive(true);
+                btnLvlFour.SetActive(true);
+                btnLvlFive.SetActive(true);
+                btnLvlSix.SetActive(true);
+                btnLvlSeven.SetActive(true);
+                btnLvlEight.SetActive(true);
+                btnLvlNine.SetActive(true);
+                btnLvlTen.SetActive(true);
+                btnLvlEleven.SetActive(true);
+                btnLvlTwelve.SetActive(true);
+                btnLvlThirteen.SetActive(true);
+                btnLvlFourteen.SetActive(true);
+                btnLvlFifteen.SetActive(true);
+                btnLvlSixteen.SetActive(true);
+                btnLvlSeventeen.SetActive(true);
+                btnLvlEighteen.SetActive(true);
+            }
+            else if (data.mapSixteenDone)
+            {
+                btnLvlTwo.SetActive(true);
+                btnLvlThree.SetActive(true);
+                btnLvlFour.SetActive(true);
+                btnLvlFive.SetActive(true);
+                btnLvlSix.SetActive(true);
+                btnLvlSeven.SetActive(true);
+                btnLvlEight.SetActive(true);
+                btnLvlNine.SetActive(true);
+                btnLvlTen.SetActive(true);
+                btnLvlEleven.SetActive(true);
+                btnLvlTwelve.SetActive(true);
+                btnLvlThirteen.SetActive(true);
+                btnLvlFourteen.SetActive(true);
+                btnLvlFifteen.SetActive(true);
+                btnLvlSixteen.SetActive(true);
+                btnLvlSeventeen.SetActive(true);
+            }
+            else if (data.mapFifteenDone)
+            {
+                btnLvlTwo.SetActive(true);
+                btnLvlThree.SetActive(true);
+                btnLvlFour.SetActive(true);
+                btnLvlFive.SetActive(true);
+                btnLvlSix.SetActive(true);
+                btnLvlSeven.SetActive(true);
+                btnLvlEight.SetActive(true);
+                btnLvlNine.SetActive(true);
+                btnLvlTen.SetActive(true);
+                btnLvlEleven.SetActive(true);
+                btnLvlTwelve.SetActive(true);
+                btnLvlThirteen.SetActive(true);
+                btnLvlFourteen.SetActive(true);
+                btnLvlFifteen.SetActive(true);
+                btnLvlSixteen.SetActive(true);
+            }
+            else if (data.mapFourteenDone)
+            {
+                btnLvlTwo.SetActive(true);
+                btnLvlThree.SetActive(true);
+                btnLvlFour.SetActive(true);
+                btnLvlFive.SetActive(true);
+                btnLvlSix.SetActive(true);
+                btnLvlSeven.SetActive(true);
+                btnLvlEight.SetActive(true);
+                btnLvlNine.SetActive(true);
+                btnLvlTen.SetActive(true);
+                btnLvlEleven.SetActive(true);
+                btnLvlTwelve.SetActive(true);
+                btnLvlThirteen.SetActive(true);
+                btnLvlFourteen.SetActive(true);
+                btnLvlFifteen.SetActive(true);
+            }
+            else if (data.mapThirteenDone)
+            {
+                btnLvlTwo.SetActive(true);
+                btnLvlThree.SetActive(true);
+                btnLvlFour.SetActive(true);
+                btnLvlFive.SetActive(true);
+                btnLvlSix.SetActive(true);
+                btnLvlSeven.SetActive(true);
+                btnLvlEight.SetActive(true);
+                btnLvlNine.SetActive(true);
+                btnLvlTen.SetActive(true);
+                btnLvlEleven.SetActive(true);
+                btnLvlTwelve.SetActive(true);
+                btnLvlThirteen.SetActive(true);
+                btnLvlFourteen.SetActive(true);
+            }
+            else if (data.mapTwelveDone)
+            {
+                btnLvlTwo.SetActive(true);
+                btnLvlThree.SetActive(true);
+                btnLvlFour.SetActive(true);
+                btnLvlFive.SetActive(true);
+                btnLvlSix.SetActive(true);
+                btnLvlSeven.SetActive(true);
+                btnLvlEight.SetActive(true);
+                btnLvlNine.SetActive(true);
+                btnLvlTen.SetActive(true);
+                btnLvlEleven.SetActive(true);
+                btnLvlTwelve.SetActive(true);
+                btnLvlThirteen.SetActive(true);
+            }
+            else if (data.mapElevenDone)
+            {
+                btnLvlTwo.SetActive(true);
+                btnLvlThree.SetActive(true);
+                btnLvlFour.SetActive(true);
+                btnLvlFive.SetActive(true);
+                btnLvlSix.SetActive(true);
+                btnLvlSeven.SetActive(true);
+                btnLvlEight.SetActive(true);
+                btnLvlNine.SetActive(true);
+                btnLvlTen.SetActive(true);
+                btnLvlEleven.SetActive(true);
+                btnLvlTwelve.SetActive(true);
             }
             else if (data.mapTenDone)
             {
