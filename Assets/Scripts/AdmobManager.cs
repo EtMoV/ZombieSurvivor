@@ -4,7 +4,7 @@ using UnityEngine;
 public class AdmobManager : MonoBehaviour
 {
 
-    private string rewardedAdUnitId = "ca-app-pub-3940256099942544/5224354917";
+    private string rewardedAdUnitId = "ca-app-pub-5469928880838084/4215421994";
     private RewardedAd rewardedAd;
 
     void Start()
