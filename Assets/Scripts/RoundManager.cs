@@ -50,7 +50,7 @@ public class RoundManager : MonoBehaviour
     public GameObject textUiLoot;
 
     public GameObject killCount;
-
+    public GameObject admobManager;
     void Awake()
     {
         _gameManager = gameManagerGo.GetComponent<GameManager>();
@@ -274,8 +274,8 @@ public class RoundManager : MonoBehaviour
 
     public void showRewardedVideo()
     {
-        adsManagerGo.GetComponent<AdsManager>().ShowRewarded();
-
+        //adsManagerGo.GetComponent<AdsManager>().ShowRewarded();
+        admobManager.GetComponent<AdmobManager>().showRewardedAd();
         FirebaseAnalytics.LogEvent("pub_victory");
         // On rajoute le loot X2 (on relance la boucle d'ajout de loot)
         for (int i = 0; i < inventoryGo.GetComponent<Inventory>().lootQte; i++)

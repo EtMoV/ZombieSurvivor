@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject btnX2Reward;
 
+    public GameObject admobManager;
     void Awake()
     {
         _inventory = inventoryGO.GetComponent<Inventory>();
@@ -122,8 +123,8 @@ public class GameManager : MonoBehaviour
 
     public void showRewardedVideo()
     {
-        adsManagerGo.GetComponent<AdsManager>().ShowRewarded();
-
+        //adsManagerGo.GetComponent<AdsManager>().ShowRewarded();
+        admobManager.GetComponent<AdmobManager>().showRewardedAd();
         FirebaseAnalytics.LogEvent("pub_die");
         // On rajoute le loot X2 (on relance la boucle d'ajout de loot)
          for (int i = 0; i < _inventory.lootQte; i++)
