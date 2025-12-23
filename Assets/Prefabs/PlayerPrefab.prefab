@@ -34,6 +34,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7943970379051235115
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -79,6 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: -119493599
   m_SortingLayer: 13
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -88,7 +90,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &432464903922093262
 GameObject:
@@ -124,6 +125,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2858691249415621452
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -169,6 +171,7 @@ SpriteRenderer:
   m_SortingLayerID: -119493599
   m_SortingLayer: 13
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -178,7 +181,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &3918324235177427387
 GameObject:
@@ -214,6 +216,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7232338053729430477
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -259,6 +262,7 @@ SpriteRenderer:
   m_SortingLayerID: -119493599
   m_SortingLayer: 13
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -268,7 +272,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &7997647101480394004
 GameObject:
@@ -304,6 +307,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5512356308176135485
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -349,6 +353,7 @@ SpriteRenderer:
   m_SortingLayerID: -119493599
   m_SortingLayer: 13
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -358,7 +363,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &8084037387303181772
 GameObject:
@@ -374,8 +378,10 @@ GameObject:
   - component: {fileID: 1064896522569642491}
   - component: {fileID: 9176236341396457665}
   - component: {fileID: 1957097936006477955}
-  - component: {fileID: 1865005635570316803}
-  - component: {fileID: 7875877942886951878}
+  - component: {fileID: 3532315747810935561}
+  - component: {fileID: 5707755439196060691}
+  - component: {fileID: 5109806954344541135}
+  - component: {fileID: 6424875395833361459}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Player
@@ -404,6 +410,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6226458295329863016
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -449,6 +456,7 @@ SpriteRenderer:
   m_SortingLayerID: -969162863
   m_SortingLayer: 12
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: 7366803887970489002, guid: f9cefc70bdc124d6fae5e3051b52ee27, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -458,7 +466,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &2685163158974880461
 MonoBehaviour:
@@ -487,7 +494,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1865005635570316803}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnTouch
         m_Mode: 0
@@ -601,7 +608,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.38, y: 0.5}
   m_EdgeRadius: 0
---- !u!114 &1865005635570316803
+--- !u!114 &3532315747810935561
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -610,20 +617,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8084037387303181772}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0702350a6d7c4f958cb787d3f18c686, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a04267129b0c469fa30491785251864, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  moveSpeed: 5
-  stopThreshold: 0.05
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerControllerV2
+  moveSpeed: 7
   joystickUiGo: {fileID: 0}
   joystick: {fileID: 0}
-  isDead: 0
-  isHit: 0
-  inventoryGO: {fileID: 0}
-  hitPanel: {fileID: 0}
-  attractionXpRadius: 15
-  attractionXpSpeed: 8
---- !u!114 &7875877942886951878
+--- !u!114 &5707755439196060691
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -632,10 +632,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 8084037387303181772}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdee295511d5f445a9862ae5e649f23d, type: 3}
+  m_Script: {fileID: 11500000, guid: 2690f8e1921c74d37935b945994d24f9, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Player
-  inventoryGO: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerLife
+  hitPanel: {fileID: 0}
+  fillBarLife: {fileID: 0}
+  isDead: 0
+--- !u!114 &5109806954344541135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8084037387303181772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb06cd7f1e0af4963a72cdb0664eaf12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerWeapon
+  weaponPlayerPos1: {fileID: 7997647101480394004}
   bulletFactory: {fileID: 0}
-  detectionRadius: 7
-  meleeAttackFactory: {fileID: 0}
+--- !u!114 &6424875395833361459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8084037387303181772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fad2d5e6d124447485a50fbb0abf62f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInventory
+  moneys: 0
+  moneyCounterUI: {fileID: 0}

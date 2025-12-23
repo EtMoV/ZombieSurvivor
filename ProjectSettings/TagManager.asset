@@ -130,5 +130,8 @@ TagManager:
   - name: Canvas
     uniqueID: 3750773403
     locked: 0
+  - name: Money
+    uniqueID: 1651459447
+    locked: 0
   m_RenderingLayers:
   - Default

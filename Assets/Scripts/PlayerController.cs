@@ -12,7 +12,8 @@ public class PlayerController : MonoBehaviour
 
     private float lastMoveX = 0f;
     private float lastMoveY = 0f;
-    
+    private string currentAnim;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -53,28 +54,38 @@ public class PlayerController : MonoBehaviour
     // === Helpers pour animations et flip sprite ===
     private void StartRunningAnimation()
     {
-        if (!isRunning)
-        {
-            if (moveInput.x > 0.01f) animator.Play("PlayerRunRight");
-            else if (moveInput.x < -0.01f) animator.Play("PlayerRunLeft");
-            else if (moveInput.y > 0.01f) animator.Play("PlayerRunUp");
-            else if (moveInput.y < -0.01f) animator.Play("PlayerRun");
+        string newAnim = currentAnim;
 
-            isRunning = true;
+        if (moveInput.x > 0.01f)
+            newAnim = "PlayerRunRight";
+        else if (moveInput.x < -0.01f)
+            newAnim = "PlayerRunLeft";
+        else if (moveInput.y > 0.01f)
+            newAnim = "PlayerRunUp";
+        else if (moveInput.y < -0.01f)
+            newAnim = "PlayerRun";
+
+        if (newAnim != currentAnim)
+        {
+            animator.Play(newAnim);
+            currentAnim = newAnim;
         }
+
+        isRunning = true;
     }
 
     private void StopRunningAnimation()
     {
-        if (isRunning)
-        {
-            if (lastMoveX > 0.01f) animator.Play("PlayerIdleRight");
-            else if (lastMoveX < -0.01f) animator.Play("PlayerIdleLeft");
-            else if (lastMoveY > 0.01f) animator.Play("PlayerIdleUp");
-            else if (lastMoveY < -0.01f) animator.Play("PlayerIdle");
-            else animator.Play("PlayerIdle");
+        if (!isRunning) return;
 
-            isRunning = false;
-        }
+        string idleAnim = "PlayerIdle";
+
+        if (lastMoveX > 0.01f) idleAnim = "PlayerIdleRight";
+        else if (lastMoveX < -0.01f) idleAnim = "PlayerIdleLeft";
+        else if (lastMoveY > 0.01f) idleAnim = "PlayerIdleUp";
+
+        animator.Play(idleAnim);
+        currentAnim = idleAnim;
+        isRunning = false;
     }
 }

@@ -5,6 +5,7 @@ public class ZombieLife : MonoBehaviour
     public bool isDead = false;
     public int life;
     public GameObject damagePopupPrefab;
+    public GameObject moneyPrefab;
     private SpriteRenderer _spriteRenderer;
     private Color _originalColor;
 
@@ -46,9 +47,11 @@ public class ZombieLife : MonoBehaviour
         isDead = true;
         // Ajouter ici les logiques de mort du joueur (animations, UI, etc.)
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+        GetComponent<BoxCollider2D>().enabled = false;
         GetComponent<Zombie>().OnDeath?.Invoke();
         GetComponent<Animator>().Play("ZombieDie");
-        Destroy(gameObject, 1f); // Détruit le zombie après 2 secondes
+        DropMoney();
+        Destroy(gameObject, 1f);
     }
 
     private void Hit()
@@ -72,5 +75,10 @@ public class ZombieLife : MonoBehaviour
 
         GameObject popup = Instantiate(damagePopupPrefab, spawnPos, Quaternion.identity);
         popup.GetComponent<DamagePopup>().Setup(damage);
+    }
+
+    private void DropMoney()
+    {
+        Instantiate(moneyPrefab, transform.position, Quaternion.identity);
     }
 }

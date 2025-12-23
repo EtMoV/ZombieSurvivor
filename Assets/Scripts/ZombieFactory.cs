@@ -5,6 +5,7 @@ public class ZombieFactory : MonoBehaviour
     public GameObject zombiePrefab;
     public GameObject gameplayRoot; // Le parent de tous les objets du jeu (ennemis, joueur, etc.)
     public GameObject damagePopupPrefab;
+    public GameObject moneyPrefab;
 
     public GameObject InstantiateZombie(Vector2 position, int life)
     {
@@ -12,6 +13,7 @@ public class ZombieFactory : MonoBehaviour
         ZombieLife zombieLifeInstantiate = GoInstantiate.GetComponent<ZombieLife>();
         zombieLifeInstantiate.life = life;
         zombieLifeInstantiate.damagePopupPrefab = damagePopupPrefab;
+        zombieLifeInstantiate.moneyPrefab = moneyPrefab;
         return GoInstantiate;
     }
 }
