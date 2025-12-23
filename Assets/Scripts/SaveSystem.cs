@@ -3,7 +3,7 @@ using UnityEngine;
 
 public static class SaveSystem
 {
-    private static string path = Application.persistentDataPath + "/save.json";
+    private static string path = Application.persistentDataPath + "/saveV2.json";
     private static SaveData _data;
 
     public static SaveData GetData()

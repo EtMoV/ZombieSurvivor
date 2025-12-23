@@ -133,5 +133,8 @@ TagManager:
   - name: Money
     uniqueID: 1651459447
     locked: 0
+  - name: Merchant
+    uniqueID: 1092998809
+    locked: 0
   m_RenderingLayers:
   - Default
