@@ -1538,6 +1538,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ZombieFactory
   zombiePrefab: {fileID: 5694162557217334508, guid: 59d5f12dc5d444d0393b3aa52a5cc305, type: 3}
   gameplayRoot: {fileID: 235621857}
+  damagePopupPrefab: {fileID: 5029736580029528568, guid: dc1762a76e06a450782f92d1e0670f5e, type: 3}
 --- !u!114 &235621860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21910,7 +21911,6 @@ GameObject:
   m_Component:
   - component: {fileID: 760331304}
   - component: {fileID: 760331303}
-  - component: {fileID: 760331305}
   m_Layer: 0
   m_Name: GridManager
   m_TagString: Untagged
@@ -21947,18 +21947,6 @@ Transform:
   - {fileID: 452935874}
   m_Father: {fileID: 235621858}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &760331305
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 760331302}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71b19b1858240445dbc114878e1f1440, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GridManager
 --- !u!1 &794254272
 GameObject:
   m_ObjectHideFlags: 0
