@@ -9,6 +9,25 @@ public class PlayerInventory : MonoBehaviour
     public void AddMoney()
     {
         moneys++;
+        UpdateMoneyUI();
+    }
+
+    public bool ReduceMoney()
+    {
+        if (moneys > 0)
+        {
+            moneys--;
+            UpdateMoneyUI();
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private void UpdateMoneyUI()
+    {
         moneyCounterUI.GetComponent<TextMeshProUGUI>().text = moneys.ToString();
     }
 
