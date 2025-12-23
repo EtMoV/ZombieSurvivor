@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1768094012945331690}
   - component: {fileID: 4001208276047103356}
-  - component: {fileID: 1790822532816320549}
+  - component: {fileID: 2827749448067298012}
   m_Layer: 0
   m_Name: SpawnPointPrefab
   m_TagString: SpawnPoint
@@ -35,6 +35,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4001208276047103356
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -78,8 +79,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -137155197
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: -567894290, guid: 9eab4735860064a70a6543ffa31111b4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -89,9 +91,8 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1790822532816320549
+--- !u!114 &2827749448067298012
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -100,9 +101,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7005543127892929738}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30acec674782c45e8a55d68e4c07c9a9, type: 3}
+  m_Script: {fileID: 11500000, guid: 0dfb903f3cbe34c339b297489142d319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnPoint
-  maxZombies: 0
+  zombieFactory: {fileID: 0}
   spawnInterval: 0
-  isActive: 0
+  pvZombie: 0
+  nbZombie: 0
