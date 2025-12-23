@@ -8,13 +8,7 @@ public class PlayerLife : MonoBehaviour
     public GameObject fillBarLife;
     public bool isDead = false;
     private int life;
-    private int maxLife = 10;
-
-    void Start()
-    {
-        life = maxLife;
-        UpdateLifeBar();
-    }
+    private int maxLife;
 
     public void TakeDamage(int damage)
     {
@@ -31,6 +25,49 @@ public class PlayerLife : MonoBehaviour
             Hit();
         }
     }
+
+    public void SetArmor(string nameItem)
+    {
+        switch (nameItem)
+        {
+            case "woodArmor":
+                maxLife = 11;
+                break;
+            case "leatherArmor":
+                maxLife = 12;
+                break;
+            case "copperArmor":
+                maxLife = 13;
+                break;
+            case "metalArmor":
+                maxLife = 14;
+                break;
+            case "diamondArmor":
+                maxLife = 15;
+                break;
+            default:
+                maxLife = 10;
+                break;
+        }
+
+        life = maxLife;
+        UpdateLifeBar();
+
+        Debug.Log("Life : " + life + "/" + maxLife);
+    }
+
+    void Start()
+    {
+        if (ItemManagerState.getLastArmor() != null)
+        {
+            SetArmor(ItemManagerState.getLastArmor().nameItem);
+        }
+        else
+        {
+            SetArmor("default");
+        }
+    }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

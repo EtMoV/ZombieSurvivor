@@ -53,6 +53,7 @@ public class MerchantInput : MonoBehaviour
         {
             LootManagerState.SubLoots(itemArmor.price);
             ItemManagerState.AddItem(itemArmor);
+            playerGo.GetComponent<PlayerLife>().SetArmor(itemArmor.nameItem);
             UpdateMerchantUI();
         }
     }
