@@ -12,8 +12,6 @@ public class VirtualJoystick : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     private Vector2 inputVector = Vector2.zero;
     public Vector2 Direction => inputVector;
 
-    public VirtualJoystick joystick;
-
     public void OnPointerDown(PointerEventData eventData)
     {
         // Active le cercle du joystick

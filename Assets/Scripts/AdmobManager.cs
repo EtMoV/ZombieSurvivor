@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class AdmobManager : MonoBehaviour
 {
-
     private string rewardedAdUnitId = "ca-app-pub-5469928880838084/4215421994";
     private RewardedAd rewardedAd;
 
