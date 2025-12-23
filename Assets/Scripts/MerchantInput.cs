@@ -12,6 +12,7 @@ public class MerchantInput : MonoBehaviour
     public GameObject titleArmorDetailUI;
     public GameObject priceArmorDetailUI;
     public GameObject imageArmorDetailUI;
+    public GameObject playerGo;
     private Item itemWeapon;
     private Item itemArmor;
     private bool noWeaponAvailable = false;
@@ -19,15 +20,15 @@ public class MerchantInput : MonoBehaviour
 
     private List<Item> items = new List<Item>
     {
-        new Item(1, 10, "Wood armor", "A little protection, give 1 more HP", "woodArmor", "armor"),
-        new Item(2, 25, "MP5", "A high rate of fire", "subMachineGun", "weapon"),
-        new Item(3, 25, "Leather armor", "A better protection, give 2 more HP", "leatherArmor", "armor"),
-        new Item(4, 50, "Shotgun", "Very effective at short range", "shotgun", "weapon"),
-        new Item(5, 50, "Copper armor", "A good protection, give 3 more HP", "cooperArmor", "armor"),
-        new Item(6, 100, "M16", "Very powerful and accurate", "assaultRifle", "weapon"),
-        new Item(7, 100, "Metal armor", "A very good protection, give 4 more HP", "metalArmor", "armor"),
-        new Item(8, 200, "Grenade", "K - BOOM", "grenade", "weapon"),
-        new Item(9, 200, "Diamond armor", "The best protection, give 5 more HP", "diamondArmor", "armor"),
+        new Item(1, 10, "woodArmor","Wood armor", "A little protection, give 1 more HP", "woodArmor", "armor"),
+        new Item(2, 25, "subMachineGun", "MP5", "A high rate of fire", "subMachineGun", "weapon"),
+        new Item(3, 25, "leatherArmor", "Leather armor", "A better protection, give 2 more HP", "leatherArmor", "armor"),
+        new Item(4, 50, "shotgun", "Shotgun", "Very effective at short range", "shotgun", "weapon"),
+        new Item(5, 50, "copperArmor", "Copper armor", "A good protection, give 3 more HP", "cooperArmor", "armor"),
+        new Item(6, 100, "assaultRifle", "M16", "Very powerful and accurate", "assaultRifle", "weapon"),
+        new Item(7, 100, "metalArmor", "Metal armor", "A very good protection, give 4 more HP", "metalArmor", "armor"),
+        new Item(8, 200, "grenade", "Grenade", "K - BOOM", "grenade", "weapon"),
+        new Item(9, 200, "diamondArmor", "Diamond armor", "The best protection, give 5 more HP", "diamondArmor", "armor"),
     };
 
     public void CloseMerchantUI()
@@ -41,6 +42,7 @@ public class MerchantInput : MonoBehaviour
         {
             LootManagerState.SubLoots(itemWeapon.price);
             ItemManagerState.AddItem(itemWeapon);
+            playerGo.GetComponent<PlayerWeapon>().SetWeapon(itemWeapon.nameItem);
             UpdateMerchantUI();
         }
     }

@@ -15,7 +15,7 @@ public static class ItemManagerState
         }
 
         // Si l'item n'existe pas encore → on le crée
-        data.items.Add(new ItemState(itemInput.id, itemInput.price, itemInput.title, itemInput.description, itemInput.spriteName, itemInput.category));
+        data.items.Add(new ItemState(itemInput.id, itemInput.price, itemInput.nameItem, itemInput.title, itemInput.description, itemInput.spriteName, itemInput.category));
 
         SaveSystem.Save(data);
     }

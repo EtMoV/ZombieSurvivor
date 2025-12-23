@@ -7,11 +7,24 @@ public class PlayerWeapon : MonoBehaviour
     public Weapon weapon;
     public BulletFactory bulletFactory;
 
+    public void SetWeapon(string nameWeapon)
+    {
+        weapon = new Weapon(nameWeapon);
+        weaponPlayerPos1.GetComponent<SpriteRenderer>().sprite = weapon.weaponData.sprite;
+
+    }
+    
     void Start()
     {
-        // DEV Only
-        weapon = new Weapon("pistol");
-        weaponPlayerPos1.GetComponent<SpriteRenderer>().sprite = weapon.weaponData.sprite;
+        if (ItemManagerState.getLastWeapon() != null)
+        {
+            SetWeapon(ItemManagerState.getLastWeapon().nameItem);
+        }
+        else
+        {
+            // Arme par defaut
+            SetWeapon("pistol");
+        }
     }
 
     void FixedUpdate()

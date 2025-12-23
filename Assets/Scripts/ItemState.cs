@@ -5,15 +5,17 @@ public class ItemState
 {
     public int id;
     public int price;
+    public string nameItem;
     public string title;
     public string description;
     public string spriteName;
     public string category;
 
-    public ItemState(int id, int price, string title, string description, string spriteName, string category)
+    public ItemState(int id, int price, string nameItem, string title, string description, string spriteName, string category)
     {
         this.id = id;
         this.price = price;
+        this.nameItem = nameItem;
         this.title = title;
         this.description = description;
         this.spriteName = spriteName;
