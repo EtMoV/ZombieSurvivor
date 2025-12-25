@@ -20663,15 +20663,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2827749448067298012, guid: 19bc54657a5cf43fd8fbe0d1685bb5ba, type: 3}
       propertyPath: nbZombie
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2827749448067298012, guid: 19bc54657a5cf43fd8fbe0d1685bb5ba, type: 3}
       propertyPath: pvZombie
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2827749448067298012, guid: 19bc54657a5cf43fd8fbe0d1685bb5ba, type: 3}
       propertyPath: spawnInterval
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2827749448067298012, guid: 19bc54657a5cf43fd8fbe0d1685bb5ba, type: 3}
       propertyPath: zombieFactory

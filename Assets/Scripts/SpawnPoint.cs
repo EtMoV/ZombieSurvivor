@@ -24,9 +24,9 @@ public class SpawnPoint : MonoBehaviour
     IEnumerator SpawnZombies()
     {
         // ✅ Spawn des zombies
-        for (int i = 0; i < nbZombie; i++)
+        while (true)
         {
-            if(activeZombies.Count >= nbZombie)
+            if (activeZombies.Count >= nbZombie)
             {
                 yield return new WaitUntil(() => activeZombies.Count < nbZombie);
             }
@@ -43,5 +43,6 @@ public class SpawnPoint : MonoBehaviour
             zombieScript.OnDeath += () => { activeZombies.Remove(newZombie); };
             yield return new WaitForSeconds(spawnInterval);
         }
+
     }
 }
