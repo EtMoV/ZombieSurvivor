@@ -1,9 +1,9 @@
 public static class LootManagerState
 {
-    public static void AddLoot()
+    public static void AddLoot(int amount)
     {
         SaveData data = SaveSystem.GetData();
-        data.loot++;
+        data.loot += amount;
         SaveSystem.Save(data);
     }
 

@@ -4,7 +4,13 @@ using UnityEngine;
 public class PlayerInventory : MonoBehaviour
 {
     public GameObject moneyCounterUI;
+    public GameObject foodCanCounterUI;
     private int moneys;
+
+    public void UpdateCanFood()
+    {
+        foodCanCounterUI.GetComponent<TextMeshProUGUI>().text = LootManagerState.GetLoot().ToString();
+    }
 
     public void AddMoney()
     {
