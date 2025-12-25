@@ -6,6 +6,7 @@ public class ZombieLife : MonoBehaviour
     public int life;
     public GameObject damagePopupPrefab;
     public GameObject moneyPrefab;
+    public GameObject foodCanPrefab;
     private SpriteRenderer _spriteRenderer;
     private Color _originalColor;
 
@@ -79,6 +80,14 @@ public class ZombieLife : MonoBehaviour
 
     private void DropMoney()
     {
-        Instantiate(moneyPrefab, transform.position, Quaternion.identity);
+        // 0.1% de chance de drop une conserve de nourriture
+        if (Random.value < 0.001f)
+        {
+            Instantiate(foodCanPrefab, transform.position, Quaternion.identity);
+        }
+        else
+        {
+            Instantiate(moneyPrefab, transform.position, Quaternion.identity);
+        }
     }
 }

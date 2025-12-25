@@ -7,6 +7,18 @@ public class PlayerInventory : MonoBehaviour
     public GameObject foodCanCounterUI;
     private int moneys;
 
+    public void Start()
+    {
+        UpdateCanFood();
+        UpdateMoneyUI();
+    }
+    
+    public void AddCanFood()
+    {
+        LootManagerState.AddLoot(1);
+        UpdateCanFood();
+    }
+
     public void UpdateCanFood()
     {
         foodCanCounterUI.GetComponent<TextMeshProUGUI>().text = LootManagerState.GetLoot().ToString();
@@ -36,5 +48,4 @@ public class PlayerInventory : MonoBehaviour
     {
         moneyCounterUI.GetComponent<TextMeshProUGUI>().text = moneys.ToString();
     }
-
 }

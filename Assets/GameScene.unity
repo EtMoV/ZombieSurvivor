@@ -708,6 +708,7 @@ MonoBehaviour:
   gameplayRoot: {fileID: 235621857}
   damagePopupPrefab: {fileID: 5029736580029528568, guid: dc1762a76e06a450782f92d1e0670f5e, type: 3}
   moneyPrefab: {fileID: 6873963692256174111, guid: 66ac54e1adbcb4b08bf9b7d8bf369e83, type: 3}
+  foodCanPrefab: {fileID: 6873963692256174111, guid: 8419085aa58044a80af61cd16092aa9d, type: 3}
 --- !u!114 &235621860
 MonoBehaviour:
   m_ObjectHideFlags: 0
