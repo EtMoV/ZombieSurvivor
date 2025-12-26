@@ -44,6 +44,12 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
+    public void SetMoneyToZero()
+    {
+        moneys = 0;
+        UpdateMoneyUI();
+    }
+    
     private void UpdateMoneyUI()
     {
         moneyCounterUI.GetComponent<TextMeshProUGUI>().text = moneys.ToString();

@@ -13,13 +13,13 @@ public class Exit : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Level Completed!");
             SaveData data = SaveSystem.GetData();
             data.currentMap += 1;
             SaveSystem.Save(data);
             StartCoroutine(FadeInCoroutine());
             mapManager.setMapByIndex(data.currentMap);
-            player.localPosition = new Vector3(-179.33f, -373.38f, 0);
+            player.GetComponent<PlayerInventory>().SetMoneyToZero();
+            player.localPosition = StoreData.SPAWN_POINT_PLAYER;
         }
     }
 

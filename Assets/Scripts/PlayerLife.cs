@@ -6,9 +6,22 @@ public class PlayerLife : MonoBehaviour
 {
     public GameObject hitPanel;
     public GameObject fillBarLife;
+    public GameObject touchArea;
+    public GameObject dieMenu;
     public bool isDead = false;
     private int life;
     private int maxLife;
+
+    public void RestartScene()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+    }
+
+    public void FreezeAnimator()
+    {
+        Animator anim = GetComponent<Animator>();
+        anim.speed = 0f;
+    }
 
     public void TakeDamage(int damage)
     {
@@ -46,14 +59,12 @@ public class PlayerLife : MonoBehaviour
                 maxLife = 15;
                 break;
             default:
-                maxLife = 10;
+                maxLife = 1;
                 break;
         }
 
         life = maxLife;
         UpdateLifeBar();
-
-        Debug.Log("Life : " + life + "/" + maxLife);
     }
 
     void Start()
@@ -101,10 +112,15 @@ public class PlayerLife : MonoBehaviour
         isDead = true;
         GetComponent<Animator>().Play("PlayerDie");
         StartCoroutine(CameraShake(0.1f, 0.3f));
-        // Ajouter ici les logiques de mort du joueur (animations, UI, etc.)
-        Debug.Log("Player has died.");
+        touchArea.SetActive(false);
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        // Stop la physique
+        rb.linearVelocity = Vector2.zero;
+        rb.simulated = false;
+        // Stop l’input
+        enabled = false; // désactive le script de mouvement
+        dieMenu.SetActive(true);
     }
-
 
     private IEnumerator CameraShake(float duration, float magnitude)
     {
