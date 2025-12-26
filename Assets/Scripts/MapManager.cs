@@ -20,10 +20,13 @@ public class MapManager : MonoBehaviour
     {
         SaveData data = SaveSystem.GetData();
 
-        switch (data.currentMapV2)
+        switch (data.currentMap)
         {
             case 0:
                 setMapByIndex(0);
+                break;
+            case 1:
+                setMapByIndex(1);
                 break;
             default:
                 setMapByIndex(0);

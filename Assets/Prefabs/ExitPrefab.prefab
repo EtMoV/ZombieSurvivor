@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8861130299788512375}
   - component: {fileID: 7394589498531209361}
-  - component: {fileID: 5618971780106440492}
-  - component: {fileID: 3233886114722357932}
   - component: {fileID: 86442119186902147}
+  - component: {fileID: 7550419836909267798}
+  - component: {fileID: 1393226048643782321}
   m_Layer: 0
   m_Name: ExitPrefab
   m_TagString: Exit
@@ -94,7 +94,21 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!61 &5618971780106440492
+--- !u!114 &86442119186902147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8359862772775051587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 853d0ecded5614b128085dbf5a7b1536, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  mapManager: {fileID: 0}
+  player: {fileID: 0}
+--- !u!61 &7550419836909267798
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,7 +138,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -140,7 +154,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!50 &3233886114722357932
+--- !u!50 &1393226048643782321
 Rigidbody2D:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -167,15 +181,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &86442119186902147
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8359862772775051587}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 853d0ecded5614b128085dbf5a7b1536, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
