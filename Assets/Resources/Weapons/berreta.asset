@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16652548eacba4b648aebd3afcc41ac8, type: 3}
-  m_Name: sniper
+  m_Script: {fileID: 11500000, guid: d65f2446c10e8449397f66b42f15d4fb, type: 3}
+  m_Name: berreta
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
-  sprite: {fileID: 21300000, guid: badca02daf4eb404b9eb942c376d1869, type: 2}
-  typeFire: sniper
-  attackSpeed: 0.2
-  damage: 4
+  sprite: {fileID: 21300000, guid: f0c7c264a7fa24808bac39c8e22093b9, type: 2}
+  typeFire: single
+  attackSpeed: 1
+  damage: 2

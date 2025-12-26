@@ -6,13 +6,13 @@ Sprite:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: AssaultRifleSprite
+  m_Name: dragunovSprite
   m_Rect:
     serializedVersion: 2
-    x: 0
-    y: 31
-    width: 32
-    height: 15
+    x: 63
+    y: 63
+    width: 41
+    height: 18
   m_Offset: {x: 0, y: 0}
   m_Border: {x: 0, y: 0, z: 0, w: 0}
   m_PixelsToUnits: 32
@@ -21,7 +21,7 @@ Sprite:
   m_IsPolygon: 0
   m_PackingTag: 
   m_RenderDataKey:
-    a649b7216436f495e8fc1a319459819e: 2477708518685008648
+    a649b7216436f495e8fc1a319459819e: 339051261737948287
   m_AtlasTags: []
   m_SpriteAtlas: {fileID: 0}
   m_RD:
@@ -102,18 +102,18 @@ Sprite:
         format: 0
         dimension: 0
       m_DataSize: 80
-      _typelessdata: 000000bf0000703e000000000000003f0000703e00000000000000bf000070be000000000000003f000070be00000000000000000000b83ed9891d3e0000b83e000000000000783ed9891d3e0000783e
+      _typelessdata: 000024bf0000903e000000000000243f0000903e00000000000024bf000090be000000000000243f000090be00000000b1139b3e0000223f0000003f0000223fb1139b3e0000fc3e0000003f0000fc3e
     m_Bindpose: []
     textureRect:
       serializedVersion: 2
-      x: 0
-      y: 31
-      width: 32
-      height: 15
+      x: 63
+      y: 63
+      width: 41
+      height: 18
     textureRectOffset: {x: 0, y: 0}
     atlasRectOffset: {x: -1, y: -1}
     settingsRaw: 64
-    uvTransform: {x: 32, y: 16, z: 32, w: 38.5}
+    uvTransform: {x: 32, y: 83.5, z: 32, w: 72}
     downscaleMultiplier: 1
   m_AtlasRD:
     serializedVersion: 3
@@ -193,28 +193,28 @@ Sprite:
         format: 0
         dimension: 0
       m_DataSize: 80
-      _typelessdata: 000000bf0000703e000000000000003f0000703e00000000000000bf000070be000000000000003f000070be00000000000000000000b83ed9891d3e0000b83e000000000000783ed9891d3e0000783e
+      _typelessdata: 000024bf0000903e000000000000243f0000903e00000000000024bf000090be000000000000243f000090be00000000b1139b3e0000223f0000003f0000223fb1139b3e0000fc3e0000003f0000fc3e
     m_Bindpose: []
     textureRect:
       serializedVersion: 2
-      x: 0
-      y: 31
-      width: 32
-      height: 15
+      x: 63
+      y: 63
+      width: 41
+      height: 18
     textureRectOffset: {x: 0, y: 0}
     atlasRectOffset: {x: -1, y: -1}
     settingsRaw: 64
-    uvTransform: {x: 32, y: 16, z: 32, w: 38.5}
+    uvTransform: {x: 32, y: 83.5, z: 32, w: 72}
     downscaleMultiplier: 1
   m_PhysicsShape:
-  - - {x: -0.28125, y: 0.234375}
-    - {x: -0.5, y: 0.203125}
-    - {x: -0.5, y: -0.171875}
-    - {x: -0.40625, y: -0.234375}
-    - {x: 0.40625, y: -0.234375}
-    - {x: 0.5, y: -0.203125}
-    - {x: 0.5, y: 0.203125}
-    - {x: 0.40625, y: 0.234375}
+  - - {x: -0.546875, y: 0.28125}
+    - {x: -0.640625, y: 0.1875}
+    - {x: -0.640625, y: -0.1875}
+    - {x: -0.484375, y: -0.28125}
+    - {x: 0.171875, y: -0.28125}
+    - {x: 0.578125, y: -0.09375}
+    - {x: 0.640625, y: -0.0625}
+    - {x: 0.640625, y: 0.28125}
   m_Bones: []
   m_ScriptableObjects: []
-  m_SpriteID: 803ed2135c6926220800000000000000
+  m_SpriteID: f74d980835d84b400800000000000000

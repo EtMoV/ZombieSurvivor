@@ -22,15 +22,15 @@ public class MerchantInput : MonoBehaviour
     private List<Item> items = new List<Item>
     {
         new Item(1, 2, "berreta","Berreta", "", "pistol", "weapon"),
-        new Item(1, 10, "woodArmor","Wood armor", "A little protection, give 1 more HP", "woodArmor", "armor"),
-        new Item(2, 25, "subMachineGun", "MP5", "A high rate of fire", "subMachineGun", "weapon"),
-        new Item(3, 25, "leatherArmor", "Leather armor", "A better protection, give 2 more HP", "leatherArmor", "armor"),
-        new Item(4, 50, "shotgun", "Shotgun", "Very effective at short range", "shotgun", "weapon"),
-        new Item(5, 50, "copperArmor", "Copper armor", "A good protection, give 3 more HP", "copperArmor", "armor"),
-        new Item(6, 100, "assaultRifle", "M16", "Very powerful and accurate", "assaultRifle", "weapon"),
-        new Item(7, 100, "metalArmor", "Metal armor", "A very good protection, give 4 more HP", "metalArmor", "armor"),
-        new Item(8, 200, "grenade", "Grenade", "K - BOOM", "grenade", "weapon"),
-        new Item(9, 200, "diamondArmor", "Diamond armor", "The best protection, give 5 more HP", "diamondArmor", "armor"),
+        new Item(2, 2, "woodArmor","Wood armor", "", "woodArmor", "armor"),
+        new Item(3, 10, "mp5", "MP5", "A high rate of fire", "subMachineGun", "weapon"),
+        new Item(4, 20, "leatherArmor", "Leather armor", "A better protection, give 2 more HP", "leatherArmor", "armor"),
+        new Item(5, 15, "shotgun", "Shotgun", "Very effective at short range", "shotgun", "weapon"),
+        new Item(6, 30, "copperArmor", "Copper armor", "A good protection, give 3 more HP", "copperArmor", "armor"),
+        new Item(7, 20, "m16", "M16", "Very powerful and accurate", "assaultRifle", "weapon"),
+        new Item(8, 40, "metalArmor", "Metal armor", "A very good protection, give 4 more HP", "metalArmor", "armor"),
+        new Item(9, 25, "grenade", "Grenade", "K - BOOM", "grenade", "weapon"),
+        new Item(10, 50, "diamondArmor", "Diamond armor", "The best protection, give 5 more HP", "diamondArmor", "armor"),
     };
 
     public void CloseMerchantUI()
@@ -44,6 +44,7 @@ public class MerchantInput : MonoBehaviour
         {
             FirebaseAnalytics.LogEvent("buy_" + itemWeapon.title);
             LootManagerState.SubLoots(itemWeapon.price);
+            playerGo.GetComponent<PlayerInventory>().UpdateCanFood();
             ItemManagerState.AddItem(itemWeapon);
             playerGo.GetComponent<PlayerWeapon>().SetWeapon(itemWeapon.nameItem);
             UpdateMerchantUI();
@@ -56,6 +57,7 @@ public class MerchantInput : MonoBehaviour
         {
             FirebaseAnalytics.LogEvent("buy_" + itemArmor.title);
             LootManagerState.SubLoots(itemArmor.price);
+            playerGo.GetComponent<PlayerInventory>().UpdateCanFood();
             ItemManagerState.AddItem(itemArmor);
             playerGo.GetComponent<PlayerLife>().SetArmor(itemArmor.nameItem);
             UpdateMerchantUI();

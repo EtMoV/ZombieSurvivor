@@ -8,7 +8,7 @@ public class Weapon
 
     public Weapon(string dataName)
     {
-        WeaponData data = Resources.Load<WeaponData>(dataName);
+        WeaponData data = Resources.Load<WeaponData>("Weapons/" + dataName);
         weaponData = data;
         _name = dataName;
     }

@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d65f2446c10e8449397f66b42f15d4fb, type: 3}
-  m_Name: subMachineGun
+  m_Script: {fileID: 11500000, guid: 16652548eacba4b648aebd3afcc41ac8, type: 3}
+  m_Name: dragunov
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
-  sprite: {fileID: 21300000, guid: 9093bec3c7e2a42e6bc8cadb73ffd7f0, type: 2}
-  typeFire: standard
-  attackSpeed: 1
-  damage: 2
+  sprite: {fileID: 21300000, guid: badca02daf4eb404b9eb942c376d1869, type: 2}
+  typeFire: sniper
+  attackSpeed: 0.2
+  damage: 4
