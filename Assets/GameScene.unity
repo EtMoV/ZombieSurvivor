@@ -566,7 +566,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2827749448067298012, guid: 19bc54657a5cf43fd8fbe0d1685bb5ba, type: 3}
       propertyPath: nbZombie
-      value: 10
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 2827749448067298012, guid: 19bc54657a5cf43fd8fbe0d1685bb5ba, type: 3}
       propertyPath: pvZombie
@@ -574,7 +574,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2827749448067298012, guid: 19bc54657a5cf43fd8fbe0d1685bb5ba, type: 3}
       propertyPath: spawnInterval
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2827749448067298012, guid: 19bc54657a5cf43fd8fbe0d1685bb5ba, type: 3}
       propertyPath: zombieFactory
@@ -648,7 +648,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2827749448067298012, guid: 19bc54657a5cf43fd8fbe0d1685bb5ba, type: 3}
       propertyPath: nbZombie
-      value: 10
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 2827749448067298012, guid: 19bc54657a5cf43fd8fbe0d1685bb5ba, type: 3}
       propertyPath: pvZombie
@@ -656,7 +656,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2827749448067298012, guid: 19bc54657a5cf43fd8fbe0d1685bb5ba, type: 3}
       propertyPath: spawnInterval
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2827749448067298012, guid: 19bc54657a5cf43fd8fbe0d1685bb5ba, type: 3}
       propertyPath: zombieFactory
@@ -8622,7 +8622,7 @@ PrefabInstance:
       objectReference: {fileID: 736107679}
     - target: {fileID: 1245565529196152818, guid: e26616cc1526a4e6c8ed0d7703782d41, type: 3}
       propertyPath: doorCost
-      value: 20
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1245565529196152818, guid: e26616cc1526a4e6c8ed0d7703782d41, type: 3}
       propertyPath: playerGo
@@ -25094,7 +25094,7 @@ PrefabInstance:
       objectReference: {fileID: 1128962994}
     - target: {fileID: 1245565529196152818, guid: e26616cc1526a4e6c8ed0d7703782d41, type: 3}
       propertyPath: doorCost
-      value: 5
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1245565529196152818, guid: e26616cc1526a4e6c8ed0d7703782d41, type: 3}
       propertyPath: playerGo
@@ -25329,7 +25329,7 @@ PrefabInstance:
       objectReference: {fileID: 868604428}
     - target: {fileID: 1245565529196152818, guid: e26616cc1526a4e6c8ed0d7703782d41, type: 3}
       propertyPath: doorCost
-      value: 30
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 1245565529196152818, guid: e26616cc1526a4e6c8ed0d7703782d41, type: 3}
       propertyPath: playerGo
@@ -25459,7 +25459,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2827749448067298012, guid: 19bc54657a5cf43fd8fbe0d1685bb5ba, type: 3}
       propertyPath: nbZombie
-      value: 5
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2827749448067298012, guid: 19bc54657a5cf43fd8fbe0d1685bb5ba, type: 3}
       propertyPath: pvZombie
@@ -25467,7 +25467,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2827749448067298012, guid: 19bc54657a5cf43fd8fbe0d1685bb5ba, type: 3}
       propertyPath: spawnInterval
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2827749448067298012, guid: 19bc54657a5cf43fd8fbe0d1685bb5ba, type: 3}
       propertyPath: zombieFactory
@@ -47050,6 +47050,7 @@ GameObject:
   - component: {fileID: 1286540496}
   - component: {fileID: 1286540498}
   - component: {fileID: 1286540497}
+  - component: {fileID: 1286540499}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -47114,6 +47115,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1286540495}
   m_CullTransparentMesh: 1
+--- !u!114 &1286540499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286540495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 118f9137621454e08adea5450a6bc770, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  bumpScale: 1.2
+  bumpDuration: 0.2
 --- !u!1 &1287729514
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   sprite: {fileID: 21300000, guid: 9093bec3c7e2a42e6bc8cadb73ffd7f0, type: 2}
   typeFire: standard
-  attackSpeed: 0.8
+  attackSpeed: 0.5
   damage: 3
