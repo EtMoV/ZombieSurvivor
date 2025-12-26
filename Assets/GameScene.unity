@@ -965,6 +965,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e7360c3f292f841769b1b1954588ef25, type: 3}
   - {fileID: 21300000, guid: d7e42b7cbf67f4175bfd847eae028158, type: 3}
   - {fileID: 21300000, guid: cc8c4359e8c894da4b9161592b67b370, type: 3}
+  moneyCounterUI: {fileID: 1286540496}
 --- !u!114 &235621860
 MonoBehaviour:
   m_ObjectHideFlags: 0

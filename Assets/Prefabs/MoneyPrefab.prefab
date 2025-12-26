@@ -80,7 +80,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1651459447
-  m_SortingLayer: 23
+  m_SortingLayer: 24
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -3142379343794299572, guid: 29fd20232438446d0ba36b3e7176fd41, type: 3}
@@ -105,6 +105,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c869f4d0af0e48cc98579aac29c9dea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::XP
+  flyDuration: 1
+  uiTargetPosition: {x: 100, y: 200, z: 0}
 --- !u!61 &-1157130066289007979
 BoxCollider2D:
   m_ObjectHideFlags: 0

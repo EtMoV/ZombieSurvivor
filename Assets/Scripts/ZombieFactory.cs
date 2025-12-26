@@ -11,6 +11,8 @@ public class ZombieFactory : MonoBehaviour
     public ParticleSystem bloodDeathEffectPrefab;
     public GameObject bloodDecalPrefab;
     public Sprite[] bloodDecalSprites;
+    public RectTransform moneyCounterUI;
+
     public GameObject InstantiateZombie(Vector2 position, int life)
     {
         GameObject GoInstantiate = Instantiate(zombiePrefab, position, Quaternion.identity, gameplayRoot.transform);
@@ -23,6 +25,7 @@ public class ZombieFactory : MonoBehaviour
         zombieLifeInstantiate.bloodDeathEffectPrefab = bloodDeathEffectPrefab;
         zombieLifeInstantiate.bloodDecalPrefab = bloodDecalPrefab;
         zombieLifeInstantiate.bloodDecalSprites = bloodDecalSprites;
+        zombieLifeInstantiate.moneyCounterUI = moneyCounterUI;
         return GoInstantiate;
     }
 }

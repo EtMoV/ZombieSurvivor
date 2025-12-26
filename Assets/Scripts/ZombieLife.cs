@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class ZombieLife : MonoBehaviour
@@ -11,8 +12,11 @@ public class ZombieLife : MonoBehaviour
     public ParticleSystem bloodDeathEffectPrefab;
     public GameObject bloodDecalPrefab;
     public Sprite[] bloodDecalSprites;
+    public RectTransform moneyCounterUI;
     private SpriteRenderer _spriteRenderer;
     private Color _originalColor;
+    private int minMoney = 1;
+    private int maxMoney = 3;
 
     private void Start()
     {
@@ -103,8 +107,52 @@ public class ZombieLife : MonoBehaviour
         }
         else
         {
-            Instantiate(moneyPrefab, transform.position, Quaternion.identity);
+            int gemCount = Random.Range(minMoney, maxMoney + 1);
+
+            for (int i = 0; i < gemCount; i++)
+            {
+                // Instancie la gem
+                GameObject gem = Instantiate(moneyPrefab, transform.position, Quaternion.identity);
+                gem.GetComponent<Money>().gemCounterUI = moneyCounterUI;
+
+                // Direction aléatoire
+                Vector2 dir = Random.insideUnitCircle.normalized;
+
+                // Distance et durée du jaillissement
+                float distance = Random.Range(0.5f, 1.5f);
+                float duration = 0.3f;
+
+                // Lance la coroutine pour déplacer la gem
+                StartCoroutine(MoveGem(gem.transform, dir * distance, duration));
+            }
         }
+    }
+
+    // Coroutine pour déplacer la gem sans Rigidbody
+    private IEnumerator MoveGem(Transform gem, Vector2 offset, float duration)
+    {
+        Vector3 startPos = gem.position;
+        Vector3 endPos = startPos + (Vector3)offset;
+        float elapsed = 0f;
+
+        float baseScale = 0.15f; // scale du prefab
+
+        while (elapsed < duration)
+        {
+            // Lerp position
+            gem.position = Vector3.Lerp(startPos, endPos, elapsed / duration);
+
+            // Scale pop léger : de 0 → 1.2 * baseScale → 1 * baseScale
+            float scaleMultiplier = Mathf.Lerp(0f, 1.2f, elapsed / duration);
+            if (scaleMultiplier > 1f) scaleMultiplier = 1f; // clamp à 1
+            gem.localScale = Vector3.one * baseScale * scaleMultiplier;
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        gem.position = endPos;
+        gem.localScale = Vector3.one * baseScale; // scale finale = prefab
     }
 
     private void SpawnBloodDecal()
