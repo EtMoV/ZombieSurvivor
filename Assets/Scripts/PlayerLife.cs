@@ -59,7 +59,7 @@ public class PlayerLife : MonoBehaviour
                 maxLife = 15;
                 break;
             default:
-                maxLife = 1;
+                maxLife = 10;
                 break;
         }
 
