@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Firebase.Analytics;
 using UnityEngine;
 
 public class MapManager : MonoBehaviour
@@ -23,9 +24,11 @@ public class MapManager : MonoBehaviour
         switch (data.currentMap)
         {
             case 0:
+                FirebaseAnalytics.LogEvent("map_" + 0);
                 setMapByIndex(0);
                 break;
             case 1:
+                FirebaseAnalytics.LogEvent("map_" + 1);
                 setMapByIndex(1);
                 break;
             default:

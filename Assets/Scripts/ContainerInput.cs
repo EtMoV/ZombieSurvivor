@@ -1,3 +1,4 @@
+using Firebase.Analytics;
 using TMPro;
 using UnityEngine;
 
@@ -11,7 +12,7 @@ public class ContainerInput : MonoBehaviour
     public AdmobManager admobManager;
     public PlayerInventory playerInventory;
     private int tmpLoot;
-    
+
     public void OnSpin()
     {
         int randomNumber = Random.Range(1, 6);
@@ -20,6 +21,7 @@ public class ContainerInput : MonoBehaviour
         parentBtnEnd.SetActive(true);
         adBtn.SetActive(true);
         tmpLoot = randomNumber;
+        FirebaseAnalytics.LogEvent("Spin");
     }
 
     public void OnClose()
@@ -27,7 +29,6 @@ public class ContainerInput : MonoBehaviour
         LootManagerState.AddLoot(tmpLoot);
         playerInventory.UpdateCanFood();
         containerUI.SetActive(false);
-        gameObject.SetActive(false);
     }
 
     public void OnAd()
@@ -49,6 +50,7 @@ public class ContainerInput : MonoBehaviour
             spinBtn.SetActive(true);
             parentBtnEnd.SetActive(false);
             adBtn.SetActive(false);
+            gameObject.SetActive(false);
         }
     }
 
