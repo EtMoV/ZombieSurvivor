@@ -27,6 +27,7 @@ TagManager:
   - Container
   - ArenaObject
   - Bonus
+  - Effect
   layers:
   - Default
   - TransparentFX
@@ -42,7 +43,7 @@ TagManager:
   - Loot
   - Bullet
   - Bonus
-  - 
+  - Effect
   - 
   - 
   - 
@@ -66,6 +67,9 @@ TagManager:
     locked: 0
   - name: Ground
     uniqueID: 1834743297
+    locked: 0
+  - name: GroundEffect
+    uniqueID: 2713453645
     locked: 0
   - name: GroundDecor
     uniqueID: 3584241949
@@ -135,6 +139,9 @@ TagManager:
     locked: 0
   - name: Merchant
     uniqueID: 1092998809
+    locked: 0
+  - name: Effect
+    uniqueID: 3914511677
     locked: 0
   m_RenderingLayers:
   - Default

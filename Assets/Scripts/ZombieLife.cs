@@ -7,6 +7,10 @@ public class ZombieLife : MonoBehaviour
     public GameObject damagePopupPrefab;
     public GameObject moneyPrefab;
     public GameObject foodCanPrefab;
+    public ParticleSystem bloodHitEffectPrefab;
+    public ParticleSystem bloodDeathEffectPrefab;
+    public GameObject bloodDecalPrefab;
+    public Sprite[] bloodDecalSprites;
     private SpriteRenderer _spriteRenderer;
     private Color _originalColor;
 
@@ -16,18 +20,18 @@ public class ZombieLife : MonoBehaviour
         _originalColor = _spriteRenderer.color;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, Vector3 hitDirection)
     {
         if (isDead) return;
 
         life -= damage;
         if (life <= 0)
         {
-            Die();
+            Die(hitDirection);
         }
         else
         {
-            Hit();
+            Hit(hitDirection);
         }
     }
 
@@ -37,13 +41,14 @@ public class ZombieLife : MonoBehaviour
         {
 
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
-            TakeDamage(bullet.damage);
+            Vector3 hitDirection = (transform.position - collision.transform.position).normalized;
+            TakeDamage(bullet.damage, hitDirection);
             ShowDamage(bullet.damage);
             Destroy(collision.gameObject);
         }
     }
 
-    private void Die()
+    private void Die(Vector3 hitDirection)
     {
         isDead = true;
         // Ajouter ici les logiques de mort du joueur (animations, UI, etc.)
@@ -51,14 +56,25 @@ public class ZombieLife : MonoBehaviour
         GetComponent<BoxCollider2D>().enabled = false;
         GetComponent<Zombie>().OnDeath?.Invoke();
         GetComponent<Animator>().Play("ZombieDie");
+        Quaternion rot = Quaternion.LookRotation(Vector3.forward, hitDirection);
+        Instantiate(bloodDeathEffectPrefab, transform.position, rot);
         DropMoney();
+        SpawnBloodDecal();
+        SpawnBloodDecal();
         Destroy(gameObject, 1f);
     }
 
-    private void Hit()
+    private void Hit(Vector3 hitDirection)
     {
         _spriteRenderer.color = Color.pink;
         Invoke("ResetColor", 0.3f);
+        Quaternion rot = Quaternion.LookRotation(Vector3.forward, hitDirection);
+        Instantiate(bloodHitEffectPrefab, transform.position, rot);
+        // Lors d'un coup
+        if (Random.value < 0.3f)
+        {
+            SpawnBloodDecal();
+        }
     }
 
     private void ResetColor()
@@ -90,4 +106,20 @@ public class ZombieLife : MonoBehaviour
             Instantiate(moneyPrefab, transform.position, Quaternion.identity);
         }
     }
+
+    private void SpawnBloodDecal()
+    {
+        Vector3 pos = transform.position;
+        pos.z = 0.1f; // légèrement au-dessus du sol
+
+        GameObject decal = Instantiate(bloodDecalPrefab, pos, Quaternion.identity);
+
+        // Choisir un sprite aléatoire si tu as plusieurs decals
+        if (bloodDecalSprites.Length > 0)
+        {
+            SpriteRenderer sr = decal.GetComponent<SpriteRenderer>();
+            sr.sprite = bloodDecalSprites[Random.Range(0, bloodDecalSprites.Length)];
+        }
+    }
+
 }

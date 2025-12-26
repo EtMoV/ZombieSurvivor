@@ -944,6 +944,27 @@ MonoBehaviour:
   damagePopupPrefab: {fileID: 5029736580029528568, guid: dc1762a76e06a450782f92d1e0670f5e, type: 3}
   moneyPrefab: {fileID: 6873963692256174111, guid: 66ac54e1adbcb4b08bf9b7d8bf369e83, type: 3}
   foodCanPrefab: {fileID: 6873963692256174111, guid: 8419085aa58044a80af61cd16092aa9d, type: 3}
+  bloodHitEffectPrefab: {fileID: 7078970046232017285, guid: da8f5002912754be0b0a3c40dacdfbec, type: 3}
+  bloodDeathEffectPrefab: {fileID: 7078970046232017285, guid: 62a37e0f463bd48c0b79f50f982c3a42, type: 3}
+  bloodDecalPrefab: {fileID: 62175268304915167, guid: be22e09f525c14404978a6e73060f635, type: 3}
+  bloodDecalSprites:
+  - {fileID: 21300000, guid: 7449e8184e3a341c786335900358b480, type: 3}
+  - {fileID: 21300000, guid: 5a4ad87580fe34e95a113912bf715d69, type: 3}
+  - {fileID: 21300000, guid: b555b6fbcd0314aab8ef9c9317d2ac14, type: 3}
+  - {fileID: 21300000, guid: 91dec8bea01614fe7b7a498429712c3f, type: 3}
+  - {fileID: 21300000, guid: eec3b1a80b282437a811b39b6b037614, type: 3}
+  - {fileID: 21300000, guid: 01ab2a37294cb4329b16f6ca5c279b22, type: 3}
+  - {fileID: 21300000, guid: 31fd7ff346efb43d38916dd4aab457e6, type: 3}
+  - {fileID: 21300000, guid: b6c2eecffa29c475aa9c5b4e23de760d, type: 3}
+  - {fileID: 21300000, guid: f51e81102097b4d75ba44990aa94e44a, type: 3}
+  - {fileID: 21300000, guid: d8ac3c3913fc34104a9c04d5ed28b3c8, type: 3}
+  - {fileID: 21300000, guid: dcc5063ff45b447f6adbeb9f4e6c29bc, type: 3}
+  - {fileID: 21300000, guid: 55b6572a8f8bf406ab83e935453d8407, type: 3}
+  - {fileID: 21300000, guid: cf581c348f52b4543a216ff7b3a012e5, type: 3}
+  - {fileID: 21300000, guid: 547d195e884bf467b8909ea821edc7b5, type: 3}
+  - {fileID: 21300000, guid: e7360c3f292f841769b1b1954588ef25, type: 3}
+  - {fileID: 21300000, guid: d7e42b7cbf67f4175bfd847eae028158, type: 3}
+  - {fileID: 21300000, guid: cc8c4359e8c894da4b9161592b67b370, type: 3}
 --- !u!114 &235621860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1215,7 +1236,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -886799093
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
@@ -5086,10 +5107,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7149284238457542858, guid: 8ba1cfa033296410aa79b59693418356, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ba1cfa033296410aa79b59693418356, type: 3}
 --- !u!4 &404184673 stripped
 Transform:
@@ -5288,7 +5306,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -886799093
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
@@ -8578,10 +8596,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5194685115312659864, guid: 2400a1baf8a7446c7b6fab5f8d190814, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2400a1baf8a7446c7b6fab5f8d190814, type: 3}
 --- !u!4 &578560431 stripped
 Transform:
@@ -48078,10 +48093,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5194685115312659864, guid: 2400a1baf8a7446c7b6fab5f8d190814, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2400a1baf8a7446c7b6fab5f8d190814, type: 3}
 --- !u!4 &1486578257 stripped
 Transform:
@@ -49044,6 +49056,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2690f8e1921c74d37935b945994d24f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerLife
+--- !u!212 &1835889692 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6226458295329863016, guid: fbba0996de0d344d98b89e9f51c84f00, type: 3}
+  m_PrefabInstance: {fileID: 7143437654115341130}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1847174698
 GameObject:
   m_ObjectHideFlags: 0
@@ -50552,6 +50569,50 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 235621858}
     m_Modifications:
+    - target: {fileID: 246392615817789068, guid: fbba0996de0d344d98b89e9f51c84f00, type: 3}
+      propertyPath: m_SortingLayer
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 246392615817789068, guid: fbba0996de0d344d98b89e9f51c84f00, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -380455619
+      objectReference: {fileID: 0}
+    - target: {fileID: 246392615817789068, guid: fbba0996de0d344d98b89e9f51c84f00, type: 3}
+      propertyPath: m_PreviewTimeScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 246392615817789068, guid: fbba0996de0d344d98b89e9f51c84f00, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 246392615817789068, guid: fbba0996de0d344d98b89e9f51c84f00, type: 3}
+      propertyPath: m_ApplyActiveColorSpace
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 246392615817789068, guid: fbba0996de0d344d98b89e9f51c84f00, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 246392615817789068, guid: fbba0996de0d344d98b89e9f51c84f00, type: 3}
+      propertyPath: m_Parameters.numCapVertices
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 246392615817789068, guid: fbba0996de0d344d98b89e9f51c84f00, type: 3}
+      propertyPath: m_Parameters.numCornerVertices
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 246392615817789068, guid: fbba0996de0d344d98b89e9f51c84f00, type: 3}
+      propertyPath: m_Parameters.colorGradient.atime0
+      value: 52235
+      objectReference: {fileID: 0}
+    - target: {fileID: 246392615817789068, guid: fbba0996de0d344d98b89e9f51c84f00, type: 3}
+      propertyPath: m_Parameters.colorGradient.ctime0
+      value: 46260
+      objectReference: {fileID: 0}
+    - target: {fileID: 246392615817789068, guid: fbba0996de0d344d98b89e9f51c84f00, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 0.05357504
+      objectReference: {fileID: 0}
     - target: {fileID: 1865005635570316803, guid: fbba0996de0d344d98b89e9f51c84f00, type: 3}
       propertyPath: hitPanel
       value: 
@@ -50753,9 +50814,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 61004141}
     - target: {fileID: 3532315747810935561, guid: fbba0996de0d344d98b89e9f51c84f00, type: 3}
+      propertyPath: ghostPrefab
+      value: 
+      objectReference: {fileID: 1632463440506554761, guid: a302caf0247f24ba181f40130f101acc, type: 3}
+    - target: {fileID: 3532315747810935561, guid: fbba0996de0d344d98b89e9f51c84f00, type: 3}
       propertyPath: joystickUiGo
       value: 
       objectReference: {fileID: 61004136}
+    - target: {fileID: 3532315747810935561, guid: fbba0996de0d344d98b89e9f51c84f00, type: 3}
+      propertyPath: playerSprite
+      value: 
+      objectReference: {fileID: 1835889692}
     - target: {fileID: 4813867365366491725, guid: fbba0996de0d344d98b89e9f51c84f00, type: 3}
       propertyPath: m_LocalPosition.x
       value: -179.33

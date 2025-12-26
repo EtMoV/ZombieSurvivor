@@ -5,6 +5,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 7f;
     public GameObject joystickUiGo;
     public VirtualJoystick joystick;
+
     private Vector2 moveInput;
     private Rigidbody2D rb;
     private Animator animator;
@@ -13,6 +14,13 @@ public class PlayerController : MonoBehaviour
     private float lastMoveX = 0f;
     private float lastMoveY = 0f;
     private string currentAnim;
+
+    // === Ghost / After-Image ===
+    [Header("Ghost Effect")]
+    public GameObject ghostPrefab;
+    public SpriteRenderer playerSprite;
+    public float ghostDelay = 0.05f;
+    private float ghostTimer = 0f;
 
     void Awake()
     {
@@ -28,6 +36,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         HandleJoystickMovement();
+        HandleGhost();
     }
 
     private void HandleJoystickMovement()
@@ -36,10 +45,8 @@ public class PlayerController : MonoBehaviour
 
         if (moveInput.magnitude > 0.1f)
         {
-
             Vector2 velocity = moveInput.normalized * moveSpeed * moveInput.magnitude;
-
-            rb.linearVelocity = velocity;
+            rb.linearVelocity = velocity; // linearVelocity → velocity
             lastMoveX = moveInput.x;
             lastMoveY = moveInput.y;
             StartRunningAnimation();
@@ -49,6 +56,26 @@ public class PlayerController : MonoBehaviour
             rb.linearVelocity = Vector2.zero;
             StopRunningAnimation();
         }
+    }
+
+    // === Ghost / After-Image Spawn ===
+    private void HandleGhost()
+    {
+        if (rb.linearVelocity.magnitude > 0.1f)
+        {
+            ghostTimer += Time.fixedDeltaTime;
+            if (ghostTimer >= ghostDelay)
+            {
+                SpawnGhost();
+                ghostTimer = 0f;
+            }
+        }
+    }
+
+    private void SpawnGhost()
+    {
+        GameObject ghost = Instantiate(ghostPrefab, transform.position, transform.rotation);
+        ghost.GetComponent<SpriteRenderer>().sprite = playerSprite.sprite;
     }
 
     // === Helpers pour animations et flip sprite ===
