@@ -16,7 +16,7 @@ public class ContainerInput : MonoBehaviour
     private int tmpLoot;
     private SpriteRenderer containerSprite;
     private Collider2D colliderGo;
-    public float respawnTime = 120f;
+    public float respawnTime = 60f;
     private float amplitude = 0.2f;
     private float speed = 2f;
     private float startY;
