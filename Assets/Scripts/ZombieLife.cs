@@ -17,11 +17,13 @@ public class ZombieLife : MonoBehaviour
     private Color _originalColor;
     private int minMoney = 1;
     private int maxMoney = 3;
+    private GameObject playerObj;
 
     private void Start()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _originalColor = _spriteRenderer.color;
+        playerObj = GameObject.FindGameObjectWithTag("Player");
     }
 
     public void TakeDamage(int damage, Vector3 hitDirection)
@@ -66,6 +68,7 @@ public class ZombieLife : MonoBehaviour
         SpawnBloodDecal();
         SpawnBloodDecal();
         StartCoroutine(CameraShake(0.1f, 0.1f));
+        playerObj.GetComponent<PlayerLife>().AddRage();
         Destroy(gameObject, 1f);
     }
 

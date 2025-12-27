@@ -6,12 +6,15 @@ public class PlayerLife : MonoBehaviour
 {
     public GameObject hitPanel;
     public GameObject fillBarLife;
+    public GameObject fillBarRage;
     public GameObject touchArea;
     public GameObject dieMenu;
     public bool isDead = false;
     private int life;
     private int maxLife;
-
+    private int rage;
+    private int maxRage = 10;
+    
     public void RestartScene()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
@@ -67,8 +70,24 @@ public class PlayerLife : MonoBehaviour
         UpdateLifeBar();
     }
 
+    public void AddRage()
+    {
+        /*rage++;
+        UpdateRageBar();
+        if(rage >= maxRage)
+        {
+            rage = 0;
+            /*TODO AUGMENTER L'attaque speed
+            METTRE L'ECRAN EN ROUGe
+            FAIRE DUREE CA X SECONDES AVANT D'enlever l'ecran rouge et de revenir a l'attack speed a 1(de base)
+            Faire apparaitre "RAGE MODE"
+        }*/
+    }
+
     void Start()
     {
+        rage = 0;
+
         if (ItemManagerState.getLastArmor() != null)
         {
             SetArmor(ItemManagerState.getLastArmor().nameItem);
@@ -162,5 +181,11 @@ public class PlayerLife : MonoBehaviour
     {
         float lifeProgress = life / (float)maxLife;
         fillBarLife.GetComponent<Image>().fillAmount = lifeProgress;
+    }
+
+    private void UpdateRageBar()
+    {
+        float rageProgress = rage / (float)maxRage;
+        fillBarRage.GetComponent<Image>().fillAmount = rageProgress;
     }
 }

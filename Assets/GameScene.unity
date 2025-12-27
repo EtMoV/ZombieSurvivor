@@ -50999,6 +50999,10 @@ PrefabInstance:
       propertyPath: fillBarLife
       value: 
       objectReference: {fileID: 1753349568}
+    - target: {fileID: 5707755439196060691, guid: fbba0996de0d344d98b89e9f51c84f00, type: 3}
+      propertyPath: fillBarRage
+      value: 
+      objectReference: {fileID: 1434645804}
     - target: {fileID: 6226458295329863016, guid: fbba0996de0d344d98b89e9f51c84f00, type: 3}
       propertyPath: m_Sprite
       value: 
