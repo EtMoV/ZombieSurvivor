@@ -3,7 +3,7 @@ using System.Collections;
 
 public class UIBump : MonoBehaviour
 {
-    public float bumpScale = 1.2f;    // taille max du pop
+    public float bumpScale = 1.5f;    // taille max du pop
     public float bumpDuration = 0.2f; // durée de l’animation
 
     private Vector3 originalScale;

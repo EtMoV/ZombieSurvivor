@@ -42,18 +42,22 @@ public class Money : MonoBehaviour
         transform.position = new Vector3(transform.position.x, newY, transform.position.z);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.gameObject.CompareTag("Player") && !isCollected)
+        if (other.CompareTag("Player") && !isCollected)
         {
             isCollected = true;
 
-            // Convertit la position UI en world space
-            Vector3 target = Camera.main.ScreenToWorldPoint(gemCounterUI.position);
-            target.z = 0f; // garde le Z correct pour la 2D
+            // Désactive le collider pour éviter tout autre trigger
+            GetComponent<Collider2D>().enabled = false;
 
-            StartCoroutine(FlyToUI(target, collision.gameObject.GetComponent<PlayerInventory>()));
-            gemCounterUI.GetComponent<UIBump>().DoBump();
+            Vector3 target = Camera.main.ScreenToWorldPoint(gemCounterUI.position);
+            target.z = 0f;
+
+            StartCoroutine(FlyToUI(
+                target,
+                other.GetComponent<PlayerInventory>()
+            ));
         }
     }
 

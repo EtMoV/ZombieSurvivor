@@ -65,6 +65,7 @@ public class ZombieLife : MonoBehaviour
         DropMoney();
         SpawnBloodDecal();
         SpawnBloodDecal();
+        StartCoroutine(CameraShake(0.1f, 0.1f));
         Destroy(gameObject, 1f);
     }
 
@@ -168,6 +169,25 @@ public class ZombieLife : MonoBehaviour
             SpriteRenderer sr = decal.GetComponent<SpriteRenderer>();
             sr.sprite = bloodDecalSprites[Random.Range(0, bloodDecalSprites.Length)];
         }
+    }
+
+    private IEnumerator CameraShake(float duration, float magnitude)
+    {
+        Camera camera = Camera.main;
+        Vector3 originalPosition = camera.transform.position;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            float randomX = Random.Range(-1f, 1f) * magnitude;
+            float randomY = Random.Range(-1f, 1f) * magnitude;
+            camera.transform.position = originalPosition + new Vector3(randomX, randomY, 0f);
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        camera.transform.position = originalPosition;
     }
 
 }

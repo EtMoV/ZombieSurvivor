@@ -105,8 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c869f4d0af0e48cc98579aac29c9dea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::XP
-  flyDuration: 1
-  uiTargetPosition: {x: 100, y: 200, z: 0}
+  gemCounterUI: {fileID: 0}
 --- !u!61 &-1157130066289007979
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -137,7 +136,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
