@@ -14,7 +14,12 @@ public class Money : MonoBehaviour
     private float startY;
     private Transform playerTransform;
     private bool isCollected = false;
+    private SpriteRenderer sr;
 
+    void Awake()
+    {
+        sr = GetComponent<SpriteRenderer>();
+    }
     void Start()
     {
         startY = transform.position.y;
@@ -40,6 +45,10 @@ public class Money : MonoBehaviour
         // Rebond normal
         float newY = startY + Mathf.Sin(Time.time * speed) * amplitude;
         transform.position = new Vector3(transform.position.x, newY, transform.position.z);
+
+        // Effet de pulsation de luminosité
+        float brightness = 0.7f + 0.3f * Mathf.Sin(Time.time * 3f); // pulsation
+        sr.color = new Color(brightness, brightness, brightness, 1f);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
