@@ -81,7 +81,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -742275581
-  m_SortingLayer: 17
+  m_SortingLayer: 18
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
@@ -112,6 +112,10 @@ MonoBehaviour:
   parentBtnEnd: {fileID: 0}
   adBtn: {fileID: 0}
   admobManager: {fileID: 0}
+  playerInventory: {fileID: 0}
+  spriteNormal: {fileID: 0}
+  spriteCooldown: {fileID: 0}
+  respawnTime: 10
 --- !u!61 &7741358469731606859
 BoxCollider2D:
   m_ObjectHideFlags: 0
