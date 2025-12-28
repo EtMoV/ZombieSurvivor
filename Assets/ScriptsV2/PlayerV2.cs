@@ -132,32 +132,40 @@ public class PlayerV2 : MonoBehaviour
 
     public void StopMove()
     {
-
-        moveDirection = Vector2.zero;
-        canShoot = true;
         if (!isDead)
+        {
+            moveDirection = Vector2.zero;
+            canShoot = true;
             animator.Play("Player-idle");
+        }
     }
 
     // MEthode de prise de degats
     public void TakeDamage(int damage)
     {
-        canShoot = false;
-        currentHealth -= damage;
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-        if (currentHealth <= 0)
-            Die();
+        if (!isDead)
+        {
+            animator.Play("Player-hurt");
+            canShoot = false;
+            currentHealth -= damage;
+            currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+            if (currentHealth <= 0)
+                Die();
+        }
     }
 
     void Die()
     {
-        canShoot = false;
-        isDead = true;
-        // Bloque totalement le joueur
-        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        if (!isDead)
+        {
+            canShoot = false;
+            isDead = true;
+            // Bloque totalement le joueur
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
 
-        // Optionnel : désactiver le mouvement et le tir
-        moveDirection = Vector2.zero;
-        animator.Play("Player-dead");
+            // Optionnel : désactiver le mouvement et le tir
+            moveDirection = Vector2.zero;
+            animator.Play("Player-dead");
+        }
     }
 }

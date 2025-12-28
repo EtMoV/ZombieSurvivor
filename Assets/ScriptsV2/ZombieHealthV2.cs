@@ -15,11 +15,16 @@ public class ZombieHealthV2 : MonoBehaviour
     private ZombieFollowPlayerXV2 movementScript; // type exact du script de mouvement
     private bool isFrozen = false;
 
+    public Animator animator;
+
+    public bool isAttacking;
+
     void Start()
     {
         currentHealth = maxHealth;
-
+        isAttacking = false;
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         if (rb == null)
         {
             rb = gameObject.AddComponent<Rigidbody2D>();
@@ -42,14 +47,15 @@ public class ZombieHealthV2 : MonoBehaviour
     {
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-        Debug.Log(name + " HP: " + currentHealth);
 
         if (currentHealth <= 0)
         {
+            animator.Play("Zombie-dead");
             Die();
         }
         else
         {
+            animator.Play("Zombie-hurt");
             ApplyKnockback();
             if (!isFrozen && movementScript != null)
                 StartCoroutine(FreezeCoroutine());

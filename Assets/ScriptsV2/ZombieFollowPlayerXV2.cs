@@ -13,6 +13,15 @@ public class ZombieFollowPlayerXV2 : MonoBehaviour
     public float detectionAngle = 45f; // demi-angle
 
     private bool playerDetected = false;
+    private Animator animator;
+
+    ZombieHealthV2 zombieHealthV2;
+
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+        zombieHealthV2 = GetComponent<ZombieHealthV2>();
+    }
 
     void Update()
     {
@@ -44,6 +53,10 @@ public class ZombieFollowPlayerXV2 : MonoBehaviour
 
             if (distanceX > stopDistance)
             {
+                if (!zombieHealthV2.isAttacking)
+                {
+                    animator.Play("Zombie-walk");
+                }
                 float direction = Mathf.Sign(targetX - currentX);
 
                 Vector3 pos = transform.position;
@@ -61,21 +74,21 @@ public class ZombieFollowPlayerXV2 : MonoBehaviour
     }
 
     // ---------------- Gizmo pour visualiser le cône ----------------
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.green;
-        Vector3 origin = transform.position;
-        Gizmos.DrawWireSphere(origin, detectionDistance);
+    /* private void OnDrawGizmosSelected()
+     {
+         Gizmos.color = Color.green;
+         Vector3 origin = transform.position;
+         Gizmos.DrawWireSphere(origin, detectionDistance);
 
-        int rayCount = 20;
-        float angleStep = detectionAngle * 2 / rayCount;
+         int rayCount = 20;
+         float angleStep = detectionAngle * 2 / rayCount;
 
-        for (int i = 0; i <= rayCount; i++)
-        {
-            float angle = -detectionAngle + i * angleStep;
-            float rad = Mathf.Deg2Rad * angle;
-            Vector3 dir = new Vector3(Mathf.Cos(rad), Mathf.Sin(rad), 0);
-            Gizmos.DrawLine(origin, origin + dir * detectionDistance);
-        }
-    }
+         for (int i = 0; i <= rayCount; i++)
+         {
+             float angle = -detectionAngle + i * angleStep;
+             float rad = Mathf.Deg2Rad * angle;
+             Vector3 dir = new Vector3(Mathf.Cos(rad), Mathf.Sin(rad), 0);
+             Gizmos.DrawLine(origin, origin + dir * detectionDistance);
+         }
+     }*/
 }

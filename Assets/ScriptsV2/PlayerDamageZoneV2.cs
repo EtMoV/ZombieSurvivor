@@ -17,6 +17,8 @@ public class PlayerDamageZoneV2 : MonoBehaviour
     {
         if (other.CompareTag("Zombie") && damageCoroutine == null)
         {
+            other.GetComponent<ZombieHealthV2>().animator.Play("Zombie-attack");
+            other.GetComponent<ZombieHealthV2>().isAttacking = true;
             damageCoroutine = StartCoroutine(DamageOverTime());
         }
     }
@@ -36,7 +38,6 @@ public class PlayerDamageZoneV2 : MonoBehaviour
         {
             while (true)
             {
-                player.animator.Play("Player-hurt");
                 player.TakeDamage(player.damagePerTick);
                 yield return new WaitForSeconds(player.damageInterval);
             }

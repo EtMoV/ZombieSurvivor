@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8351657938545620521}
   - component: {fileID: 2330271526407079878}
   - component: {fileID: 7165564780212613737}
+  - component: {fileID: 806646157734182749}
   m_Layer: 9
   m_Name: Ennemy
   m_TagString: Zombie
@@ -191,3 +192,25 @@ MonoBehaviour:
   stopDistance: 0.1
   detectionDistance: 5
   detectionAngle: 180
+--- !u!95 &806646157734182749
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5705809246121981279}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: beb0d569956f54cf5b79968d80e7f5da, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

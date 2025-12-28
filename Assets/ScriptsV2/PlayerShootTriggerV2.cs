@@ -33,7 +33,6 @@ public class PlayerShootTrigger : MonoBehaviour
                     player.animator.Play("Player-shot");
                     zombie.TakeDamage(player.damagePerShot);
                     shootTimer = player.shootInterval;
-                    Debug.Log("aa : " + shootTimer);
                 }
             }
         }
