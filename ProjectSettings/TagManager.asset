@@ -44,7 +44,7 @@ TagManager:
   - Bullet
   - Bonus
   - Effect
-  - 
+  - Ground
   - 
   - 
   - 
@@ -73,6 +73,9 @@ TagManager:
     locked: 0
   - name: GroundDecor
     uniqueID: 3584241949
+    locked: 0
+  - name: ContainerV2
+    uniqueID: 280154489
     locked: 0
   - name: SpawnPoint
     uniqueID: 4157812099
