@@ -53,22 +53,23 @@ public class ZombieFollowPlayerXV2 : MonoBehaviour
 
             if (distanceX > stopDistance)
             {
-                if (!zombieHealthV2.isAttacking)
+                if (!zombieHealthV2.isAttacking && !zombieHealthV2.isDead)
                 {
                     animator.Play("Zombie-walk");
+
+                    float direction = Mathf.Sign(targetX - currentX);
+
+                    Vector3 pos = transform.position;
+                    pos.x += direction * speed * Time.deltaTime;
+                    transform.position = pos;
+
+                    // Flip du sprite
+                    transform.localScale = new Vector3(
+                        direction > 0 ? Mathf.Abs(transform.localScale.x) : -Mathf.Abs(transform.localScale.x),
+                        transform.localScale.y,
+                        transform.localScale.z
+                    );
                 }
-                float direction = Mathf.Sign(targetX - currentX);
-
-                Vector3 pos = transform.position;
-                pos.x += direction * speed * Time.deltaTime;
-                transform.position = pos;
-
-                // Flip du sprite
-                transform.localScale = new Vector3(
-                    direction > 0 ? Mathf.Abs(transform.localScale.x) : -Mathf.Abs(transform.localScale.x),
-                    transform.localScale.y,
-                    transform.localScale.z
-                );
             }
         }
     }

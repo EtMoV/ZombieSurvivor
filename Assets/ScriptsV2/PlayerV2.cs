@@ -21,7 +21,6 @@ public class PlayerV2 : MonoBehaviour
     public float damageInterval;
 
     [Header("Shooting")]
-    public float shootInterval;
     public int damagePerShot;
     private float shootTimer;
 
@@ -42,7 +41,6 @@ public class PlayerV2 : MonoBehaviour
         jumpForce = 6f;
         damagePerTick = 5;
         damageInterval = 1f;
-        shootInterval = 5f;
         damagePerShot = 10;
 
         rb = GetComponent<Rigidbody2D>();
@@ -140,7 +138,7 @@ public class PlayerV2 : MonoBehaviour
         }
     }
 
-    // MEthode de prise de degats
+    // Methode de prise de degats
     public void TakeDamage(int damage)
     {
         if (!isDead)

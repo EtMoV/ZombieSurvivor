@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ZombieHealthV2 : MonoBehaviour
 {
-    public int maxHealth = 50;
+    public int maxHealth;
     private int currentHealth;
 
     [Header("Knockback")]
@@ -19,8 +19,11 @@ public class ZombieHealthV2 : MonoBehaviour
 
     public bool isAttacking;
 
+    public bool isDead = false;
+
     void Start()
     {
+        maxHealth = 10;
         currentHealth = maxHealth;
         isAttacking = false;
         rb = GetComponent<Rigidbody2D>();
@@ -50,15 +53,17 @@ public class ZombieHealthV2 : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            animator.Play("Zombie-dead");
             Die();
         }
         else
         {
-            animator.Play("Zombie-hurt");
-            ApplyKnockback();
-            if (!isFrozen && movementScript != null)
-                StartCoroutine(FreezeCoroutine());
+            if (!isDead)
+            {
+                animator.Play("Zombie-hurt");
+                ApplyKnockback();
+                if (!isFrozen && movementScript != null)
+                    StartCoroutine(FreezeCoroutine());
+            }
         }
     }
 
@@ -85,6 +90,14 @@ public class ZombieHealthV2 : MonoBehaviour
 
     void Die()
     {
-        Destroy(gameObject);
+        if (!isDead)
+        {
+            animator.Play("Zombie-dead");
+            isDead = true;
+            // Bloque totalement le zombie
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            Collider2D col = GetComponent<Collider2D>();
+            col.enabled = false; // désactive complètement la collision
+        }
     }
 }

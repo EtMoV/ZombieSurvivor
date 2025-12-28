@@ -1,40 +1,75 @@
 using UnityEngine;
 
-public class PlayerShootTrigger : MonoBehaviour
+public class PlayerShootingZone : MonoBehaviour
 {
-    private PlayerV2 player;
-    private float shootTimer;
+    public PlayerV2 player;          // Référence au Player
+
+    private Collider2D detectionCollider;
+
     void Start()
     {
-        player = GetComponentInParent<PlayerV2>();
-
-        if (player == null)
-            Debug.LogError("PlayerV2 introuvable dans le parent !");
+        detectionCollider = GetComponent<Collider2D>();
+        if (detectionCollider == null)
+            Debug.LogError("Pas de Collider2D attaché à DetectionZone !");
     }
 
     void Update()
     {
-        if (shootTimer > 0f)
-            shootTimer -= Time.deltaTime;
     }
 
-    void OnTriggerStay2D(Collider2D other)
+    // ---------------- Tir public pour bouton ----------------
+    public void OnFire()
     {
         if (player == null) return;
-        if (!player.canShoot) return;
-        if (shootTimer > 0f) return;
-        if (!player.isDead)
+        if (player.isDead) return;
+
+        // Animation du player
+        player.animator.Play("Player-shot");
+
+        // Overlap avec le même collider
+        Collider2D[] hits = new Collider2D[20]; // augmente si besoin
+
+        // Nouvelle API Overlap
+        ContactFilter2D filter = new ContactFilter2D();
+        filter.SetLayerMask(LayerMask.GetMask("Zombie"));
+        filter.useTriggers = true;
+
+        int count = detectionCollider.Overlap(filter, hits);
+
+        for (int i = 0; i < count; i++)
         {
-            if (other.CompareTag("Zombie"))
+            Collider2D hit = hits[i];
+            if (hit == null) continue;
+
+            ZombieHealthV2 zombie = hit.GetComponent<ZombieHealthV2>();
+            if (zombie != null)
             {
-                ZombieHealthV2 zombie = other.GetComponent<ZombieHealthV2>();
-                if (zombie != null)
-                {
-                    player.animator.Play("Player-shot");
-                    zombie.TakeDamage(player.damagePerShot);
-                    shootTimer = player.shootInterval;
-                }
+                // Applique les dégâts
+                zombie.TakeDamage(player.damagePerShot);
             }
+        }
+    }
+
+    // ---------------- Gizmo visuel ----------------
+    private void OnDrawGizmos()
+    {
+        Collider2D col = GetComponent<Collider2D>();
+        if (col == null) return;
+
+        Gizmos.color = Color.red;
+
+        if (col is BoxCollider2D box)
+        {
+            Gizmos.DrawWireCube(box.bounds.center, box.bounds.size);
+        }
+        else if (col is CircleCollider2D circle)
+        {
+            float radius = circle.bounds.extents.x;
+            Gizmos.DrawWireSphere(circle.bounds.center, radius);
+        }
+        else if (col is CapsuleCollider2D capsule)
+        {
+            Gizmos.DrawWireCube(capsule.bounds.center, capsule.bounds.size);
         }
     }
 }
