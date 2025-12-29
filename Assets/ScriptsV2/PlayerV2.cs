@@ -38,7 +38,6 @@ public class PlayerV2 : MonoBehaviour
 
     private bool isGrounded;
 
-
     void Start()
     {
         maxHealth = 10;
@@ -109,7 +108,10 @@ public class PlayerV2 : MonoBehaviour
         if (!isDead)
         {
             moveDirection = new Vector2(-1, 0);
-            animator.Play("Player-walk");
+            if (isGrounded)
+            {
+                animator.Play("Player-walk");
+            }
         }
     }
 
@@ -118,7 +120,10 @@ public class PlayerV2 : MonoBehaviour
         if (!isDead)
         {
             moveDirection = new Vector2(1, 0);
-            animator.Play("Player-walk");
+            if (isGrounded)
+            {
+                animator.Play("Player-walk");
+            }
         }
     }
 
@@ -131,6 +136,7 @@ public class PlayerV2 : MonoBehaviour
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
             canShoot = false;
             animator.Play("Player-jump");
+
         }
     }
 
@@ -173,7 +179,7 @@ public class PlayerV2 : MonoBehaviour
         }
     }
 
-  void UpdateCounterBullet()
+    void UpdateCounterBullet()
     {
         counterBullet.GetComponent<TextMeshProUGUI>().text = "X" + nbBullet;
     }
