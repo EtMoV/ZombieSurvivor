@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class PlayerV2 : MonoBehaviour
@@ -32,7 +33,11 @@ public class PlayerV2 : MonoBehaviour
 
     [Header("Ground")]
     public LayerMask groundLayer;
+    public int nbBullet;
+    public GameObject counterBullet;
+
     private bool isGrounded;
+
 
     void Start()
     {
@@ -49,6 +54,7 @@ public class PlayerV2 : MonoBehaviour
         if (animator == null)
             animator = GetComponent<Animator>();
 
+        UpdateCounterBullet();
     }
 
     void Update()
@@ -165,5 +171,16 @@ public class PlayerV2 : MonoBehaviour
             moveDirection = Vector2.zero;
             animator.Play("Player-dead");
         }
+    }
+
+  void UpdateCounterBullet()
+    {
+        counterBullet.GetComponent<TextMeshProUGUI>().text = "X" + nbBullet;
+    }
+
+    public void subOneBullet()
+    {
+        nbBullet--;
+        UpdateCounterBullet();
     }
 }

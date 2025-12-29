@@ -3,8 +3,8 @@ using UnityEngine;
 public class PlayerShootingZone : MonoBehaviour
 {
     public PlayerV2 player;          // Référence au Player
-
     private Collider2D detectionCollider;
+
 
     void Start()
     {
@@ -20,32 +20,35 @@ public class PlayerShootingZone : MonoBehaviour
     // ---------------- Tir public pour bouton ----------------
     public void OnFire()
     {
-        if (player == null) return;
-        if (player.isDead) return;
-
-        // Animation du player
-        player.animator.Play("Player-shot");
-
-        // Overlap avec le même collider
-        Collider2D[] hits = new Collider2D[20]; // augmente si besoin
-
-        // Nouvelle API Overlap
-        ContactFilter2D filter = new ContactFilter2D();
-        filter.SetLayerMask(LayerMask.GetMask("Zombie"));
-        filter.useTriggers = true;
-
-        int count = detectionCollider.Overlap(filter, hits);
-
-        for (int i = 0; i < count; i++)
+        if (player.nbBullet > 0)
         {
-            Collider2D hit = hits[i];
-            if (hit == null) continue;
+            if (player == null) return;
+            if (player.isDead) return;
 
-            ZombieHealthV2 zombie = hit.GetComponent<ZombieHealthV2>();
-            if (zombie != null)
+            // Animation du player
+            player.animator.Play("Player-shot");
+            player.subOneBullet();
+            // Overlap avec le même collider
+            Collider2D[] hits = new Collider2D[20]; // augmente si besoin
+
+            // Nouvelle API Overlap
+            ContactFilter2D filter = new ContactFilter2D();
+            filter.SetLayerMask(LayerMask.GetMask("Zombie"));
+            filter.useTriggers = true;
+
+            int count = detectionCollider.Overlap(filter, hits);
+
+            for (int i = 0; i < count; i++)
             {
-                // Applique les dégâts
-                zombie.TakeDamage(player.damagePerShot);
+                Collider2D hit = hits[i];
+                if (hit == null) continue;
+
+                ZombieHealthV2 zombie = hit.GetComponent<ZombieHealthV2>();
+                if (zombie != null)
+                {
+                    // Applique les dégâts
+                    zombie.TakeDamage(player.damagePerShot);
+                }
             }
         }
     }

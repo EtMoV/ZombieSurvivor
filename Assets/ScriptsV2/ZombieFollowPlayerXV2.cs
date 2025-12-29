@@ -16,11 +16,13 @@ public class ZombieFollowPlayerXV2 : MonoBehaviour
     private Animator animator;
 
     ZombieHealthV2 zombieHealthV2;
+    PlayerV2 playerV2;
 
     void Start()
     {
         animator = GetComponent<Animator>();
         zombieHealthV2 = GetComponent<ZombieHealthV2>();
+        playerV2 = player.gameObject.GetComponent<PlayerV2>();
     }
 
     void Update()
@@ -43,6 +45,8 @@ public class ZombieFollowPlayerXV2 : MonoBehaviour
                 }
             }
         }
+
+
 
         // Si le player a été détecté → suit le player indéfiniment
         if (playerDetected)
@@ -71,6 +75,11 @@ public class ZombieFollowPlayerXV2 : MonoBehaviour
                     );
                 }
             }
+        }
+
+        if (!playerV2.isDead)
+        {
+            zombieHealthV2.isAttacking = false;
         }
     }
 
