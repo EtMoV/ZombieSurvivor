@@ -42,8 +42,8 @@ public class PlayerV2 : MonoBehaviour
     void Start()
     {
         maxHealth = 10;
-        speed = 5f;
-        jumpForce = 6f;
+        speed = 6f;
+        jumpForce = 8f;
         damagePerTick = 5;
         damageInterval = 1f;
         damagePerShot = 10;
