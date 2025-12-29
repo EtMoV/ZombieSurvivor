@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerV2 : MonoBehaviour
 {
@@ -36,6 +37,7 @@ public class PlayerV2 : MonoBehaviour
     public int nbBullet;
     public GameObject counterBullet;
 
+    public GameObject dieBtn;
     private bool isGrounded;
 
     void Start()
@@ -43,7 +45,7 @@ public class PlayerV2 : MonoBehaviour
         maxHealth = 10;
         speed = 6f;
         jumpForce = 8f;
-        damagePerTick = 5;
+        damagePerTick = 10;
         damageInterval = 1f;
         damagePerShot = 10;
 
@@ -176,6 +178,7 @@ public class PlayerV2 : MonoBehaviour
             // Optionnel : désactiver le mouvement et le tir
             moveDirection = Vector2.zero;
             animator.Play("Player-dead");
+            dieBtn.SetActive(true);
         }
     }
 
@@ -188,5 +191,10 @@ public class PlayerV2 : MonoBehaviour
     {
         nbBullet--;
         UpdateCounterBullet();
+    }
+
+    public void RestartScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
