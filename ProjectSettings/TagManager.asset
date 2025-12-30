@@ -28,6 +28,7 @@ TagManager:
   - ArenaObject
   - Bonus
   - Effect
+  - GroundDeath
   layers:
   - Default
   - TransparentFX

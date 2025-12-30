@@ -100,4 +100,12 @@ public class ZombieHealthV2 : MonoBehaviour
             col.enabled = false; // désactive complètement la collision
         }
     }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("GroundDeath"))
+        {
+            Die();
+        }
+    }
 }
