@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 7f;
+    private float moveSpeed = 8f;
     public GameObject joystickUiGo;
     public VirtualJoystick joystick;
 

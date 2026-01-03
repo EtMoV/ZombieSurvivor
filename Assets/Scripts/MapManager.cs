@@ -12,11 +12,13 @@ public class MapManager : MonoBehaviour
     public GameObject lvlObj_1;
     public GameObject lvlObj_2;
 
+    public GameObject endBeta;
+
     public void Awake()
     {
         SetMap();
     }
-    
+
     public void SetMap()
     {
         SaveData data = SaveSystem.GetData();
@@ -33,6 +35,12 @@ public class MapManager : MonoBehaviour
                 setMapByIndex(1);
                 lvlObj_1.SetActive(false);
                 lvlObj_2.SetActive(true);
+                break;
+            default:
+                FirebaseAnalytics.LogEvent("endBeta");
+                lvlObj_1.SetActive(false);
+                lvlObj_2.SetActive(false);
+                endBeta.SetActive(true);
                 break;
         }
     }
