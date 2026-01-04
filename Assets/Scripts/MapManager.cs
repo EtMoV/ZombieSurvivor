@@ -11,6 +11,7 @@ public class MapManager : MonoBehaviour
 
     public GameObject lvlObj_1;
     public GameObject lvlObj_2;
+    public GameObject lvlObj_3;
 
     public GameObject endBeta;
 
@@ -36,10 +37,18 @@ public class MapManager : MonoBehaviour
                 lvlObj_1.SetActive(false);
                 lvlObj_2.SetActive(true);
                 break;
+            case 2:
+                FirebaseAnalytics.LogEvent("map_" + 2);
+                setMapByIndex(2);
+                lvlObj_1.SetActive(false);
+                lvlObj_2.SetActive(false);
+                lvlObj_3.SetActive(true);
+                break;
             default:
                 FirebaseAnalytics.LogEvent("endBeta");
                 lvlObj_1.SetActive(false);
                 lvlObj_2.SetActive(false);
+                lvlObj_3.SetActive(false);
                 endBeta.SetActive(true);
                 break;
         }
