@@ -4,7 +4,9 @@ using UnityEngine;
 public class AdmobManager : MonoBehaviour
 {
     private string rewardedAdUnitId = "ca-app-pub-5469928880838084/4215421994";
+    private string interstitialAdUnitId = "ca-app-pub-5469928880838084/2024721979";
     private RewardedAd rewardedAd;
+    private InterstitialAd interstitialAd;
 
     void Start()
     {
@@ -17,8 +19,8 @@ public class AdmobManager : MonoBehaviour
             }
 
             Debug.Log("Google Mobile Ads initialization complete.");
-            LoadAd();
-
+            LoadRewardAd();
+            LoadInterstitialAd();
         });
 
     }
@@ -35,7 +37,15 @@ public class AdmobManager : MonoBehaviour
         }
     }
 
-    private void LoadAd()
+    public void showInterstitialAd()
+    {
+        if (interstitialAd != null && interstitialAd.CanShowAd())
+        {
+            interstitialAd.Show();
+        }
+    }
+
+    private void LoadRewardAd()
     {
         if (rewardedAd != null)
         {
@@ -59,12 +69,46 @@ public class AdmobManager : MonoBehaviour
             rewardedAd = ad;
             rewardedAd.OnAdFullScreenContentClosed += () =>
             {
-                LoadAd();
+                LoadRewardAd();
             };
             rewardedAd.OnAdFullScreenContentFailed += (AdError error) =>
             {
                 Debug.LogError("OnAdFullScreenContentFailed: " + error.GetCause());
-                LoadAd();
+                LoadRewardAd();
+            };
+        });
+    }
+
+    private void LoadInterstitialAd()
+    {
+        if (interstitialAd != null)
+        {
+            interstitialAd.Destroy();
+        }
+
+        // Create our request used to load the ad.
+        var adRequest = new AdRequest();
+
+        // Send the request to load the ad.
+        InterstitialAd.Load(interstitialAdUnitId, adRequest, (InterstitialAd ad, LoadAdError error) =>
+        {
+            if (error != null)
+            {
+                // The ad failed to load.
+                Debug.LogError("Google Mobile Ads loading interstitial failed.");
+                return;
+            }
+            // The ad loaded successfully.
+            Debug.Log("Google Mobile Ads loading interstitial complete.");
+            interstitialAd = ad;
+            interstitialAd.OnAdFullScreenContentClosed += () =>
+            {
+                LoadRewardAd();
+            };
+            interstitialAd.OnAdFullScreenContentFailed += (AdError error) =>
+            {
+                Debug.LogError("OnAdFullScreenContentFailed: " + error.GetCause());
+                LoadRewardAd();
             };
         });
     }

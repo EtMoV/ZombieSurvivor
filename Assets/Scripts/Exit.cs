@@ -4,6 +4,7 @@ public class Exit : MonoBehaviour
 {
     public MapManager mapManager;
     public Transform player;
+    public AdmobManager admobManager;
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -14,6 +15,7 @@ public class Exit : MonoBehaviour
             SaveSystem.Save(data);
             player.GetComponent<PlayerInventory>().SetMoneyToZero();
             player.localPosition = StoreData.SPAWN_POINT_PLAYER;
+            admobManager.showInterstitialAd();
             mapManager.SetMap();
         }
     }

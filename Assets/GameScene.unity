@@ -71936,6 +71936,10 @@ PrefabInstance:
       propertyPath: mapManager
       value: 
       objectReference: {fileID: 1318426993}
+    - target: {fileID: 86442119186902147, guid: 8ba1cfa033296410aa79b59693418356, type: 3}
+      propertyPath: admobManager
+      value: 
+      objectReference: {fileID: 1451799612}
     - target: {fileID: 7394589498531209361, guid: 8ba1cfa033296410aa79b59693418356, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -109916,6 +109920,10 @@ PrefabInstance:
       propertyPath: mapManager
       value: 
       objectReference: {fileID: 1318426993}
+    - target: {fileID: 86442119186902147, guid: 8ba1cfa033296410aa79b59693418356, type: 3}
+      propertyPath: admobManager
+      value: 
+      objectReference: {fileID: 1451799612}
     - target: {fileID: 7394589498531209361, guid: 8ba1cfa033296410aa79b59693418356, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -111023,6 +111031,10 @@ PrefabInstance:
       propertyPath: mapManager
       value: 
       objectReference: {fileID: 1318426993}
+    - target: {fileID: 86442119186902147, guid: 8ba1cfa033296410aa79b59693418356, type: 3}
+      propertyPath: admobManager
+      value: 
+      objectReference: {fileID: 1451799612}
     - target: {fileID: 7394589498531209361, guid: 8ba1cfa033296410aa79b59693418356, type: 3}
       propertyPath: m_Sprite
       value: 
